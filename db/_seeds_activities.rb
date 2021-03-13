@@ -36,15 +36,17 @@ activities = [
               {
                 name: "Qi Gong",
                 description: "Gymnastique traditionnelle chinoise et une science de la respiration fondée sur la connaissance et la maîtrise du souffle et qui associe mouvements lents, exercices respiratoires et concentration.",
-                price: "8.50",
+                price: 8.50,
                 user_id: rand(1..User.count),
               },
               {
                 name: "Méditation guidée",
                 description: "Cette discipline se mue en art quand on la pratique de façon régulière, l’utilisation consciente du cerveau droit favorise l’équilibre, aide à contrôler les douleurs chroniques, soulage de tous les désordres liés au stress.",
-                price: "4.00",
+                price: 4.00,
                 user_id: rand(1..User.count),
               },
             ]
 
-            
+activities.each do |activity|
+  Activity.create!(activity)
+end
