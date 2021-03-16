@@ -66,6 +66,10 @@ background: linear-gradient(135deg, $color-primary-600 40%, $color-secondary-300
 
       li {
         width: 100%;
+
+        .side-button:hover, .side-button:focus {
+          box-shadow: 0 0 30px 30px rgba(white, 0.3), inset 0 0 21px 50px rgba(white, 0.3);
+        }
       }
     }
   }  
