@@ -14,6 +14,22 @@ const initNavBar = () => {
     const chatMenu_dom = document.getElementById("chat-menu");
     const menues = [profileMenu_dom, socialMenu_dom, searchMenu_dom, activitiesMenu_dom, chatMenu_dom]
     
+    const closeButtons_dom = document.querySelectorAll(".close-button");
+
+    closeButtons_dom.forEach(button => {
+        button.addEventListener("mouseenter", e => {
+            button.classList.remove("far");
+            button.classList.add("fas");
+        });
+        button.addEventListener("mouseleave", e => {
+            button.classList.remove("fas");
+            button.classList.add("far");
+        });
+        button.addEventListener("click", e => {
+            removeAllActive();
+        });
+    });
+
     const removeAllActive = () => {
         let didChange = false;
         for (let i = 0; i < buttonsLength; i++) {
