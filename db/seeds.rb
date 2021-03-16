@@ -1,3 +1,2 @@
-require_relative "./_seeds_users"
-
+require_relative "./_seeds_activities"
 
