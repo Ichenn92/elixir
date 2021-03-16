@@ -1,6 +1,7 @@
 // -------------------------------------------
 // VARIABLES
 // -------------------------------------------
+$color-primary-0: #FCFEFD;
 $color-primary-50: #E0F2F1;
 $color-primary-100: #B2DFDB;
 $color-primary-200: #80CBC4;
@@ -35,11 +36,15 @@ $thin-font-weight: 300;
 $regular-font-weight: 400;
 $bold-font-weight: 600;
 
+//Size
+$width-nav-bar: 100px;
+
 // -------------------------------------------
 // GLOBAL DEFINITION
 // -------------------------------------------
 body {
     line-height: 1.5;
+    background-color: $color-primary-0 !important;
 }
 
 h1, h2, h3, h4, h5 {
@@ -103,4 +108,8 @@ button {
 }
 .text-bold {
     font-weight: $bold-font-weight;
+}
+
+.wrapper-body {
+    margin-left: $width-nav-bar;
 }
