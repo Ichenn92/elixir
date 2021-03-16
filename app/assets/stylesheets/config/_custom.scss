@@ -1,0 +1,115 @@
+// -------------------------------------------
+// VARIABLES
+// -------------------------------------------
+$color-primary-0: #FCFEFD;
+$color-primary-50: #E0F2F1;
+$color-primary-100: #B2DFDB;
+$color-primary-200: #80CBC4;
+$color-primary-300: #4DB6AC;
+$color-primary-400: #26A69A;
+$color-primary-500: #009688;
+$color-primary-600: #00897B;
+$color-primary-700: #00796B;
+$color-primary-800: #00695C;
+$color-primary-900: #004D40;
+
+$color-secondary-50: #EDE7F6;
+$color-secondary-100: #D1C4E9;
+$color-secondary-200: #B39DDB;
+$color-secondary-300: #9575CD;
+$color-secondary-400: #7E57C2;
+$color-secondary-500: #673AB7;
+$color-secondary-600: #5E35B1;
+$color-secondary-700: #512DA8;
+$color-secondary-800: #4527A0;
+$color-secondary-900: #311B92;
+
+//Font size definitions
+$xsmall-font-size: 16px;
+$small-font-size: 24px;
+$medium-font-size: 32px;
+$big-font-size: 40px;
+$icon-font-size: 50px;
+
+//Font weight definitions
+$thin-font-weight: 300;
+$regular-font-weight: 400;
+$bold-font-weight: 600;
+
+//Size
+$width-nav-bar: 100px;
+
+// -------------------------------------------
+// GLOBAL DEFINITION
+// -------------------------------------------
+body {
+    line-height: 1.5;
+    background-color: $color-primary-0 !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: $color-primary-900;
+    line-height: 2.0;
+}
+h1 {
+    font-size: $big-font-size;
+}
+h2 {
+    font-size: calc($big-font-size - 4px);
+}
+h3 {
+    font-size: calc($big-font-size - 8px);
+}
+h4 {
+    font-size: calc($big-font-size - 12px);
+}
+h5 {
+    font-size: calc($big-font-size - 16px);
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-size: $icon-font-size;
+}
+
+p {
+    overflow: hidden;
+    max-width: 75ch;
+}
+
+button {
+    min-height: $icon-font-size;
+}
+
+// -------------------------------------------
+// CLASSES
+// -------------------------------------------
+.text-xsmall {
+    font-size: $xsmall-font-size;
+}
+.text-small {
+    font-size: $small-font-size;
+}
+.text-medium {
+    font-size: $medium-font-size;
+}
+.text-big {
+    font-size: $big-font-size;
+}
+
+.text-thin {
+    font-weight: $thin-font-weight;
+}
+.text-regular {
+    font-weight: $regular-font-weight;
+}
+.text-bold {
+    font-weight: $bold-font-weight;
+}
+
+.wrapper-body {
+    margin-left: $width-nav-bar;
+}
