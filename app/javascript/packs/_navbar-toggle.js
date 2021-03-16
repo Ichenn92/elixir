@@ -1,21 +1,24 @@
 const initNavBar = () => {
     const profileButton_dom = document.getElementById("profile-button");
     const socialButton_dom = document.getElementById("social-button");
-    const searchButton_dom = document.getElementById("search-button");
     const activitiesButton_dom = document.getElementById("activities-button");
     const chatButton_dom = document.getElementById("chat-button");
-    const buttons = [profileButton_dom, socialButton_dom, searchButton_dom, activitiesButton_dom, chatButton_dom]
+    const buttons = [profileButton_dom, socialButton_dom, activitiesButton_dom, chatButton_dom]
     const buttonsLength = buttons.length;
     
     const profileMenu_dom = document.getElementById("profile-menu");
     const socialMenu_dom = document.getElementById("social-menu");
-    const searchMenu_dom = document.getElementById("search-menu");
     const activitiesMenu_dom = document.getElementById("activities-menu");
     const chatMenu_dom = document.getElementById("chat-menu");
-    const menues = [profileMenu_dom, socialMenu_dom, searchMenu_dom, activitiesMenu_dom, chatMenu_dom]
+    const menues = [profileMenu_dom, socialMenu_dom, activitiesMenu_dom, chatMenu_dom]
     
     const closeButtons_dom = document.querySelectorAll(".close-button");
 
+    const closeSearchButton_dom = document.getElementById("close-search-bar");
+    closeSearchButton_dom.addEventListener("click", e => {
+        removeAllActive();
+    });
+    
     closeButtons_dom.forEach(button => {
         button.addEventListener("mouseenter", e => {
             button.classList.remove("far");
@@ -41,7 +44,6 @@ const initNavBar = () => {
         }
         return didChange;
     };
-    
     for (let i = 0; i < buttonsLength; i++) {
         buttons[i].addEventListener("click", (e) => {
             if (removeAllActive()) {

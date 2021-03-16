@@ -39,15 +39,71 @@
       }
     }
 
+    #open-search-bar {
+      margin-left: 100px;
+      margin-top:8px;
+      margin-bottom: 8px;
+    }
     .nav-item-main {
       margin-left: 80px;
-      i {
-          padding: 20px;
-          background: $color-primary-600;
-background: linear-gradient(135deg, $color-primary-600 40%, $color-secondary-300 100%);
-          border: 10px solid $color-primary-0;
-          border-radius: 50%;
-       }
+
+      form {
+        width: 110px;
+        transition:width 1s ease-in-out;
+        
+        .form-search {
+          width:100%;
+          position: relative;
+          display: flex;
+          justify-content: right;
+          align-items: center;
+          height: 110px;
+          border: 4px solid $color-primary-600;
+          border-radius: 55px;
+          background: white;
+          
+          .search-input {
+            width:100%;
+            height: 100%;
+            border-radius: 55px;
+            border: none;
+            position: absolute;
+            padding-left: 55px;
+          }
+          #submit-button-search-form {
+            position: absolute;
+            right: 0;
+            border-radius: 55px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+            color: white;
+            margin-left: 4px;
+
+            i {
+              border: 5px solid white;
+            }
+          }
+        }
+      }
+
+      .search {
+        
+        &:hover, &:focus {
+          i {
+            color: $color-secondary-500;
+            background: $color-primary-0;
+          }
+        }
+        i {
+            padding: 20px;
+            background: $color-primary-600;
+            background: linear-gradient(135deg, $color-primary-600 40%, $color-secondary-300 100%);
+            border: 10px solid $color-primary-0;
+            border-radius: 50%;
+         }
+      }
     }
 
     a {
