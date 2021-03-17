@@ -1,1 +1,6 @@
 // Specific CSS for your home-page
+.img-landing {
+  width: calc(100vw - 100px); 
+  height: 100vh;
+  object-fit: cover;
+}
