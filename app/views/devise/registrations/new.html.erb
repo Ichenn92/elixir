@@ -1,47 +1,59 @@
-<div class="container content-sign">
-  <div class="row mt-5 mb-5 p-5">
-    <div class="col-12 col-sm-8 col-md-4 offset-sm-2 offset-md-4">
-      <h2>Créer un compte</h2>
+<div class="content content-sign">
+  <div class="container container-sign">
+    <div class="row row-sign">
+      <div class="col-md-6 order-md-2 col-sign d-flex align-items-center">
+        <%= image_tag 'undraw_powerful.svg', class: 'img-fluid' %>
+      </div>
+      <div class="col-md-6 contents col-sign">
+        <div class="row justify-content-center">
+          <div class="col-md-8 white-box">
+            <div class="mb-4">
+              <h2>Créer un compte</h2>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :nickname,
-                      label: "Votre surnom",
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "nickname" } %>
-          <%= f.input :first_name,
-                      label: "Votre prénom",
-                      required: true,
-                      input_html: { autocomplete: "firstname" } %>
-          <%= f.input :last_name,
-                      label: "Votre nom",
-                      required: true,
-                      input_html: { autocomplete: "lastname" } %>
-          <%= f.input :email,
-                      label: "Votre adresse email",
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" }%>
-          <%= f.input :password,
-                      required: true,
-                      label: "Votre mot de passe",
-                      hint: ("Votre mot de passe doit comporter #{@minimum_password_length} charactères minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
-                      label: "Confirmation de votre mot de passe",
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
+                <div class="form-inputs">
+                  <%= f.input :nickname,
+                              label: "Votre surnom",
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "nickname" } %>
+                  <%= f.input :first_name,
+                              label: "Votre prénom",
+                              required: true,
+                              input_html: { autocomplete: "firstname" } %>
+                  <%= f.input :last_name,
+                              label: "Votre nom",
+                              required: true,
+                              input_html: { autocomplete: "lastname" } %>
+                  <%= f.input :email,
+                              label: "Votre adresse email",
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email" }%>
+                  <%= f.input :password,
+                              required: true,
+                              label: "Votre mot de passe",
+                              hint: ("Votre mot de passe doit comporter #{@minimum_password_length} charactères minimum" if @minimum_password_length),
+                              input_html: { autocomplete: "new-password" } %>
+                  <%= f.input :password_confirmation,
+                              label: "Confirmation de votre mot de passe",
+                              required: true,
+                              input_html: { autocomplete: "new-password" } %>
+                </div>
+
+
+                <div class="form-actions">
+                  <%= f.button :submit, "S'enregistrer", class: "btn btn-primary btn-block" %>
+                </div>
+              <% end %>
+
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
         </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "S'enregistrer", class: "btn btn-primary btn-block" %>
-        </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
