@@ -20,7 +20,7 @@
       <li class="nav-item-main d-none" id="open-search-bar">
         <%= form_tag "/pages/search", method: :get, class: "form-inline" do %>
           <div class="form-search">
-            <%= text_field_tag :query, nil, placeholder: "Ecrivez votre recherche", class: "search-input" %>
+            <%= text_field_tag :query, nil, placeholder: "Ecrivez votre recherche", class: "search-input text-small" %>
             <%= button_tag type: "submit", class: "nav-link search", id: "submit-button-search-form" do %>
               <i class="fas fa-search" aria-hidden="true"></i>
             <% end %>

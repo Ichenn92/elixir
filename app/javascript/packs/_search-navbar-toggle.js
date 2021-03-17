@@ -1,6 +1,7 @@
 const initSearchNavbarToggle = () => {
     const closeSearchButton_dom = document.getElementById("close-search-bar");
     const openSearchButton_dom = document.getElementById("open-search-bar");
+    const inputSearchButton_dom = document.getElementById("query");
     const formSearchNavbar_dom = document.querySelector("#open-search-bar form");
 
     const toggleSearchBar = () => {
@@ -8,10 +9,9 @@ const initSearchNavbarToggle = () => {
         closeSearchButton_dom.classList.toggle("d-none");
     };
 
-
-
     closeSearchButton_dom.addEventListener("click", e => {
         toggleSearchBar();
+        inputSearchButton_dom.focus();
         setTimeout(function(){
             formSearchNavbar_dom.style.width="80vw";
             document.addEventListener('click', function _listener(event) {
