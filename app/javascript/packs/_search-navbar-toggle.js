@@ -17,7 +17,7 @@ const initSearchNavbarToggle = () => {
             document.addEventListener('click', function _listener(event) {
                 var isClickInsideElement = openSearchButton_dom.contains(event.target);
                 if (!openSearchButton_dom.classList.contains("d-none") && !isClickInsideElement) {
-                    formSearchNavbar_dom.style.width="110px";
+                    formSearchNavbar_dom.style.width="96px";
                     setTimeout(function() {
                         toggleSearchBar();
                         document.removeEventListener('click', _listener);
