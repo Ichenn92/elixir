@@ -67,6 +67,10 @@ h5 {
     font-size: calc($big-font-size - 16px);
 }
 
+small {
+  font-size: $xsmall-font-size !important;
+}
+
 a {
     text-decoration: none;
     font-size: $xsmall-font-size;
