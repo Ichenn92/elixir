@@ -1,17 +1,17 @@
 // -------------------------------------------
 // VARIABLES
 // -------------------------------------------
-$color-primary-0: #FCFEFD;
-$color-primary-50: #86FFEA;
-$color-primary-100: #4FFEE4;
-$color-primary-200: #18FDE1;
-$color-primary-300: #03DAC6;
-$color-primary-400: #02BEB2;
-$color-primary-500: #01A39D;
-$color-primary-600: #018786;
-$color-primary-700: #00696B;
-$color-primary-800: #004B4F;
-$color-primary-900: #002F33;
+$color-primary-0: #F6FBFB;
+$color-primary-50: #E0F2F1;
+$color-primary-100: #B2DFDB;
+$color-primary-200: #80CBC4;
+$color-primary-300: #4DB6AC;
+$color-primary-400: #26A69A;
+$color-primary-500: #009688;
+$color-primary-600: #00897B;
+$color-primary-700: #00796B;
+$color-primary-800: #00695C;
+$color-primary-900: #004D40;
 
 $color-secondary-50: #EDE7F6;
 $color-secondary-100: #D1C4E9;
@@ -29,7 +29,7 @@ $xsmall-font-size: 16px;
 $small-font-size: 24px;
 $medium-font-size: 32px;
 $big-font-size: 40px;
-$icon-font-size: 50px;
+$icon-font-size: 44px;
 
 //Font weight definitions
 $thin-font-weight: 300;
@@ -67,8 +67,13 @@ h5 {
     font-size: calc($big-font-size - 16px);
 }
 
+small {
+  font-size: $xsmall-font-size !important;
+}
+
 a {
     text-decoration: none;
+    font-size: $xsmall-font-size;
 }
 
 i {
@@ -78,6 +83,7 @@ i {
 p {
     overflow: hidden;
     max-width: 75ch;
+    font-size: $xsmall-font-size;
 }
 
 button {
@@ -87,6 +93,14 @@ button {
 // -------------------------------------------
 // CLASSES
 // -------------------------------------------
+.link-green {
+    color: $color-primary-700;
+    &:hover {
+            color:white;
+            text-decoration: none;
+  }
+}
+
 .text-xsmall {
     font-size: $xsmall-font-size;
 }
