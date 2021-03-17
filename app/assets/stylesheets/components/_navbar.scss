@@ -136,7 +136,7 @@
 }
 
 .navbar-menu {
-  position: absolute;
+  position: fixed;
   border-right: $color-primary-600 solid 2px;
   z-index: 1;
   top: 0;
