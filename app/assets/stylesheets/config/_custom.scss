@@ -1,7 +1,7 @@
 // -------------------------------------------
 // VARIABLES
 // -------------------------------------------
-$color-primary-0: #FCFEFD;
+$color-primary-0: #F6FBFB;
 $color-primary-50: #E0F2F1;
 $color-primary-100: #B2DFDB;
 $color-primary-200: #80CBC4;
@@ -29,7 +29,7 @@ $xsmall-font-size: 16px;
 $small-font-size: 24px;
 $medium-font-size: 32px;
 $big-font-size: 40px;
-$icon-font-size: 50px;
+$icon-font-size: 44px;
 
 //Font weight definitions
 $thin-font-weight: 300;
@@ -69,6 +69,7 @@ h5 {
 
 a {
     text-decoration: none;
+    font-size: $xsmall-font-size;
 }
 
 i {
@@ -78,6 +79,7 @@ i {
 p {
     overflow: hidden;
     max-width: 75ch;
+    font-size: $xsmall-font-size;
 }
 
 button {
