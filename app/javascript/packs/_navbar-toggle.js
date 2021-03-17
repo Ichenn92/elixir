@@ -30,6 +30,7 @@ const initNavBar = () => {
         });
         button.addEventListener("click", e => {
             removeAllActive();
+            document.removeEventListener('click', _listener);
         });
     });
 
@@ -54,6 +55,18 @@ const initNavBar = () => {
             } else {
                 buttons[i].classList.toggle("active");
                 menues[i].classList.toggle("active-menu");
+                setTimeout(function(){
+                    document.addEventListener('click', function _listener(event) {
+                        var isClickInsideElement = menues[i].contains(event.target);
+                        if (!isClickInsideElement) {
+                            setTimeout(function() {
+                                console.log("bonjour");
+                                removeAllActive();
+                                document.removeEventListener('click', _listener);
+                            }, 100)
+                        }
+                    });
+                }, 10);
             }
 
         });
