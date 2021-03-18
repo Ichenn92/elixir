@@ -42,6 +42,12 @@ $width-nav-bar: 100px;
 // -------------------------------------------
 // GLOBAL DEFINITION
 // -------------------------------------------
+$app-height: 100%;
+
+html, body {
+  height: 100vh;
+  height: $app-height;
+}
 body {
     line-height: 1.5;
     background-color: $color-primary-0 !important;

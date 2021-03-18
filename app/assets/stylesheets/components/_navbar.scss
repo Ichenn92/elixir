@@ -5,7 +5,7 @@
   justify-content: center;
   width: $width-nav-bar;
   position: fixed;
-  height: 100vh;
+  height: 100%;
   z-index: 2;
   top: 0;
   left: 0;
@@ -137,11 +137,13 @@
 
 .navbar-menu {
   position: fixed;
+  max-width: calc(100vw - 100px);
   border-right: $color-primary-600 solid 2px;
   z-index: 1;
   top: 0;
   left: -100%;
   height: 100vh;
+  height: $app-height;
   background-color: $color-primary-700;
   transition: .8s ease-out;
   outline-offset: -100px;
@@ -157,7 +159,7 @@
     }
 
     .inside-menu {
-      margin: 100px;
+      margin: 4rem;
 
       .title {
         text-transform: uppercase;
@@ -176,13 +178,14 @@
         margin: 0;
         padding: 0;
         list-style-type: none;
+        
 
         li {
           border-radius: 1.5em;
           border: 2px solid $color-primary-600;
           line-height: 3em;
           transition: 0.3s ease;
-          margin: 20px;
+          margin-bottom: 20px;
           color: $color-primary-700;
 
           &:hover, &:focus {
