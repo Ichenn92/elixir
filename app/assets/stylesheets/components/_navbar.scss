@@ -52,6 +52,7 @@
 
       form {
         width: 110px;
+        max-width: 500px;
         transition:width 1s ease-in-out;
 
         input:focus {
