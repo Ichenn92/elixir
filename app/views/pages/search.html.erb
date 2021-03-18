@@ -1,15 +1,16 @@
-<div class="content content-sign">
-  <div class="container container-sign">
-    <div class="contents col-sign">
-      <h1>rechercher</h1>
-      <div class="white-box">
-        
-        <div class="tabs">
-          <div class="tab active">Personnes</div>
-          <div class="tab">Activités</div>
-        </div>
+<div class="one-box-screen">
+  <div class="white-box-max-height">
 
-      </div>
+    <div class="tabs">
+      <div class="tab active">Personnes</div>
+      <div class="tab">Activités</div>
     </div>
+
+    <ul class="user-cards scrollable h-100">
+      <% @users.each do |user| %>
+        <%= render partial: "shared/user-card", locals: { user: user } %>
+      <% end %>
+    </ul>
+
   </div>
 </div>
