@@ -1,8 +1,16 @@
 <div class="content content-sign">
   <div class="container container-sign">
+    <div class="row photo-row">
+
+          <h2>Bonjour <%= @user.nickname %>!</h2>
+          <%= cl_image_tag("AgingBooth_xmcym6", :width => 100, :height => 100,
+                 :crop => :thumb, :gravity => :face, :radius => 50,
+                 :default_image => "avatar.png") %>
+
+    </div>
     <div class="row row-sign">
       <div class="col-md-6 order-md-2 col-sign d-flex align-items-center">
-        <%= image_tag 'undraw_Preferences.svg', class: 'img-fluid' %>
+        <%= cl_image_tag("undraw_Preferences_hjz3i7", class: 'img-fluid') %>
       </div>
       <div class="col-md-6 contents col-sign">
         <div class="row justify-content-center">
@@ -34,6 +42,8 @@
                               hint: "Nous avons besoin de votre mot de passe actuel pour valider ces modifications",
                               required: true,
                               input_html: { autocomplete: "current-password" } %>
+                  <%= f.input :photo, as: :file,
+                              label: "Modifier votre photo de profil" %>
                 </div>
 
                 <div class="form-actions">

@@ -10,10 +10,13 @@ class ActivitiesController < ApplicationController
 
   def create
     @user= current_user
-    @activity = Activity.new(activity_params)
+    @photo = params[:activity][:photo]
+    @name = activity_params[:name]
+    @description = activity_params[:description]
+    @activity = Activity.new({name: @name, description: @description})
     @activity.user = @user
     if @activity.save
-      #@activity.photo.attach(@photo)
+      @activity.photo.attach(@photo)
       redirect_to activity_path(@activity)
     else
       raise
@@ -24,6 +27,6 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description)#, :photo)
+    params.require(:activity).permit(:name, :description, :photo)
   end
 end
