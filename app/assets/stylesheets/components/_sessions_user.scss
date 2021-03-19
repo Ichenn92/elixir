@@ -30,3 +30,11 @@
   max-width: 100%;
   height: auto;
 }
+
+.photo-row {
+
+    display: flex;
+    justify-content: space-between;
+    margin-right:300px;
+    margin-left:100px;
+}
