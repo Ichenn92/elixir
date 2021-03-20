@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   end
 
   def search
+    query = params[:query]
+
     @users = User.all
+    @activities = Activity.all
   end
 end
