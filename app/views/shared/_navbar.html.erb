@@ -55,15 +55,27 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav-links" >
-          <li><%= link_to "Mon profil", "#", :class => "link-green" %></li>
-          <li><%= link_to "Mes activités", "#", :class => "link-green" %></li>
-          <li><%= link_to "Modifier mon profil", edit_user_registration_path, :class => "link-green" %></li>
-          <li><%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, :class => "link-green" %></li>
+          <%= link_to "#", :class => "link-green" do %>
+            <li>Mon profil</li>
+          <% end %>
+          <%= link_to "#", :class => "link-green" do %>
+            <li>Mes activités</li>
+          <% end %>
+          <%= link_to edit_user_registration_path, :class => "link-green" do %>
+            <li>Modifier mon profil</li>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, :class => "link-green" do %>
+            <li>Me déconnecter</li>
+          <% end %>
           </ul>
        <% else %>
         <ul class="nav-links">
-          <li><%= link_to "Se connecter", "/users/sign_in", :class => "link-green" %></li>
-          <li><%= link_to "S'inscrire", "/users/sign_up", :class => "link-green" %></li>
+          <%= link_to new_user_session_path, :class => "link-green" do %>
+            <li>Se connecter</li>
+          <% end %>
+          <%= link_to new_user_registration_path, :class => "link-green" do %>
+            <li>S'inscrire</li>
+          <% end %>
         </ul>
       <% end %>
     </div>

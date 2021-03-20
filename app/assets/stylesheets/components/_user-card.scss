@@ -1,0 +1,21 @@
+ul.user-cards {
+  flex-grow: 1;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  li.user-card {
+    display: flex;
+    align-items: center;
+    padding: 32px;
+    border-bottom: 1px solid rgba($color-primary-900, 0.3);
+
+    .photo {
+      background-color: black;
+    }
+
+    .name {
+      flex-grow: 1;
+      margin-left: 24px;
+    }
+  }
+}
