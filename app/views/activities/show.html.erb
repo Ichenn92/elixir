@@ -1,3 +1,54 @@
-<h1><%= @activity.name %></h1>
-<h2><%= @activity.description %></h2>
-<%= cl_image_tag(@activity.photo.key,width: 400, height: 300, crop: :fill) %>
+<div class="container">
+  <div class="row activity-name">
+    <h1><%= @activity.name %></h1>
+  </div>
+  <div class="row activity-user">
+    <div class="col-md-6">
+      <%= cl_image_tag(@activity.user.photo.key, width: 400, height: 300, crop: :fill, class: "avatar-large") %>
+      <h2><%= @activity.user.nickname %></h2>
+    </div>
+    <div class="col-md-6">
+      <%= link_to "Ses activités", "/", class: ".button-outline-green" %>
+    </div>
+  </div>
+  <div class="row activity-infos white-box">
+    <div class="row activity-labels d-flex justify-content-center">
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="col-md-2 activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+    </div>
+    <div class="row activity-details">
+      <div class="col-md-8 d-flex align-items-center">
+        <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
+      </div>
+      <div class="col-md-4">
+        <div class="row-mb-4">
+          <h2><%= @activity.description %></h2>
+        </div>
+        <div class="row-mb-4 white-box">
+          <h2>Prochaines dates</h2>
+          <ul>
+            <li class="row-mb-2 white-box"></li>
+            <li class="row-mb-2 white-box"></li>
+            <li class="row-mb-2 white-box"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
