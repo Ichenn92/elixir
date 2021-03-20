@@ -1,6 +1,7 @@
 // -------------------------------------------
 // VARIABLES
 // -------------------------------------------
+$app-height: 100%;
 $color-primary-0: #F6FBFB;
 $color-primary-50: #E0F2F1;
 $color-primary-100: #B2DFDB;
@@ -42,6 +43,11 @@ $width-nav-bar: 100px;
 // -------------------------------------------
 // GLOBAL DEFINITION
 // -------------------------------------------
+
+html, body {
+  height: 100vh;
+  height: $app-height;
+}
 body {
     line-height: 1.5;
     background-color: $color-primary-0 !important;
@@ -53,6 +59,7 @@ h1, h2, h3, h4, h5 {
 }
 h1 {
     font-size: $big-font-size;
+    padding-top: 100px;
 }
 h2 {
     font-size: calc($big-font-size - 4px);
@@ -127,3 +134,8 @@ button {
 .wrapper-body {
     margin-left: $width-nav-bar;
 }
+
+.scrollable {
+    flex-grow: 1;
+    overflow: scroll;
+  }
