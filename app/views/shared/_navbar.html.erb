@@ -2,6 +2,13 @@
   <div class="nav-links">
     <ul>
       <li class="nav-item">
+        <div class="nav-link" id="brand-icon">
+          <%= link_to root_path do %>
+            <%= cl_image_tag("logo_Elixir_bottle_px5w9i", height: 100, crop: :fill) %>
+          <% end %>
+        </div>
+      </li>
+      <li class="nav-item">
         <div class="nav-link side-button" id="profile-button">
           <i class="fas fa-user-circle"></i>
         </div>
@@ -55,27 +62,16 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav-links" >
-          <%= link_to "#", :class => "link-green" do %>
-            <li>Mon profil</li>
-          <% end %>
-          <%= link_to "#", :class => "link-green" do %>
-            <li>Mes activités</li>
-          <% end %>
-          <%= link_to edit_user_registration_path, :class => "link-green" do %>
-            <li>Modifier mon profil</li>
-          <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, :class => "link-green" do %>
-            <li>Me déconnecter</li>
-          <% end %>
-          </ul>
+          <li><%= link_to "Mon profil", "#", class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "Mes activités", "#", class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "Modifier mon profil", "#", class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "Me déconnecter", destroy_user_session_path, class: "button-outline-green link-green w-100" %></li>
+        </ul>
        <% else %>
         <ul class="nav-links">
-          <%= link_to new_user_session_path, :class => "link-green" do %>
-            <li>Se connecter</li>
-          <% end %>
-          <%= link_to new_user_registration_path, :class => "link-green" do %>
-            <li>S'inscrire</li>
-          <% end %>
+          <li><%= link_to "Se connecter", new_user_session_path, class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "S'inscrire", new_user_registration_path, class: "button-outline-green w-100" %></li>
         </ul>
       <% end %>
     </div>
@@ -90,11 +86,11 @@
         <h2>Social</h2>
       </div>
       <ul class="nav-links">
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
@@ -108,12 +104,12 @@
         <h2>Activities</h2>
       </div>
       <ul class="nav-links">
-        <li><%= link_to "Créer une activité", "/activities/new", :class => "link-green" %></li>
-        <li>modifier une activité</li>
-        <li>supprimer une activité</li>
-        <li>créer un évènement</li>
-        <li>gérer un évènement</li>
-        <li>annuler un évènement</li>
+        <li><%= link_to "Créer une activité", "/activities/new", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Modifier une activité", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Supprimer une activité", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Créer un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Gérer un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Annuler un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
@@ -127,11 +123,11 @@
         <h2>Chat</h2>
       </div>
       <ul class="nav-links">
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
-        <li>link1</li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
