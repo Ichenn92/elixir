@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :nickname
   has_one_attached :photo
 
-  multisearchable against: [:nickname, :first_name, :last_name]
   pg_search_scope :search_by_nick_first_last_name,
     against: [:nickname, :first_name, :last_name],
     using: {
