@@ -1,6 +1,11 @@
 <li class="user-card">
   <div class="photo avatar-large"></div>
-  <div class="name text-medium">@<%= user.nickname %></div>
-  <button class="btn btn-primary">Add as friend</button>
-  <%= link_to "Voir Activité", "#", class: "button-outline-green" %>
+  <div class="name text-medium d-flex align-items-center">@<%= user.nickname %></div>
+    <%= link_to "#" do %>
+      <% if user_signed_in? %>
+        <button class="btn btn-primary btn-lg">Ajouter en ami</button>
+      <% else %>
+        <button class="btn btn-primary btn-lg" disabled>Vous devez être connecté</button>
+      <% end %>
+    <% end %>
 </li>
