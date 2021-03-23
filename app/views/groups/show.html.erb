@@ -15,15 +15,7 @@
       <div class="card-body msg_card_body">
         <div id="messages" data-group-id="<%= @group.id %>">
           <% @group.messages.each do |message| %>
-            <div class="d-flex mb-4">
-            <div class="message-container" id="message-<%= message.id %>">
-              <i class="author">
-                <span><%= message.user.nickname %></span>
-                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-              </i>
-              <p><%= message.content %></p>
-            </div>
-            </div>
+            <%= render "messages/message", message: message %>
           <% end %>
         </div>
       </div>

@@ -25,6 +25,8 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 import { initNavBar} from './_navbar-toggle';
 import { initSearchNavbarToggle} from './_search-navbar-toggle';
+import { initChatgroupCable } from '../channels/group_channel';
+
 const appHeight = () => {
   const doc = document.documentElement
   doc.style.setProperty('$app-height', `${window.innerHeight}px`);
@@ -35,4 +37,7 @@ appHeight();
 document.addEventListener('turbolinks:load', () => {
   initNavBar();
   initSearchNavbarToggle();
+  initChatgroupCable();
 });
+
+
