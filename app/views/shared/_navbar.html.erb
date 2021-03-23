@@ -55,25 +55,25 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav-links" >
-          <%= link_to "#", :class => "link-green" do %>
+          <%= link_to "#", :class => "button-outline-green link-green" do %>
             <li>Mon profil</li>
           <% end %>
-          <%= link_to "#", :class => "link-green" do %>
+          <%= link_to "#", :class => "button-outline-green link-green" do %>
             <li>Mes activités</li>
           <% end %>
-          <%= link_to edit_user_registration_path, :class => "link-green" do %>
+          <%= link_to edit_user_registration_path, :class => "button-outline-green link-green" do %>
             <li>Modifier mon profil</li>
           <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, :class => "link-green" do %>
+          <%= link_to destroy_user_session_path, method: :delete, :class => "button-outline-green link-green" do %>
             <li>Me déconnecter</li>
           <% end %>
           </ul>
        <% else %>
         <ul class="nav-links">
-          <%= link_to new_user_session_path, :class => "link-green" do %>
+          <%= link_to new_user_session_path, :class => "button-outline-green link-green" do %>
             <li>Se connecter</li>
           <% end %>
-          <%= link_to new_user_registration_path, :class => "link-green" do %>
+          <%= link_to new_user_registration_path, :class => "button-outline-green link-green" do %>
             <li>S'inscrire</li>
           <% end %>
         </ul>
@@ -108,22 +108,22 @@
         <h2>Activités</h2>
       </div>
       <ul class="nav-links">
-        <%= link_to new_activity_path, class: "link-green" do %>
+        <%= link_to new_activity_path, class: "button-outline-green link-green" do %>
           <li>Créer une activité</li>
         <% end %>
-        <%= link_to '#', class: "link-green" do %>
+        <%= link_to '#', class: "button-outline-green link-green" do %>
           <li>Modifier une activité</li>
         <% end %>
-        <%= link_to '#', class: "link-green" do %>
+        <%= link_to '#', class: "button-outline-green link-green" do %>
           <li>Supprimer une activité</li>
         <% end %>
-        <%= link_to '#', class: "link-green" do %>
+        <%= link_to '#', class: "button-outline-green link-green" do %>
           <li>Créer un évènement</li>
         <% end %>
-        <%= link_to '#', class: "link-green" do %>
+        <%= link_to '#', class: "button-outline-green link-green" do %>
           <li>Gérer une évènement</li>
         <% end %>
-        <%= link_to new_activity_path, class: "link-green" do %>
+        <%= link_to new_activity_path, class: "button-outline-green link-green" do %>
           <li>Annuler une évènement</li>
         <% end %>
       </ul>
