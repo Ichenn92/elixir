@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   end
 
   def search
-    @users = User.all
+    query = params[:query]
+    @users = User.search_by_nick_first_last_name(query)
+    @activities = Activity.search_by_name_and_description(query)
   end
 end
