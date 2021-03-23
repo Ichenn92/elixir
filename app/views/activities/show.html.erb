@@ -1,3 +1,63 @@
-<h1><%= @activity.name %></h1>
-<h2><%= @activity.description %></h2>
-<%= cl_image_tag(@activity.photo.key,width: 400, height: 300, crop: :fill) %>
+<div class="container">
+  <div class="row activity-name">
+    <h1><%= @activity.name %></h1>
+  </div>
+  <div class="row activity-user">
+    <div class="col-md-6">
+      <%= cl_image_tag(@activity.user.photo.key, width: 400, height: 300, crop: :fill, class: "avatar-large") %>
+      <h2><%= @activity.user.nickname %></h2>
+    </div>
+    <div class="col-md-6">
+      <%= link_to "Ses activités", "/", class: "button-outline-green" %>
+    </div>
+  </div>
+  <div class="activity-infos white-box">
+    <div class="row activity-labels">
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+      <div class="activity-label">
+        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+      </div>
+    </div>
+    <div class="row activity-details">
+      <div class="col-md-7 d-flex align-items-center">
+        <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <p class="text-small"><%= @activity.description %></p>
+        </div>
+        <div class="white-box ">
+          <h2>Prochaines dates</h2>
+          <ul>
+            <li class="white-box w-100">   
+              <p>Mardi 23 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+            </li>
+            <li class="white-box w-100">   
+              <p>Vendredi 26 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+            </li>
+            <li class="white-box w-100">   
+              <p>Mardi 30 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
