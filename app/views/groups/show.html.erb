@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Conversations avec : <%= @group.name %></h1>
+  <%= cl_image_tag(@group.photo.key,width: 400, height: 300, crop: :fill) %>
+  <div id="messages" data-group-id="<%= @group.id %>">
+    <% @group.messages.each do |message| %>
+      <div class="message-container" id="message-<%= message.id %>">
+        <i class="author">
+          <span><%= message.user.nickname %></span>
+          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </i>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [ @group, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message pour #{@group.name}" %>
+  <% end %>
+</div>
