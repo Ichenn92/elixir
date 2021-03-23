@@ -48,12 +48,12 @@ activity_7 = {
 
 photos = [
   {
-    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616444024/pexels-chris-j-mitchell-1510471_ik0hce.jpg"),
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
     filename: "activity_1.png",
     content_type: "image/png",
   },
   {
-    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616443978/aquagym_kbzdou.png"),
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449354/binsfgms0fsq9l38fqd0c34fadlt.png"),
     filename: "activity_2.png",
     content_type: "image/png",
   },
