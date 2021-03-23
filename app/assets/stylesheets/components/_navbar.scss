@@ -179,21 +179,6 @@
         margin: 0;
         padding: 0;
         list-style-type: none;
-        
-
-        li {
-          border-radius: 1.5em;
-          border: 2px solid $color-primary-600;
-          line-height: 3em;
-          transition: 0.3s ease;
-          margin-bottom: 20px;
-          color: $color-primary-700;
-
-          &:hover, &:focus {
-            background: $color-primary-600;
-            color:white;
-          }
-        }
       }
     }
   }
