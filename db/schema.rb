@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_100521) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_messages_on_group_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
