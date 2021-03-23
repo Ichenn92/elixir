@@ -8,64 +8,52 @@
       <h2><%= @activity.user.nickname %></h2>
     </div>
     <div class="col-md-6">
-      <%= link_to "Ses activités", "/", class: ".button-outline-green" %>
+      <%= link_to "Ses activités", "/", class: "button-outline-green" %>
     </div>
   </div>
-  <div class="row activity-infos white-box">
-    <div class="row activity-labels d-flex justify-content-center">
-      <div class="col-md-2 activity-label">
+  <div class="activity-infos white-box">
+    <div class="row activity-labels">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
-      <div class="col-md-2 activity-label">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
-      <div class="col-md-2 activity-label">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
-      <div class="col-md-2 activity-label">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
-      <div class="col-md-2 activity-label">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
-      <div class="col-md-2 activity-label">
+      <div class="activity-label">
         <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
       </div>
     </div>
     <div class="row activity-details">
-      <div class="col-md-8 d-flex align-items-center">
+      <div class="col-md-7 d-flex align-items-center">
         <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
       </div>
-      <div class="col-md-4">
-        <div class="row-mb-4">
-          <h2><%= @activity.description %></h2>
+      <div class="col-md-5">
+        <div class="row">
+          <p class="text-small"><%= @activity.description %></p>
         </div>
-        <div class="row-mb-4 white-box">
+        <div class="white-box ">
           <h2>Prochaines dates</h2>
           <ul>
-            <li class="row-mb-2 white-box">
-              <div class="col-md-2">
-                <h3>Mardi 23 mars 2021 de 15h00 à 17h00</h3>
-              </div>
-              <div class="col-md-1">
-                <%= link_to "Participer", "/", class: ".button-outline-green" %>
-              </div>
+            <li class="white-box w-100">   
+              <p>Mardi 23 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
             </li>
-            <li class="row-mb-2 white-box">
-              <div class="col-md-2">
-                <h3>Vendredi 26 mars 2021 de 15h00 à 17h00</h3>
-              </div>
-              <div class="col-md-1">
-                <%= link_to "Participer", "/", class: ".button-outline-green" %>
-              </div>
+            <li class="white-box w-100">   
+              <p>Vendredi 26 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
             </li>
-            <li class="row-mb-2 white-box">
-              <div class="col-md-2">
-                <h3>Mardi 30 mars 2021 de 15h00 à 17h00</h3>
-              </div>
-              <div class="col-md-1">
-                <%= link_to "Participer", "/", class: ".button-outline-green" %>
-              </div>
+            <li class="white-box w-100">   
+              <p>Mardi 30 mars 2021 de 15h00 à 17h00</p>
+              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
             </li>
           </ul>
         </div>
