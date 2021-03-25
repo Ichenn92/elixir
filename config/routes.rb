@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "pages/search", to: "pages#search"
 
-  resources :activities, only: [:new, :create, :show]
+  resources :activities, only: [:new, :create, :index, :show]
 
   resources :groups, only: :show do
     resources :messages, only: :create

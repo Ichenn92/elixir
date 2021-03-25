@@ -62,9 +62,8 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav-links" >
-          <li><%= link_to "Mon profil", "#", class: "button-outline-green link-green w-100" %></li>
-          <li><%= link_to "Mes activités", "#", class: "button-outline-green link-green w-100" %></li>
-          <li><%= link_to "Modifier mon profil", "#", class: "button-outline-green link-green w-100" %></li>
+          <li><%# link_to "Mon profil", "#", class: "button-outline-green link-green w-100" %></li>
+          <li><%# link_to "Mes activités", "#", class: "button-outline-green link-green w-100" %></li>
           <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
           <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100" %></li>
         </ul>
@@ -86,11 +85,11 @@
         <h2>Social</h2>
       </div>
       <ul class="nav-links">
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Créer un groupe (prochainement)", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
@@ -105,11 +104,11 @@
       </div>
       <ul class="nav-links">
         <li><%= link_to "Créer une activité", "/activities/new", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Modifier une activité", new_user_registration_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Supprimer une activité", new_user_registration_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Créer un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Gérer un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Annuler un évènement", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Modifier une activité (prochainement)", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Supprimer une activité (prochainement)", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Créer un évènement (prochainement)", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Gérer un évènement (prochainement)", new_user_registration_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Annuler un évènement (prochainement)", new_user_registration_path, class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
@@ -123,11 +122,11 @@
         <h2>Chat</h2>
       </div>
       <ul class="nav-links">
-        <li><%= link_to "Messagerie", "/groups/1", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Discuter sur le forum", "/groups/1", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
