@@ -4,7 +4,7 @@
   </div>
   <div class="row activity-user">
     <div class="col-md-6">
-      <%= cl_image_tag(@activity.user.photo.key, width: 400, height: 300, crop: :fill, class: "avatar-large") %>
+      <%= cl_image_tag(@activity.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
       <h2><%= @activity.user.nickname %></h2>
     </div>
     <div class="col-md-6">
@@ -12,24 +12,25 @@
     </div>
   </div>
   <div class="activity-infos white-box">
+    <h2>Labels</h2>
     <div class="row activity-labels">
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("funny.svg", class: "avatar-large") %>
       </div>
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("forall_xnas3p.svg", class: "avatar-large") %>
       </div>
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("indoor_jb5nw7.svg", class: "avatar-large") %>
       </div>
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("bienetre_gfzf5h.svg", class: "avatar-large") %>
       </div>
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("healthy_1_fezu7m.svg", class: "avatar-large") %>
       </div>
       <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
+        <%= cl_image_tag("formation_indylg.svg", class: "avatar-large") %>
       </div>
     </div>
     <div class="row activity-details">
