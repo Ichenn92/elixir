@@ -1,1 +1,8 @@
-<%= image_tag "landing.jpg", class: "img-landing" %>
+<div class="landing">
+  <%= image_tag "landing.jpg", class: "img-landing" %>
+  <div class="text-landing w-100 text-bold text-center my-auto">
+    <h1 class="mb-1">Bienvenue sur Elixir</h1>
+    <h2>Le site qui va vous redonner goût en la vie éternelle en commmunauté !</h2>
+    <%= link_to "Voir les activités", activities_path, class: "button-outline-green-large mt-3" %>
+  </div>
+</div>

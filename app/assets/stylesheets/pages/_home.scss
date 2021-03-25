@@ -1,6 +1,29 @@
 // Specific CSS for your home-page
-.img-landing {
-  width: calc(100vw - 100px); 
-  height: 100vh;
-  object-fit: cover;
+.landing {
+  position: relative;
+
+  .img-landing {
+    width: calc(100vw - 100px); 
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .text-landing {
+    background-color: $color-primary-100;
+    opacity: 0.7;
+    bottom: 15vh;
+    padding: 30px 10px 30px 10px;
+    z-index: 1;
+    position: absolute;
+
+    h1, h2 {
+      text-shadow: 1px 1px 2px $color-primary-0;
+      color: $color-primary-900;
+    }
+
+    h1, h2, a {
+      opacity: 1.0 !important;
+    }
+  }
 }
