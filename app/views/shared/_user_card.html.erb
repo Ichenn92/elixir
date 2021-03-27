@@ -8,8 +8,9 @@
 
     <% # Check if user has a relationship with current_user %>
     <% if user.friendships.include_current_user(current_user).empty? %>
-      <%= link_to "#" do %>
-        <button class="btn btn-primary btn-lg">Ajouter en ami</button>
+      <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
+        <%= f.hidden_field :friend, value: user.id %>
+        <%= f.submit "Ajouter en ami", class: "btn btn-primary btn-lg" %>
       <% end %>
 
     <% else %>
