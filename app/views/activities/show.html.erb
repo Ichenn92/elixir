@@ -45,7 +45,11 @@
       <div class="activity-user text-center">
         <%= cl_image_tag(@activity.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
         <h2><%= @activity.user.nickname %></h2>
-        <%= link_to "Ses activités", "/", class: "button-outline-green" %>
+        <% if (current_user == @activity.user) %>
+          <%= link_to "Modifier cette activité", edit_activity_path(@activity), class: "button-outline-green" %>
+        <% else %>
+          <%= link_to "Voir toutes ses activités", "/", class: "button-outline-green" %>
+        <% end %>
       </div>
     </div>  
 

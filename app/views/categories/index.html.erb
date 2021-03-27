@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h1>Toutes les catégories</h1>
+  <div class="category-index">
+    <% @categories.each do |category| %>
+      <%= link_to category_path(category) do%>
+        <div class="category-index-card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path category.photo.key, crop: :fill %>')">
+          <%= category.name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

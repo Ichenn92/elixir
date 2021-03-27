@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :activities, only: [:new, :create, :edit, :update, :index, :show]
 
+  resources :categories, only: [:index, :show]
+
   resources :groups, only: :show do
     resources :messages, only: :create
   end
