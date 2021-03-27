@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates_presence_of :nickname, :first_name, :last_name
   validates_uniqueness_of :nickname
   has_one_attached :photo
+  has_many :memberships
+  has_many :groups, through: :memberships
 
   pg_search_scope :search_by_nick_first_last_name,
     against: [:nickname, :first_name, :last_name],

@@ -1,30 +1,16 @@
 <div class="container">
-  <div class="col-md-12 chat">
-    <div class="white-box-max-height">
-      <div class="card-header">
-        <div class="d-flex bd-highlight">
-          <div class="img_cont">
-            <%= cl_image_tag(@group.photo.key, width: 100, height: 100, class: "avatar-large") %>
-            <span class="online_icon"></span>
-          </div>
-          <div class="group_info">
-            <h1>Forum de discussion</h1>
-          </div>
-        </div>
-      </div>
-      <div class="card-body msg_card_body">
-        <div id="messages" data-group-id="<%= @group.id %>">
-          <% @group.messages.each do |message| %>
-            <%= render "messages/message", message: message %>
-          <% end %>
-        </div>
-      </div>
-      <div class="card-footer">
-        <%= simple_form_for [ @group, @message ], remote: true do |f| %>
-          <%= f.input :content, label: false, placeholder: "Ecrivez votre message ici..." %>
-          <%= f.button :submit, "Envoyer", class: "btn btn-primary btn-block" %>
-        <% end %>
-      </div>
+  <div class="row d-flex justify-content-center">
+    <div class="white-box col-md-4 mx-4">
+      <h3>Mes groupes de conversation</h3>
+        <% @groups.each do |group| %>
+          <ul>
+          <li><%= link_to "#{group.name}", group_path(group) %></li>
+          </ul>
+      <% end %>
+    </div>
+    <div class="white-box col-md-6">
+      <%= render "chat_content", group: @group, messages: @messages, message: @message %>
     </div>
   </div>
 </div>
+
