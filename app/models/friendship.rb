@@ -13,7 +13,7 @@ class Friendship < ApplicationRecord
     when "rejected"
       "Refusée"
     else
-      "Acceptée"
+      "Ami"
     end
   end
 end

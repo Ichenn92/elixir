@@ -20,11 +20,9 @@
 
       <% if friendship.pending? %>
         <% if current_user == friendship.user %>
-          <%= link_to "#" do %>
-            <button class="btn btn-outline-primary btn-lg disabled">
-              <%= friendship.status_fr %>
-            </button>
-          <% end %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
 
         <% else %>
           <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
@@ -36,8 +34,14 @@
         <% end %>
 
       <% elsif friendship.rejected? %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
 
       <% elsif friendship.accepted? %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
 
       <% end %>
 
