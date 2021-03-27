@@ -1,4 +1,4 @@
- puts "Registering a few users..."
+puts "Registering a few users..."
 
 user_1 = {
             nickname: "Yoyo",
