@@ -1,8 +1,8 @@
 class ActivitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[new]
+  before_action :set_activity, only: [:show, :edit, :update]
 
   def show
-    @activity = Activity.find(params[:id])
   end
   
   def new
@@ -24,12 +24,28 @@ class ActivitiesController < ApplicationController
       @activity.photo.attach(@photo)
       redirect_to activity_path(@activity)
     else
-      raise
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    @activity.update(params[:activity])
+    if @activity.save
+      @activity.photo.attach(@photo)
+      redirect_to activity_path(@activity)
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
 
   def activity_params
     params.require(:activity).permit(:name, :description, :photo)
