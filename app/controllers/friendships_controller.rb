@@ -1,4 +1,12 @@
 class FriendshipsController < ApplicationController
+  def index
+    @friends = User.friends(current_user)
+    @pending_invitations = current_user.friendships.pending_invitations
+    @invited_by = @pending_invitations.map do |friendship|
+      friendship.user == current_user ? friendship.friend : friendship.user
+    end
+  end
+
   def create
     @friendship = Friendship.new
     @friend = User.find(params[:friendship][:friend])
