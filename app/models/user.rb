@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :friendships, ->(user) { unscope(:where).where("user_id = ? OR friend_id = ?", user.id, user.id) }
 
   has_one_attached :photo
+  has_many :memberships
+  has_many :groups, through: :memberships
 
   pg_search_scope :search_by_nick_first_last_name,
     against: [:nickname, :first_name, :last_name],

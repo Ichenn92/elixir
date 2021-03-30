@@ -7,7 +7,7 @@
   margin-bottom: 20px;
   display: inline-block;
   padding: 8px 16px;
-  
+
   &:hover {
       background: $color-primary-600;
       color:white;
@@ -25,7 +25,24 @@
   display: inline-block;
   padding: 16px 32px;
   font-size: $small-font-size;
-  
+
+  &:hover {
+      background: $color-primary-600;
+      color:white;
+      text-decoration: none;
+  }
+}
+
+.button-group-users {
+ background: $color-primary-0;
+  color: $color-primary-700;
+  border: 2px solid $color-primary-600;
+  border-radius: 1.5em;
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 8px 16px;
+
   &:hover {
       background: $color-primary-600;
       color:white;
