@@ -8,4 +8,8 @@ class GroupsController < ApplicationController
     @friend = users.where.not( email: current_user.email).first
   end
 
+  def index
+    @groups = current_user.groups
+  end
+
 end

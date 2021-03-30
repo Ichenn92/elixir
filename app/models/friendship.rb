@@ -1,6 +1,7 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User"
+  has_one :group, dependent: :destroy
 
   after_create :create_private_chat
 
@@ -27,4 +28,5 @@ class Friendship < ApplicationRecord
     Membership.create(group_id: group.id, user_id: self.user_id)
     Membership.create(group_id: group.id, user_id: self.friend_id)
   end
+
 end
