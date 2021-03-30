@@ -1,0 +1,5 @@
+<ul class="cards h-100 tabe-pane fade show" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+  <% @activities.each do |activity| %>
+    <%= render partial: "shared/activity_menu", locals: { activity: activity } %>
+  <% end %>
+</ul>

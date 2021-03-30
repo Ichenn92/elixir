@@ -1,1 +1,19 @@
-<%= render "form", activity: @activity %>
+<div class="content content-sign">
+  <div class="container container-sign">
+    <div class="row row-sign">
+      <div class="col-md-6 order-md-2 col-sign d-flex align-items-center">
+        <%= image_tag 'undraw_hang_out_h9ud.svg', class: 'img-fluid' %>
+      </div>
+      <div class="col-md-6 contents col-sign">
+        <div class="row justify-content-center">
+          <div class="col-md-8 white-box">
+            <div class="mb-4">
+              <h2>Créer une activité</h2>
+              <%= render "form", activity: @activity %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

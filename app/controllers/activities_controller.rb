@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new]
-  before_action :set_activity, only: [:show, :edit, :update]
+  skip_before_action :authenticate_user!, only: [:show, :new]
+
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -10,11 +11,11 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
+    @activities = Activity.where(user: current_user)
   end
 
   def create
-    @user= current_user
+    @user = current_user
     @photo = params[:activity][:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
@@ -39,6 +40,12 @@ class ActivitiesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @activity.destroy
+
+    redirect_to activities_path
   end
 
   private
