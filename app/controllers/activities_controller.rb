@@ -3,8 +3,11 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    #@group = @activity.group
+    #@messages = @group.messages
+    #@message = Message.new
   end
-  
+
   def new
     @activity = Activity.new
   end
