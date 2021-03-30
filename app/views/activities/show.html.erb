@@ -46,9 +46,12 @@
         <%= cl_image_tag(@activity.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
         <h2><%= @activity.user.nickname %></h2>
         <% if (current_user == @activity.user) %>
-          <%= link_to "Modifier cette activité", edit_activity_path(@activity), class: "button-outline-green" %>
+        <%# Add supprimer %>
+          <%= link_to "Modifier", edit_activity_path(@activity), class: "button-outline-green" %>
+          <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-outline-green" %>
         <% else %>
-          <%= link_to "Voir toutes ses activités", "/", class: "button-outline-green" %>
+          <%= link_to "Voir profil", "/", class: "button-outline-green" %>
+          <%= link_to "Voir activités", "/", class: "button-outline-green" %>
         <% end %>
       </div>
     </div>  

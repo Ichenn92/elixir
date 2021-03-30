@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
 
   def create
     @user = current_user
-    @photo = params[:activity][:photo]
+    @photo = activity_params[:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
     @activity = Activity.new({name: @name, description: @description})
@@ -33,9 +33,10 @@ class ActivitiesController < ApplicationController
   end
 
   def update
-    @activity.update(params[:activity])
-    if @activity.save
-      @activity.photo.attach(@photo)
+    @activity.update(activity_params)
+    @photo = activity_params[:photo]
+    if @activity.save   
+      @activity.photo.attach(@photo) unless @photo.nil?
       redirect_to activity_path(@activity)
     else
       render :edit
