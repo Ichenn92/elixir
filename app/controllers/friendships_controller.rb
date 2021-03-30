@@ -1,11 +1,17 @@
 class FriendshipsController < ApplicationController
   def create
     @friendship = Friendship.new
-    puts params
     @friend = User.find(params[:friendship][:friend])
     @friendship.user = current_user
     @friendship.friend = @friend
     @friendship.save
+    redirect_back fallback_location: root_path
+  end
+
+  def destroy
+    puts params
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
     redirect_back fallback_location: root_path
   end
 
