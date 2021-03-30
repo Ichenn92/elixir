@@ -1,0 +1,17 @@
+<%= simple_form_for(@activity) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name,
+                label: "Nom de l'activité",
+                autofocus: true %>
+    <%= f.input :photo, 
+                as: :file,
+                label: "Photo de l'activité" %>
+    <%= f.input :description,
+                label: "Description de l'activité",
+                input_html: {:rows => 10} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Valider cette activité", class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
