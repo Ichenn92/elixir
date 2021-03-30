@@ -17,4 +17,11 @@ class User < ApplicationRecord
     using: {
       tsearch: { prefix: true },
     }
+
+  def self.friends(user)
+    friendships = user.friendships.accepted_friends
+    friendships.map do |friendship|
+      friendship.user == user ? friendship.friend : friendship.user
+    end
+  end
 end

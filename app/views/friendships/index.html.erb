@@ -1,0 +1,39 @@
+<div class="one-box-screen">
+  <div class="white-box-max-height">
+    <div class="d-flex flex-column" style="overflow: hidden;">
+
+      <ul class="nav nav-pills nav-justified mb-3 tabs-float" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="text-medium nav-link <%= "active" unless @friends.empty? %> border-bottom border-primary" id="pills-friends-tab" data-toggle="pill" href="#pills-friends" role="tab" aria-controls="pills-friends" aria-selected="true">
+            <%= "#{@friends.count} amis(es)" %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="text-medium nav-link <%= "active" if @friends.empty? %> border-bottom border-primary" id="pills-activities-tab" data-toggle="pill" href="#pills-activities" role="tab" aria-controls="pills-activities" aria-selected="false">
+            <%= "#{@pending_invitations.count} Invitation(s)" %>
+          </a>
+        </li>
+      </ul>
+
+      <div class="flex-grow-1" style="overflow:auto;">
+        <div class="tab-content scrollable" id="pills-tabContent">
+          <div class="tab-pane fade show <%= "active" unless @friends.empty? %>" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
+            <ul class="cards h-100 tab-pane fade show <%= "active" unless @friends.empty? %>" id="pills-friends" role="tabpanel" aria-labelledby="pills-friends-tab">
+              <% @friends.each do |friend| %>
+                <%= render partial: "shared/user_card", locals: { user: friend } %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="tab-pane fade show <%= "active" if @friends.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+            <ul class="cards h-100 tabe-pane fade show <%= "active" if @friends.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+              <% @invited_by.each do |person| %>
+                <%= render partial: "shared/user_card", locals: { user: person } %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
