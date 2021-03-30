@@ -1,13 +1,49 @@
 <li class="user-card">
   <div class="photo avatar-large">
-    <%= cl_image_tag(user.photo.key,  width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
+    <%= cl_image_tag(user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
   </div>
+
   <div class="name text-medium d-flex align-items-center">@<%= user.nickname %></div>
-    <%= link_to "#" do %>
-      <% if user_signed_in? %>
-        <button class="btn btn-primary btn-lg">Ajouter en ami</button>
-      <% else %>
-        <button class="btn btn-primary btn-lg" disabled>Vous devez être connecté</button>
+
+
+    <% # Check if user has a relationship with current_user %>
+    <% if user.friendships.include_current_user(current_user).empty? %>
+      <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
+        <%= f.hidden_field :friend, value: user.id %>
+        <%= f.submit "Ajouter en ami", class: "btn btn-primary btn-lg" %>
       <% end %>
+
+    <% else %>
+
+      <% # Check if current_user is the requestor of the frienship %>
+      <% friendship = user.friendships.include_current_user(current_user).first %>
+
+      <% if friendship.pending? %>
+        <% if current_user == friendship.user %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
+
+        <% else %>
+          <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
+            <button class="btn btn-danger btn-lg">Refuser</button>
+          <% end %>
+          <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
+            <button class="btn btn-primary btn-lg">Accepter</button>
+          <% end %>
+        <% end %>
+
+      <% elsif friendship.rejected? %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
+
+      <% elsif friendship.accepted? %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
+
+      <% end %>
+
     <% end %>
 </li>
