@@ -1,111 +1,110 @@
 puts "Registering a few users..."
 
 user_1 = {
-            nickname: "Yoyo",
-            first_name: "Yolande",
-            last_name: "Kaiser",
-            email: "yolande.kaiser@gmail.com",
-            password: "123456",
-          }
+  nickname: "Yoyo",
+  first_name: "Yolande",
+  last_name: "Kaiser",
+  email: "yolande.kaiser@gmail.com",
+  password: "123456",
+}
 user_2 = {
-            nickname: "Pirpir",
-            first_name: "Pierre",
-            last_name: "Guntern",
-            email: "pierre.guntern@gmail.com",
-            password: "123456"
-          }
+  nickname: "Pirpir",
+  first_name: "Pierre",
+  last_name: "Guntern",
+  email: "pierre.guntern@gmail.com",
+  password: "123456",
+}
 user_3 = {
-            nickname: "Anan",
-            first_name: "Anne",
-            last_name: "Moret",
-            email: "anne.moret@gmail.com",
-            password: "123456"
-          }
+  nickname: "Anan",
+  first_name: "Anne",
+  last_name: "Moret",
+  email: "anne.moret@gmail.com",
+  password: "123456",
+}
 user_4 = {
-            nickname: "Mama",
-            first_name: "Maya",
-            last_name: "Parvex",
-            email: "maya.parvex@gmail.com",
-            password: "123456"
-          }
+  nickname: "Mama",
+  first_name: "Maya",
+  last_name: "Parvex",
+  email: "maya.parvex@gmail.com",
+  password: "123456",
+}
 user_5 = {
-            nickname: "Wiwi",
-            first_name: "Willy",
-            last_name: "Weidmann",
-            email: "willy.weidmann@gmail.com",
-            password: "123456"
-          }
+  nickname: "Wiwi",
+  first_name: "Willy",
+  last_name: "Weidmann",
+  email: "willy.weidmann@gmail.com",
+  password: "123456",
+}
 user_6 = {
-            nickname: "MariT",
-            first_name: "Marie-Thérèse",
-            last_name: "Dubuis",
-            email: "marie.dubuis@gmail.com",
-            password: "123456"
-          }
+  nickname: "MariT",
+  first_name: "Marie-Thérèse",
+  last_name: "Dubuis",
+  email: "marie.dubuis@gmail.com",
+  password: "123456",
+}
 user_7 = {
-            nickname: "Nana",
-            first_name: "Nadine",
-            last_name: "Zuffery",
-            email: "nadine.zuffery@gmail.com",
-            password: "123456"
-          }
+  nickname: "Nana",
+  first_name: "Nadine",
+  last_name: "Zuffery",
+  email: "nadine.zuffery@gmail.com",
+  password: "123456",
+}
 user_8 = {
-            nickname: "Nene",
-            first_name: "Nelly",
-            last_name: "Venetz",
-            email: "nelly.venetz@gmail.com",
-            password: "123456"
-          }
+  nickname: "Nene",
+  first_name: "Nelly",
+  last_name: "Venetz",
+  email: "nelly.venetz@gmail.com",
+  password: "123456",
+}
 user_9 = {
-            nickname: "Chrichri",
-            first_name: "Christiane",
-            last_name: "Tâche",
-            email: "christiane.tache@gmail.com",
-            password: "123456"
-          }
+  nickname: "Chrichri",
+  first_name: "Christiane",
+  last_name: "Tâche",
+  email: "christiane.tache@gmail.com",
+  password: "123456",
+}
 user_10 = {
             nickname: "Carcar",
             first_name: "Carmelo",
             last_name: "Monney",
             email: "carmelo.monney@gmail.com",
-            password: "123456"
+            password: "123456",
           }
 user_11 = {
             nickname: "Jaja",
             first_name: "Janine",
             last_name: "Herzog",
             email: "janine.herzog@gmail.com",
-            password: "123456"
+            password: "123456",
           }
 user_12 = {
             nickname: "Dada",
             first_name: "Danielle",
             last_name: "Isoz",
             email: "danielle.isoz@gmail.com",
-            password: "123456"
+            password: "123456",
           }
 user_13 = {
             nickname: "Pierpier",
             first_name: "Pierrette",
             last_name: "Duc",
             email: "pierrette.duc@gmail.com",
-            password: "123456"
+            password: "123456",
           }
 user_14 = {
             nickname: "Antant",
             first_name: "Antonio",
             last_name: "Isler",
             email: "antonio.isler@gmail.com",
-            password: "123456"
+            password: "123456",
           }
 user_15 = {
             nickname: "Yvyv",
             first_name: "Yvonne",
             last_name: "Bonard",
             email: "yvonne.bonard@gmail.com",
-            password: "123456"
+            password: "123456",
           }
-
 
 photos = [
   {
@@ -182,28 +181,28 @@ photos = [
     io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252052/pexels-rodnae-productions-7020950_wgmbcw.jpg"),
     filename: "user_15",
     content_type: "image/png",
-  }
+  },
 ]
 
-[ user_1,
-  user_2,
-  user_3,
-  user_4,
-  user_5,
-  user_6,
-  user_7,
-  user_8,
-  user_9,
-  user_10,
-  user_11,
-  user_12,
-  user_13,
-  user_14,
-  user_15 ].each_with_index do |attribute, index|
+users = [user_1,
+         user_2,
+         user_3,
+         user_4,
+         user_5,
+         user_6,
+         user_7,
+         user_8,
+         user_9,
+         user_10,
+         user_11,
+         user_12,
+         user_13,
+         user_14,
+         user_15]
 
+users.each_with_index do |attribute, index|
   user = User.create!(attribute)
   user.photo.attach(io: photos[index][:io], filename: photos[index][:filename], content_type: photos[index][:content_type])
 
   puts "Signing up a new user nickname #{user.nickname}: #{user.first_name} #{user.last_name}"
 end
-
