@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_174701) do
     t.bigint "activity_id", null: false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_events_on_activity_id"
