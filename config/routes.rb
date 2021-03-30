@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :friendships, only: [:create] do
+  resources :friendships, only: [:create, :destroy] do
     post "/accept", to: "friendships#accept"
     post "/reject", to: "friendships#reject"
   end
