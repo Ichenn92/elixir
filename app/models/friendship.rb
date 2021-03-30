@@ -22,7 +22,7 @@ class Friendship < ApplicationRecord
   end
 
   def create_private_chat
-    group = Group.new(name:"Chat privé")
+    group = Group.new(name:"Chat privé", group?: false)
     group.save
     Membership.create(group_id: group.id, user_id: self.user_id)
     Membership.create(group_id: group.id, user_id: self.friend_id)
