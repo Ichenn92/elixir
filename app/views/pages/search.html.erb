@@ -4,12 +4,12 @@
 
       <ul class="nav nav-pills nav-justified mb-3 tabs-float" id="pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="text-medium nav-link <%= "active" unless @users.empty? %> border-bottom border-primary" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="true">
+          <a class="text-medium nav-link <%= "active" unless !user_signed_in? || @users.empty? %> border-bottom border-primary" id="pills-users-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="true">
             <%= "#{@users.count} personne(s)" %>
           </a>
         </li>
         <li class="nav-item">
-          <a class="text-medium nav-link <%= "active" if @users.empty? %> border-bottom border-primary" id="pills-activities-tab" data-toggle="pill" href="#pills-activities" role="tab" aria-controls="pills-activities" aria-selected="false">
+          <a class="text-medium nav-link <%= "active" if !user_signed_in? || @users.empty? %> border-bottom border-primary" id="pills-activities-tab" data-toggle="pill" href="#pills-activities" role="tab" aria-controls="pills-activities" aria-selected="false">
             <%= "#{@activities.count} activité(s)" %>
           </a>
         </li>
@@ -17,15 +17,21 @@
 
       <div class="flex-grow-1" style="overflow:auto;">
         <div class="tab-content scrollable" id="pills-tabContent">
-          <div class="tab-pane fade show <%= "active" unless @users.empty? %>" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
-            <ul class="cards h-100 tab-pane fade show <%= "active" unless @users.empty? %>" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
-              <% @users.each do |user| %>
-                <%= render partial: "shared/user_card", locals: { user: user } %>
-              <% end %>
-            </ul>
+          <div class="tab-pane fade show <%= "active" unless !user_signed_in? || @users.empty? %>" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+            <% if user_signed_in? %>
+              <ul class="cards h-100 tab-pane fade show <%= "active" unless !user_signed_in? || @users.empty? %>" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+                <% @users.each do |user| %>
+                  <%= render partial: "shared/user_card", locals: { user: user } %>
+                <% end %>
+              </ul>
+            <% else %>
+              <ul class="cards h-100 tab-pane fade show <%= "active" unless !user_signed_in? || @users.empty? %>" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+                <li>Vous devez être enregistré pour pouvoir rechercher des personnes</li>
+              </ul>
+            <% end %>
           </div>
-          <div class="tab-pane fade show <%= "active" if @users.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
-            <ul class="cards h-100 tabe-pane fade show <%= "active" if @users.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+          <div class="tab-pane fade show <%= "active" if !user_signed_in? || @users.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
+            <ul class="cards h-100 tabe-pane fade show <%= "active" if !user_signed_in? || @users.empty? %>" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
               <% @activities.each do |activity| %>
                 <%= render partial: "shared/activity_card", locals: { activity: activity } %>
               <% end %>
