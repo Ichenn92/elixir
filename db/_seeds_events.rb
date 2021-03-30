@@ -1,33 +1,31 @@
-require_relative "./_seeds_activities"
+module SEED_EVENTS
+  def seed
+    Activity.all.each do |activity|
+      number_of_events = rand(1..10)
+      until activity.events.count == number_of_events
+        SEED_EVENTS.create_event(activity)
+      end
 
-# --------------------------------------------------------
-
-activities.each do |activity|
-  until activity.events.count == 10
-    create_event(activity)
+      puts "Created #{number_of_events} event(s) for #{activity.name}"
+    end
   end
 
-  puts "Created 10 event for #{activity.name}"
-end
+  module_function :seed
 
-# --------------------------------------------------------
+  def self.create_event(activity)
+    start_time = SEED_EVENTS.time_rand
+    end_time = SEED_EVENTS.time_after_some_time(start_time)
 
-def create_event(activity)
-  start_time = time_rand
-  end_time = time_after_some_time(start_time)
+    Event.create!(activity: activity,
+                  start_time: start_time,
+                  end_time: end_time)
+  end
 
-  event = Event.new
-  event.activity = activity
-  event.start_time = start_time
-  event.end_time = end_time
+  def self.time_rand(from = Time.now, to = 1.year.from_now)
+    Time.at(from + rand * (to.to_f - from.to_f))
+  end
 
-  event.create!
-end
-
-def time_rand(from = Time.now, to = 1.year.from_now)
-  Time.at(from + rand * (to.to_f - from.to_f))
-end
-
-def time_after_some_time(from)
-  from + rand(1..6).hours
+  def self.time_after_some_time(from)
+    from + rand(1..6).hours
+  end
 end
