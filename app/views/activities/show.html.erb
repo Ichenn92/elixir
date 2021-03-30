@@ -1,63 +1,73 @@
-<div class="container">
-  <div class="row activity-name">
+<div class="container activity">
+  <div class="activity-name text-center p-4">
     <h1><%= @activity.name %></h1>
   </div>
-  <div class="row activity-user">
-    <div class="col-md-6">
-      <%= cl_image_tag(@activity.user.photo.key, width: 400, height: 300, crop: :fill, class: "avatar-large") %>
-      <h2><%= @activity.user.nickname %></h2>
+  <div class="activity-labels d-flex justify-content-center">
+    <div class="activity-label mx-2">
+      <label title="Amusant">
+        <%= cl_image_tag("funny.svg", class: "label-easy") %>
+      </label>
     </div>
-    <div class="col-md-6">
-      <%= link_to "Ses activités", "/", class: "button-outline-green" %>
+    <div class="activity-label mx-2">
+      <label title="Recommandé">
+        <%= cl_image_tag("forall_xnas3p.svg", class: "label-easy") %>
+      </label>
+    </div>
+    <div class="activity-label mx-2">
+      <label title="En intérieur">
+        <%= cl_image_tag("indoor_jb5nw7.svg", class: "label-easy") %>
+      </label>
+    </div>
+    <div class="activity-label mx-2">
+      <label title="Bien-être">
+        <%= cl_image_tag("bienetre_gfzf5h.svg", class: "label-medium") %>
+      </label>
+    </div>
+    <div class="activity-label mx-2">
+      <label title="Formation">
+        <%= cl_image_tag("formation_indylg.svg", class: "label-medium") %>
+      </label>
+    </div>
+    <div class="activity-label mx-2">
+      <label title="Activité physique">
+        <%= cl_image_tag("healthy_1_fezu7m.svg", class: "label-hard") %>
+      </label>
     </div>
   </div>
-  <div class="activity-infos white-box">
-    <div class="row activity-labels">
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-      <div class="activity-label">
-        <%= cl_image_tag(@activity.user.photo.key, class: "avatar-large") %>
-      </div>
-    </div>
-    <div class="row activity-details">
-      <div class="col-md-7 d-flex align-items-center">
+  <div class="row d-flex justify-content-center">
+    <div class="white-box col-md-4 mx-4">
+      <div class="activity-image mt-2">
         <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
       </div>
-      <div class="col-md-5">
-        <div class="row">
-          <p class="text-small"><%= @activity.description %></p>
-        </div>
-        <div class="white-box ">
-          <h2>Prochaines dates</h2>
-          <ul>
-            <li class="white-box w-100">   
-              <p>Mardi 23 mars 2021 de 15h00 à 17h00</p>
-              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
-            </li>
-            <li class="white-box w-100">   
-              <p>Vendredi 26 mars 2021 de 15h00 à 17h00</p>
-              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
-            </li>
-            <li class="white-box w-100">   
-              <p>Mardi 30 mars 2021 de 15h00 à 17h00</p>
-              <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
-            </li>
-          </ul>
-        </div>
+      <div class="activity-desc pt-2">
+        <p class="text-small"><%= @activity.description %></p>
       </div>
+      <div class="activity-user text-center">
+        <%= cl_image_tag(@activity.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
+        <h2><%= @activity.user.nickname %></h2>
+        <%= link_to "Ses activités", "/", class: "button-outline-green" %>
+      </div>
+    </div>  
+
+    <div class="white-box col-md-4">
+      <h2>Prochaines dates</h2>
+      <ul>
+        <li class="white-box w-100">
+          <p>Mardi 23 mars 2021 de 15h00 à 17h00</p>
+          <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+        </li>
+        <li class="white-box w-100">
+          <p>Vendredi 26 mars 2021 de 15h00 à 17h00</p>
+          <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+        </li>
+        <li class="white-box w-100">
+          <p>Mardi 30 mars 2021 de 15h00 à 17h00</p>
+          <%= link_to "Participer", "/", class: "text-center button-outline-green w-100" %>
+        </li>
+      </ul>
     </div>
+
   </div>
-</div>
+
+  
+

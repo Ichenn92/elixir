@@ -1,11 +1,16 @@
 class ActivitiesController < ApplicationController
-  
+  skip_before_action :authenticate_user!, only: %i[new]
+
   def show
     @activity = Activity.find(params[:id])
   end
   
   def new
     @activity = Activity.new
+  end
+
+  def index
+    @activities = Activity.all
   end
 
   def create

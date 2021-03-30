@@ -1,259 +1,209 @@
-users = [
-          {
+puts "Registering a few users..."
+
+user_1 = {
             nickname: "Yoyo",
             first_name: "Yolande",
             last_name: "Kaiser",
             email: "yolande.kaiser@gmail.com",
-            password: "123456"
-          },
-          {
+            password: "123456",
+          }
+user_2 = {
             nickname: "Pirpir",
             first_name: "Pierre",
-            last_name: "Kaiser",
-            email: "pierre.kaiser@gmail.com",
+            last_name: "Guntern",
+            email: "pierre.guntern@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_3 = {
             nickname: "Anan",
             first_name: "Anne",
             last_name: "Moret",
             email: "anne.moret@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_4 = {
             nickname: "Mama",
             first_name: "Maya",
             last_name: "Parvex",
             email: "maya.parvex@gmail.com",
             password: "123456"
-          },
-          {
-            nickname: "yvo",
-            first_name: "Yves",
-            last_name: "Malbec",
-            email: "yves.malbec@gmail.com",
-            password: "123456"
-          },
-          {
+          }
+user_5 = {
             nickname: "Wiwi",
             first_name: "Willy",
             last_name: "Weidmann",
             email: "willy.weidmann@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_6 = {
             nickname: "MariT",
             first_name: "Marie-Thérèse",
             last_name: "Dubuis",
             email: "marie.dubuis@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_7 = {
             nickname: "Nana",
             first_name: "Nadine",
             last_name: "Zuffery",
             email: "nadine.zuffery@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_8 = {
             nickname: "Nene",
             first_name: "Nelly",
             last_name: "Venetz",
             email: "nelly.venetz@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_9 = {
             nickname: "Chrichri",
             first_name: "Christiane",
             last_name: "Tâche",
             email: "christiane.tache@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_10 = {
             nickname: "Carcar",
             first_name: "Carmelo",
             last_name: "Monney",
             email: "carmelo.monney@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_11 = {
             nickname: "Jaja",
             first_name: "Janine",
             last_name: "Herzog",
             email: "janine.herzog@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_12 = {
             nickname: "Dada",
             first_name: "Danielle",
             last_name: "Isoz",
             email: "danielle.isoz@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_13 = {
             nickname: "Pierpier",
             first_name: "Pierrette",
             last_name: "Duc",
             email: "pierrette.duc@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_14 = {
             nickname: "Antant",
             first_name: "Antonio",
             last_name: "Isler",
             email: "antonio.isler@gmail.com",
             password: "123456"
-          },
-          {
+          }
+user_15 = {
             nickname: "Yvyv",
             first_name: "Yvonne",
             last_name: "Bonard",
             email: "yvonne.bonard@gmail.com",
             password: "123456"
-          },
-          {
-            nickname: "Marmar",
-            first_name: "Marc",
-            last_name: "Cochard",
-            email: "marc.cochard@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Marcelita",
-            first_name: "Marcelle",
-            last_name: "Champod",
-            email: "marcelle.champod@gmail.com",
-            password: "123456",
-          },
-          {
-            nickname: "roro",
-            first_name: "Roger",
-            last_name: "Deléchat",
-            email: "roger.delechat@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Paupau",
-            first_name: "Paulette",
-            last_name: "Busset",
-            email: "paulette.busset@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "gege",
-            first_name: "Gérald",
-            last_name: "Gilliéron",
-            email: "gerald.gillieron@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Clauclau",
-            first_name: "Claudine",
-            last_name: "Grivel",
-            email: "claudine.grivel@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "phiphi",
-            first_name: "Philippe",
-            last_name: "Meyer",
-            email: "philippe.meyer@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "anan",
-            first_name: "André",
-            last_name: "Muller",
-            email: "andre.muller@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Yavano",
-            first_name: "Yvan",
-            last_name: "Meury",
-            email: "yvan.meury@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "gingin",
-            first_name: "Ginette",
-            last_name: "Fiaux",
-            email: "ginette.fiaux@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "michmich",
-            first_name: "Michel",
-            last_name: "Lambelet",
-            email: "michel.lambelet@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Marly",
-            first_name: "Marlyse",
-            last_name: "Rieben",
-            email: "marlyse.rieben@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "emma",
-            first_name: "Emmanuelle",
-            last_name: "Wicht",
-            email: "emmanuelle.wicht@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "olapatricia",
-            first_name: "Patricia",
-            last_name: "Gex-Moret",
-            email: "patricia.gex.moret@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Jane",
-            first_name: "Jeanine",
-            last_name: "Gherardi",
-            email: "jeanine.gherardi@gmail.com",
-            password: "123456"
-          },
-           {
-            nickname: "claudy",
-            first_name: "Claude",
-            last_name: "Vuadens",
-            email: "claude.vuadens@gmail.com",
-            password: "123456"
-          },
-           {
-            nickname: "Jack",
-            first_name: "Jacques",
-            last_name: "Delabonne",
-            email: "jacques.delabonne@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "Michi",
-            first_name: "Michael",
-            last_name: "Laurac",
-            email: "michael.laurac@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "tritri",
-            first_name: "Tristan",
-            last_name: "Hoerler",
-            email: "tristan.horler@gmail.com",
-            password: "123456"
-          },
-          {
-            nickname: "clecle",
-            first_name: "Clémentine",
-            last_name: "Dubuis",
-            email: "clementine.dubuis@gmail.com",
-            password: "123456"
           }
-        ]
 
-users.each do |user|
-  User.create!(user)
+
+photos = [
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252813/pexels-pixabay-509236_zoafja.jpg"),
+    filename: "user_1.png",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616249224/IMG_2536_n6gvda.jpg"),
+    filename: "user_2.png",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252773/pexels-anna-shvets-5231279_g5gcnz.jpg"),
+    filename: "user_3.jpg",
+    content_type: "image/jpg",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252685/pexels-victor-l-2790438_zyyifv.jpg"),
+    filename: "user_4",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252633/pexels-pixabay-53159_p0beom.jpg"),
+    filename: "user_5",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252662/pexels-polina-tankilevitch-5473079_t7guco.jpg"),
+    filename: "user_6",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252248/pexels-andrea-piacquadio-788567_yq3kia.jpg"),
+    filename: "user_7",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252245/pexels-anna-shvets-5257511_huoex3.jpg"),
+    filename: "user_8",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252242/pexels-askar-abayev-5638645_kq97ij.jpg"),
+    filename: "user_9",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252227/pexels-elziroy-porter-jr-1674666_xmnhsy.jpg"),
+    filename: "user_10",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252060/pexels-nashua-volquezyoung-1729931_ugacyi.jpg"),
+    filename: "user_11",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252057/pexels-edu-carvalho-2050999_cvhxg9.jpg"),
+    filename: "user_12",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252056/pexels-rodnae-productions-7020993_dxmdzh.jpg"),
+    filename: "user_13",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252055/pexels-andrea-piacquadio-3831614_rn0fjv.jpg"),
+    filename: "user_14",
+    content_type: "image/png",
+  },
+  {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616252052/pexels-rodnae-productions-7020950_wgmbcw.jpg"),
+    filename: "user_15",
+    content_type: "image/png",
+  }
+]
+
+[ user_1,
+  user_2,
+  user_3,
+  user_4,
+  user_5,
+  user_6,
+  user_7,
+  user_8,
+  user_9,
+  user_10,
+  user_11,
+  user_12,
+  user_13,
+  user_14,
+  user_15 ].each_with_index do |attribute, index|
+
+  user = User.create!(attribute)
+  user.photo.attach(io: photos[index][:io], filename: photos[index][:filename], content_type: photos[index][:content_type])
+
+  puts "Signing up a new user nickname #{user.nickname}: #{user.first_name} #{user.last_name}"
 end
 
