@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_140416) do
+ActiveRecord::Schema.define(version: 2021_03_30_174701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2021_03_27_140416) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_events_on_activity_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -128,6 +138,7 @@ ActiveRecord::Schema.define(version: 2021_03_27_140416) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
+  add_foreign_key "events", "activities"
   add_foreign_key "friendships", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
