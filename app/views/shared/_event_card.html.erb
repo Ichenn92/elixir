@@ -1,0 +1,16 @@
+<li class="">
+    <%= link_to "/", class: "text-center button-outline-green w-100" do %>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-left">
+                <div>
+                    <span><%= event.start_time.strftime("Date : %d/%m/%Y") %></span>
+                </div>
+                <div>
+                    <span><%= event.start_time.strftime("De : %Hh%M ") %></span>
+                    <span><%= event.end_time.strftime("à %Hh%M") %></span>
+                </div>
+            </div>
+            <span><i class="fas fa-shopping-cart"></i></span>
+        </div>
+    <% end %>
+</li>

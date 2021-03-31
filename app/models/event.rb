@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   validate :start_time_is_earlier_than_end_time, if: -> { start_time.present? && end_time.present? }
 
   enum status: [:confirmed, :canceled]
+  default_scope { order(start_time: :asc) }
+  scope :future_events, -> { where("start_time > ?", Date.today) }
 
   def status_fr
     case self.status
