@@ -1,13 +1,5 @@
-<div class="container mt-4">
-  <h1>Toutes les activités</h1>
-  <div class="activity-index">
-    <% @activities.each do |activity| %>
-      <%= link_to activity_path(activity) do%>
-        <div class="activity-index-card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path activity.photo.key, crop: :fit %>')">
-          <%= activity.name %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
+<ul class="cards h-100">
+  <% @activities.each do |activity| %>
+    <%= render partial: "shared/activity_menu", locals: { activity: activity } %>
+  <% end %>
+</ul>

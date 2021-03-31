@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new]
+  skip_before_action :authenticate_user!, only: [:show, :new]
+
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def show
-    @activity = Activity.find(params[:id])
   end
   
   def new
@@ -10,12 +11,12 @@ class ActivitiesController < ApplicationController
   end
 
   def index
-    @activities = Activity.all
+    @activities = Activity.where(user: current_user)
   end
 
   def create
-    @user= current_user
-    @photo = params[:activity][:photo]
+    @user = current_user
+    @photo = activity_params[:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
     @activity = Activity.new({name: @name, description: @description})
@@ -24,12 +25,35 @@ class ActivitiesController < ApplicationController
       @activity.photo.attach(@photo)
       redirect_to activity_path(@activity)
     else
-      raise
       render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    @activity.update(activity_params)
+    @photo = activity_params[:photo]
+    if @activity.save   
+      @activity.photo.attach(@photo) unless @photo.nil?
+      redirect_to activity_path(@activity)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @activity.destroy
+
+    redirect_to activities_path
+  end
+
   private
+
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
 
   def activity_params
     params.require(:activity).permit(:name, :description, :photo)
