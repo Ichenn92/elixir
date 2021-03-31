@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "pages/search", to: "pages#search"
 
   resources :activities
-
+  resources :events, only: [:create]
   resources :categories, only: [:index, :show]
 
   resources :groups, only: :show do
