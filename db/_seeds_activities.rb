@@ -1,6 +1,3 @@
-require "pry"
-require "pry-byebug"
-
 module SEED_ACTIVITIES
   include OpenURI
 
