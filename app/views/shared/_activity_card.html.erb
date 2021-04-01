@@ -3,7 +3,16 @@
     <%= cl_image_tag(activity.photo.key,  width: 150, height: 150, class: "avatar-large") %>
   </div>
   <div class="name text-medium d-flex align-items-center"><%= activity.name %></div>
-  <%= link_to activity_path(activity) do %>
-    <button class="btn btn-primary btn-lg">Voir détails</button>
+  <% if current_user == activity.name %>
+    <%= link_to edit_activity_path(activity) do %>
+      <button class="btn btn-primary btn-lg">Modifier</button>
+    <% end %>
+    <%= link_to activity_path(activity), method: "delete", data: { confirm: "Êtes-vous sûr(e) ?" } do %>
+      <button class="btn btn-secondary btn-lg">Supprimer</button>
+    <% end %>
+  <% else %>
+    <%= link_to activity_path(activity) do %>
+      <button class="btn btn-primary btn-lg">Voir détails</button>
+    <% end %>
   <% end %>
 </li>
