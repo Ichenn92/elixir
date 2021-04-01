@@ -2,6 +2,15 @@
   <%= simple_form_for(@event) do |f| %>
     <div class="form-inputs">
       <%= f.association :activity, value: activity, label: false, input_html: { hidden: true } %>
+      
+
+          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" style="height:65px;"/>
+              <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+          </div>
+
       <%= f.input :start_time,
                   label: "Début de l'événement",
                   autofocus: true %>
@@ -13,4 +22,6 @@
       <%= f.button :submit, "Ajouter événement", class: "btn btn-primary btn-block" %>
     </div>
   <% end %>
+
+  
 </div>

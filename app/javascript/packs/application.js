@@ -20,6 +20,8 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+require("moment/locale/fr")
+require("tempusdominus-bootstrap-4")
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -38,6 +40,8 @@ document.addEventListener('turbolinks:load', () => {
   initNavBar();
   initSearchNavbarToggle();
   initChatgroupCable();
+  $('#datetimepicker1').datetimepicker();
 });
+
 
 
