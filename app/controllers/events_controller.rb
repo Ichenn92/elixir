@@ -6,13 +6,19 @@ class EventsController < ApplicationController
     @event = Event.new(activity_id: params[:activity_id],
                        start_time: start_time,
                        end_time: end_time)
-    @event.save
+    if @event.save
+      flash.notice = "Félicitations vous avez ajouté un événement"
+    else
+      flash.alert = "Une erreur s'est produite sur le formulaire"
+    end
     redirect_back fallback_location: root_path
   end
 
   private
 
   def parse_datetime(datetime)
-    DateTime.parse(datetime)
+    unless datetime.blank?
+      DateTime.parse(datetime)
+    end
   end
 end
