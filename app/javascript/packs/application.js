@@ -20,13 +20,12 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-require("moment/locale/fr")
-require("tempusdominus-bootstrap-4")
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initNavBar} from './_navbar-toggle';
-import { initSearchNavbarToggle} from './_search-navbar-toggle';
+import { initDatetimePicker } from './_init-datetime-picker';
+import { initNavBar } from './_navbar-toggle';
+import { initSearchNavbarToggle } from './_search-navbar-toggle';
 import { initChatgroupCable } from '../channels/group_channel';
 
 const appHeight = () => {
@@ -40,20 +39,9 @@ document.addEventListener('turbolinks:load', () => {
   initNavBar();
   initSearchNavbarToggle();
   initChatgroupCable();
+  initDatetimePicker();
+
   
-  $.fn.datetimepicker.Constructor.Default = $.extend({},
-    $.fn.datetimepicker.Constructor.Default,
-    { icons:
-            { time: 'fas fa-clock',
-                date: 'fas fa-calendar',
-                up: 'fas fa-arrow-up',
-                down: 'fas fa-arrow-down',
-                previous: 'fas fa-arrow-circle-left',
-                next: 'fas fa-arrow-circle-right',
-                today: 'far fa-calendar-check-o',
-                clear: 'fas fa-trash',
-                close: 'far fa-times' } });
-  $('#datetimepicker1').datetimepicker();
 
 });
 
