@@ -1,4 +1,5 @@
-<li id="event-<%= event.id %>">
+<span class="anchor" id="event-<%= event.id %>"></span>
+<li>
     <% bookingDB = event.bookings.find_by(user: current_user) %>
     <% booking_confirmed = !bookingDB.nil? && bookingDB.confirmed? ? "active" : "" %>
     <% booking = bookingDB unless bookingDB.nil? %>

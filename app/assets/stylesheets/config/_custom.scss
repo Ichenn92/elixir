@@ -139,4 +139,10 @@ button {
 .scrollable {
     flex-grow: 1;
     overflow-y: auto;
-  }
+}
+
+.anchor{
+    visibility: hidden;
+    position: absolute;
+    transform: translateY(-50vh);
+}
