@@ -63,7 +63,7 @@
         <% end %>
       <ul>
         <% @activity.events.future_events.each do |event| %>
-          <%= render partial: "shared/event_card", locals: { event: event } %>
+          <%= render partial: "shared/event_card", locals: { event: event, booking: @booking } %>
         <% end %>
       </ul>
     </div>
