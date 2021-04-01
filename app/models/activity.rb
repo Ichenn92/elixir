@@ -3,7 +3,11 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_one_attached :photo
+
   #has_one :group
+
+  has_many :events, dependent: :delete_all
+
   validates :name, presence: true
 
   pg_search_scope :search_by_name_and_description,
