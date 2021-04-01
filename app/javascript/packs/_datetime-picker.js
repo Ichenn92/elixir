@@ -15,6 +15,7 @@ const initDatetimePicker = () => {
             clear: 'fas fa-trash',
             close: 'far fa-times' } });
             $('#datetimepicker1').datetimepicker();
+            $('#datetimepicker2').datetimepicker();
 }
 
 export { initDatetimePicker };

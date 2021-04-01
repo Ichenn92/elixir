@@ -23,17 +23,14 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initDatetimePicker } from './_init-datetime-picker';
+import { setHeightOfScreen } from './_height-of-screen';
+import { initDatetimePicker } from './_datetime-picker';
 import { initNavBar } from './_navbar-toggle';
 import { initSearchNavbarToggle } from './_search-navbar-toggle';
 import { initChatgroupCable } from '../channels/group_channel';
 
-const appHeight = () => {
-  const doc = document.documentElement
-  doc.style.setProperty('$app-height', `${window.innerHeight}px`);
-}
-window.addEventListener('resize', appHeight);
-appHeight();
+
+window.addEventListener('resize', setHeightOfScreen);
 
 document.addEventListener('turbolinks:load', () => {
   initNavBar();
