@@ -25,7 +25,6 @@ class Friendship < ApplicationRecord
   private
 
   def create_private_chat
-    puts "bonjour"
     if (saved_change_to_status? && self.status == "accepted")
       group = Group.new(name:"Chat privé", group?: false, friendship_id: self.id)
       group.save
