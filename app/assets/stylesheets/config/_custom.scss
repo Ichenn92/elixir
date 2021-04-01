@@ -88,8 +88,12 @@ ul {
 }
 
 
-i {
+i, .fa-clock, .fa-calendar, .fa-arrow-up, .fa-arrow-down, .fa-calendar-check-o {
     font-size: $icon-font-size;
+}
+
+.fa-arrow-circle-right, .fa-arrow-circle-left {
+    font-size: 24px;
 }
 
 p {

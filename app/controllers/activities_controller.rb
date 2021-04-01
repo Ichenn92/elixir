@@ -4,7 +4,6 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def show
-    @event = Event.new()
   end
 
   def new
