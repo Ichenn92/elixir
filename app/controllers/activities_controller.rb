@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
     @photo = activity_params[:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
-    @activity = Activity.new({name: @name, description: @description})
+    @activity = Activity.new({ name: @name, description: @description })
     @activity.user = @user
     if @activity.save
       @activity.photo.attach(@photo)

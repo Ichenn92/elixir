@@ -58,6 +58,9 @@
 
     <div class="white-box col-md-4">
       <h2>Prochaines dates</h2>
+        <% if current_user == @activity.user %>
+          <%= render partial: "events/form", locals: { activity: @activity } %>
+        <% end %>
       <ul>
         <% @activity.events.future_events.each do |event| %>
           <%= render partial: "shared/event_card", locals: { event: event } %>
