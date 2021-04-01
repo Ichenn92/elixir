@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'events/create'
+  get "events/create"
   devise_for :users
   root to: "pages#home"
   get "pages/search", to: "pages#search"
 
   resources :activities
   resources :events, only: [:create]
+  resources :bookings, only: [:create]
   resources :categories, only: [:index, :show]
 
   resources :groups, only: [:index, :show] do

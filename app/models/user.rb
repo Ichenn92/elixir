@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :nickname
 
   has_many :friendships, ->(user) { unscope(:where).where("user_id = ? OR friend_id = ?", user.id, user.id) }
-  has_many :booking, dependent: :delete_all
+  has_many :bookings, dependent: :delete_all
   has_one_attached :photo
   has_many :memberships
   has_many :groups, through: :memberships

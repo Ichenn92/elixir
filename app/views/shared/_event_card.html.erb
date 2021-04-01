@@ -1,5 +1,7 @@
 <li>
-    <%= link_to "/", class: "text-center button-outline-green w-100" do %>
+    <% booking = event.bookings.find_by(user: current_user) %>
+    <% booking_confirmed = !booking.nil? && booking.confirmed? ? "active" : "" %>
+    <%= link_to bookings_path, method: "post", remote: true, class: "text-center button-outline-green w-100 #{booking_confirmed}" do %>
         <div class="d-flex justify-content-between align-items-center">
             <div class="text-left">
                 <% if event.end_time.day == event.start_time.day %>
