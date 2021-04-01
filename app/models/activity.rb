@@ -3,6 +3,9 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_one_attached :photo
+
+  #has_one :group
+
   has_many :events, dependent: :delete_all
 
   validates :name, presence: true
