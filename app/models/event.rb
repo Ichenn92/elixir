@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :activity
+  has_many :booking, dependent: :delete_all
 
   validates_presence_of :start_time, :end_time
   validate :start_time_is_earlier_than_end_time, if: -> { start_time.present? && end_time.present? }
