@@ -12,7 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
@@ -22,13 +21,11 @@ ActiveStorage.start()
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 import { setHeightOfScreen } from './_height-of-screen';
 import { initDatetimePicker } from './_datetime-picker';
 import { initNavBar } from './_navbar-toggle';
 import { initSearchNavbarToggle } from './_search-navbar-toggle';
 import { initChatgroupCable } from '../channels/group_channel';
-
 
 window.addEventListener('resize', setHeightOfScreen);
 
@@ -37,10 +34,4 @@ document.addEventListener('turbolinks:load', () => {
   initSearchNavbarToggle();
   initChatgroupCable();
   initDatetimePicker();
-
-  
-
 });
-
-
-
