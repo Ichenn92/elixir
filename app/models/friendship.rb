@@ -1,9 +1,9 @@
 class Friendship < ApplicationRecord
+  after_update :create_private_chat
+
   belongs_to :user
   belongs_to :friend, class_name: "User"
   has_one :group, dependent: :destroy
-
-  after_create :create_private_chat
 
   enum status: [:pending, :rejected, :accepted]
 
@@ -22,11 +22,15 @@ class Friendship < ApplicationRecord
     end
   end
 
-  def create_private_chat
-    group = Group.new(name:"Chat privé", group?: false)
-    group.save
-    Membership.create(group_id: group.id, user_id: self.user_id)
-    Membership.create(group_id: group.id, user_id: self.friend_id)
-  end
+  private
 
+  def create_private_chat
+    puts "bonjour"
+    if (saved_change_to_status? && self.status == "accepted")
+      group = Group.new(name:"Chat privé", group?: false, friendship_id: self.id)
+      group.save
+      Membership.create(group_id: group.id, user_id: self.user_id)
+      Membership.create(group_id: group.id, user_id: self.friend_id)
+    end
+  end
 end
