@@ -22,19 +22,19 @@
                                 <% duration = event.end_time - event.start_time %>
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).strftime("%Hh%M") %></span>
                                 <div>
-                                    <span><%= event.start_time.strftime("Date : %d.%m.%Y") %></span>
+                                    <span class="text-bold"><%= event.start_time.strftime("Date : %d.%m.%Y") %></span>
                                 </div>
                                 <div>
-                                    <span><%= event.start_time.strftime("Horaire : %Hh%M ") %></span>
-                                    <span><%= event.end_time.strftime("à %Hh%M") %></span>
+                                    <span class="text-bold"><%= event.start_time.strftime("Horaire : %Hh%M ") %></span>
+                                    <span class="text-bold"><%= event.end_time.strftime("à %Hh%M") %></span>
                                 </div>
                             <% else %>
                                 <span class="badge badge-primary">Plusieurs jours</span>
                                 <div>
-                                    <span><%= event.start_time.strftime("Du %d.%m.%Y à %Hh%M") %></span>
+                                    <span class="text-bold"><%= event.start_time.strftime("Du %d.%m.%Y à %Hh%M") %></span>
                                 </div>
                                 <div>
-                                    <span><%= event.end_time.strftime("Au %d.%m.%Y à %Hh%M") %></span>
+                                    <span class="text-bold"><%= event.end_time.strftime("Au %d.%m.%Y à %Hh%M") %></span>
                                 </div>
                             <% end %>
                         </div>
@@ -45,9 +45,41 @@
         </div>
 
 
-        <div class="ml-2 d-flex flex-column justify-content-center align-items-center button-outline-green">
+        <button class="ml-2 d-flex justify-content-center align-items-center button-outline-green" type="button" data-toggle="collapse" data-target="#participant-event-<%= event.id %>" aria-expanded="false" aria-controls="participant-event-<%= event.id %>">
             <i class="fas fa-users text-medium"></i>
-        </div>
+        </button>
+
     </div>
 </li>
+
+<div class="collapse" id="participant-event-<%= event.id %>">
+    <div class="card card-body mb-4">
+        <h4>Organisateur</h4>
+        <ul>
+            <li class="">
+                <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
+            </li>
+        </ul>
+        <h4>Participants</h4>
+        <ul>
+            <% event.bookings.each do |booking| %>
+                <% if booking.confirmed? %>
+                    <li>
+                        <%= render partial: "shared/user_card_with_icon", locals: { user: booking.user } %>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+        <h4>Annulés</h4>
+        <ul>
+            <% event.bookings.each do |booking| %>
+                <% if booking.canceled? %>
+                    <li>
+                        <%= render partial: "shared/user_card_with_icon", locals: { user: booking.user } %>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>
 

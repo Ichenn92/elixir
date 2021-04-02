@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     flash.alert = "Un problème est survenu" unless @booking.save
-    redirect_to activity_path(@event.activity), anchor: "event-#{@event.id}"
+    redirect_to activity_path(@event.activity, anchor: "event-#{@event.id}")
   end
 
   def update

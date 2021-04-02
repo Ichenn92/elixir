@@ -1,4 +1,4 @@
-<div class="container activity">
+<div class="activity">
   <div class="activity-name text-center p-4">
     <h1><%= @activity.name %></h1>
   </div>
@@ -35,7 +35,7 @@
     </div>
   </div>
   <div class="row d-flex justify-content-center">
-    <div class="white-box col-md-4 mx-4">
+    <div class="white-box col-md-6 mx-4">
       <div class="activity-image mt-2">
         <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
       </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="white-box col-md-4">
+    <div class="white-box col-md-4 mx-4">
       <h2>Prochaines dates</h2>
         <% if current_user == @activity.user %>
           <%= render partial: "events/form", locals: { activity: @activity } %>
