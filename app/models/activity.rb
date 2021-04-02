@@ -3,8 +3,7 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_one_attached :photo
-
-  #has_one :group
+  has_one :group, dependent: :destroy
 
   has_many :events, dependent: :delete_all
 
