@@ -1,7 +1,7 @@
 <span class="anchor" id="event-<%= event.id %>"></span>
 <li>
     <% bookingDB = event.bookings.find_by(user: current_user) %>
-    <% booking_confirmed = !bookingDB.nil? && bookingDB.confirmed? ? "active" : "" %>
+    <% booking_confirmed = !bookingDB.nil? && bookingDB.confirmed? || event.activity.user == current_user ? "active" : "" %>
     <% booking = bookingDB unless bookingDB.nil? %>
 
     <div class="d-flex">
@@ -15,7 +15,7 @@
                 <%= button_tag(type: 'submit', class: "text-center button-outline-green w-100 #{booking_confirmed}") do %>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="text-left">
-                            <% if !booking.id.nil? && booking.confirmed? %>
+                            <% unless booking_confirmed.blank? %>
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
                             <% end %>
                             <% if event.end_time.day == event.start_time.day %>
@@ -54,29 +54,28 @@
 
 <div class="collapse" id="participant-event-<%= event.id %>">
     <div class="card card-body mb-4">
-        <h4>Organisateur</h4>
-        <ul>
-            <li class="">
-                <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
-            </li>
-        </ul>
         <h4>Participants</h4>
         <ul>
-            <% event.bookings.each do |booking| %>
-                <% if booking.confirmed? %>
-                    <li>
-                        <%= render partial: "shared/user_card_with_icon", locals: { user: booking.user } %>
-                    </li>
+            <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
+            <% if event.bookings.all_confirmed.empty? %>
+                <p>Il n'y a pas encore de participants</p>
+            <% else %>
+                <% event.bookings.all_confirmed.each do |booking| %>
+                        <% unless booking.user == event.activity.user %>
+                            <%= render partial: "shared/user_card_with_icon", locals: { user: booking.user } %>
+                        <% end %>
                 <% end %>
             <% end %>
         </ul>
-        <h4>Annulés</h4>
+        <h4 class="mt-4">Annulés</h4>
         <ul>
-            <% event.bookings.each do |booking| %>
-                <% if booking.canceled? %>
-                    <li>
+            <% if event.bookings.all_canceled.empty? %>
+                <p>Personne n'a annulé leur réservation</p>
+            <% else %>
+                <% event.bookings.all_canceled.each do |booking| %>
+                    <% unless booking.user == event.activity.user %>
                         <%= render partial: "shared/user_card_with_icon", locals: { user: booking.user } %>
-                    </li>
+                    <% end %>
                 <% end %>
             <% end %>
         </ul>
