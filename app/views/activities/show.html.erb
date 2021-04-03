@@ -55,6 +55,15 @@
         <% end %>
 
       </div>
+      <% if user_signed_in? %>
+        <% if @activity.is_member_of_activity_group?(current_user) %>
+          <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
+        <% else %>
+          <%= link_to "Groupe de discussion", group_memberships_path(@activity.group), method: :post , class: "button-outline-green" %>
+        <% end %>
+      <% else %>
+         <%= link_to "Groupe de discussion", new_user_session_path,class: "button-outline-green" %>
+      <% end %>
     </div>
 
     <div class="white-box col-md-4 mx-4">
@@ -66,12 +75,6 @@
         <% @activity.events.future_events.each do |event| %>
           <%= render partial: "shared/event_card", locals: { event: event, booking: @booking } %>
         <% end %>
-      </ul>
-    </div>
-    <div class="white-box col-md-12">
-      <h2>Conversations à propos de cette activité</h2>
-      <ul>
-
       </ul>
     </div>
   </div>

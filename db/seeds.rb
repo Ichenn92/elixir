@@ -13,7 +13,7 @@ SEED_LABELS.seed
 SEED_CATEGORIES.seed
 
 # Seeds with dependencies -------------------------
-SEED_GROUPS.seed        # dependent ON : SEED_USERS
-SEED_MEMBERSHIPS.seed   # dependent ON : SEED_USERS, SEED_GROUPS
 SEED_ACTIVITIES.seed    # dependent ON : SEED_USERS
 SEED_EVENTS.seed        # dependent ON : SEED_ACTIVITIES
+SEED_GROUPS.seed        # dependent ON : SEED_USERS, SEED_ACTIVITIES
+SEED_MEMBERSHIPS.seed   # dependent ON : SEED_USERS, SEED_GROUPS

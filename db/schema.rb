@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+ActiveRecord::Schema.define(version: 2021_04_02_174729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
     t.boolean "admin"
     t.boolean "group?", default: true
     t.bigint "friendship_id"
+    t.bigint "activity_id"
+    t.index ["activity_id"], name: "index_groups_on_activity_id"
     t.index ["friendship_id"], name: "index_groups_on_friendship_id"
   end
 
@@ -155,6 +157,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
   add_foreign_key "bookings", "users"
   add_foreign_key "events", "activities"
   add_foreign_key "friendships", "users"
+  add_foreign_key "groups", "activities"
   add_foreign_key "groups", "friendships"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
