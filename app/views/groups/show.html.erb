@@ -1,21 +1,37 @@
-<div class="one-box-screen row gx-5 mx-2">
-  <div class=" box-max-height col col-3">
-    <div class="h-50">
-      <div class="scrollable">
-        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-        </div>
-      </div>
-      <div class="h-50">
-        <div class="scrollable">
-          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-        </div>
+<div class="one-box-screen d-flex">
+  <div class=" box-max-height" style="width:250px;">
+    <div class="h-50 d-flex flex-column">
+      <h3>Amis</h3>
+      <div class="scrollable flex-grow-1">
+        <% @groups.each do |group| %>
+          <ul>
+            <li>
+              <% unless group.group? %>
+                <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
+                <%= link_to "#{group.memberships.where.not( user: current_user).first.user.nickname }", group_path(group) %>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
-  <div class="white-box-max-height col col-9">
+    <div class="h-50 d-flex flex-column">
+      <h3>Groupes</h3>
+      <div class="scrollable flex-grow-1">
+        <% @groups.each do |group| %>
+          <ul>
+            <li>
+              <% if group.group? %>
+                <%= link_to cl_image_tag(group.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150}], class: "avatar-large"), group_path(group) %>
+                <%= link_to "#{group.name}", group_path(group) %>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="white-box-max-height flex-grow-1">
     <%= render "chat_content", group: @group, messages: @messages, message: @message %>
   </div>
 </div>
