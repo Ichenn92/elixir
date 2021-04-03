@@ -10,8 +10,10 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    @membership = Membership.find(params[:id])
-    @membership.destroy
+    group = Group.find(params[:id])
+    membership = group.memberships.find_by(user: current_user)
+    membership.destroy
+    redirect_to "/groups"
   end
 
 end

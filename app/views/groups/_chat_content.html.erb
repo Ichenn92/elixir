@@ -5,9 +5,9 @@
         <% if group.group? %>
           <%= cl_image_tag(group.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
           <%= link_to "Voir l'activité", activity_path(@group.activity), class: "button-outline-green" %>
+          <%= link_to "Quitter", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
         <% else %>
           <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
-
         <% end %>
         <span class="online_icon"></span>
       </div>
