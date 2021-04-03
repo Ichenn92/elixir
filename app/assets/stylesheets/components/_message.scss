@@ -1,0 +1,53 @@
+// General CSS properties for message
+.message {
+  margin: 1em 0; 
+  .message-block {
+    .chat-avatar-container {
+      display: flex;
+      justify-content: center;
+      width:100px;
+    }
+    .message-content {
+      width: 60%;
+      border-radius: $border-radius;
+      padding: 1.5em;
+      color: white;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+  .created_at {
+    margin: 0 100px;
+  }
+}
+
+// Specific CSS for message coming from current_user
+.message-self {
+  .message-block {
+    flex-direction: row-reverse;
+    .chat-avatar {
+      border: 3px solid $color-primary-600;
+    }
+    .message-content {
+      background-color: $color-primary-600;
+    }
+  }
+  .created_at {
+    text-align: right;
+  }
+}
+
+// Specific CSS for message coming from other than urrent_user
+.message-other {
+  .message-block {
+    .chat-avatar-container {
+      .chat-avatar {
+        border: 2px solid $color-secondary-600;
+      }
+    }
+    .message-content {
+      background-color: $color-secondary-600;
+    }
+  }
+}
+
