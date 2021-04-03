@@ -6,9 +6,6 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Activity.find(params[:id])
     @booking = Booking.new
-    #@group = @activity.group
-    #@messages = @group.messages
-    #@message = Message.new
   end
 
   def new

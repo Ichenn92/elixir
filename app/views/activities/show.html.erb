@@ -52,6 +52,7 @@
         <% else %>
           <%= link_to "Voir profil", "/", class: "button-outline-green" %>
           <%= link_to "Voir activités", "/", class: "button-outline-green" %>
+          <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
         <% end %>
       </div>
     </div>
@@ -65,12 +66,6 @@
         <% @activity.events.future_events.each do |event| %>
           <%= render partial: "shared/event_card", locals: { event: event, booking: @booking } %>
         <% end %>
-      </ul>
-    </div>
-    <div class="white-box col-md-12">
-      <h2>Conversations à propos de cette activité</h2>
-      <ul>
-
       </ul>
     </div>
   </div>
