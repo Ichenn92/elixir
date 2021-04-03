@@ -29,7 +29,7 @@
       <li class="nav-item-main d-none" id="open-search-bar">
         <%= form_tag "/pages/search", method: :get, class: "form-inline" do %>
           <div class="form-search">
-            <%= text_field_tag :query, nil, placeholder: "Ecrivez votre recherche", autocomplete: "off", class: "search-input text-small" %>
+            <%= text_field_tag :query, nil, placeholder: "Chercher un ami ou une activité", autocomplete: "off", class: "search-input text-small" %>
             <%= button_tag type: "submit", class: "nav-link search", id: "submit-button-search-form" do %>
               <i class="fas fa-search" aria-hidden="true"></i>
             <% end %>
@@ -71,8 +71,7 @@
       <ul class="nav-links">
         <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100" %></li>
         <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Créer un évènement (prochainement)", "#", class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Gérer mes évènements (prochainement)", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Voir toutes les activités", categories_path, class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>

@@ -1,58 +1,72 @@
 <div class="activity">
-  <div class="activity-name text-center p-4">
+  <div class="activity-name text-center pt-3">
     <h1><%= @activity.name %></h1>
   </div>
-  <div class="activity-labels d-flex justify-content-center">
-    <div class="activity-label mx-2">
-      <label title="Amusant">
-        <%= cl_image_tag("funny.svg", class: "label-easy") %>
-      </label>
-    </div>
-    <div class="activity-label mx-2">
-      <label title="Recommandé">
-        <%= cl_image_tag("forall_xnas3p.svg", class: "label-easy") %>
-      </label>
-    </div>
-    <div class="activity-label mx-2">
-      <label title="En intérieur">
-        <%= cl_image_tag("indoor_jb5nw7.svg", class: "label-easy") %>
-      </label>
-    </div>
-    <div class="activity-label mx-2">
-      <label title="Bien-être">
-        <%= cl_image_tag("bienetre_gfzf5h.svg", class: "label-medium") %>
-      </label>
-    </div>
-    <div class="activity-label mx-2">
-      <label title="Formation">
-        <%= cl_image_tag("formation_indylg.svg", class: "label-medium") %>
-      </label>
-    </div>
-    <div class="activity-label mx-2">
-      <label title="Activité physique">
-        <%= cl_image_tag("healthy_1_fezu7m.svg", class: "label-hard") %>
-      </label>
-    </div>
+  <div class="activity-location text-center pb-3">
+    <h3><%= @activity.street %> à <%= @activity.city %></h3>
   </div>
-  <div class="row d-flex justify-content-center">
-    <div class="white-box col-md-6 mx-4">
-      <div class="activity-image mt-2">
-        <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 400, height: 300, crop: :fill}], class: "img-fluid") %>
-      </div>
-      <div class="activity-desc pt-2">
-        <p class="text-small"><%= @activity.description %></p>
-      </div>
-      <div class="activity-user text-center">
-        <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
-        <h2><%= @activity.user.nickname %></h2>
+  
+  <div class="d-flex flex-wrap flex-md-wrap flex-lg-nowrap mx-2">
+    <div class="white-box flex-grow-1 mx-2">
+      <h2 class="text-center">Détails de l'activité</h2>
+      <div class="row">
+        
+        <div class="activity-image col-md-6 mt-2">
+          <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, height: 300, crop: :fill}], class: "img-fluid") %>
+        </div>
 
-        <% if (current_user == @activity.user) %>
-          <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
-          <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
-        <% else %>
-          <%= link_to "Voir profil", "/", class: "button-outline-green" %>
-          <%= link_to "Voir activités", "/", class: "button-outline-green" %>
-        <% end %>
+        <div class="activity-desc col-md-6 pt-2">
+          <p><%= @activity.description %></p>
+        </div>
+
+        <div class="activity-user col-md-6 text-center">
+          <h2 class="text-center">Créateur de l'activité</h2>
+          <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
+          <h2><%= @activity.user.nickname %></h2>
+
+          <% if (current_user == @activity.user) %>
+            <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
+            <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
+          <% else %>
+            <%= link_to "Voir profil", "/", class: "button-outline-green" %>
+            <%= link_to "Voir activités", "/", class: "button-outline-green" %>
+          <% end %>
+        </div>
+        
+
+        <div class="activity-labels col-md-6 d-flex justify-content-center flex-column">
+          <h2 class="text-center">Caractéristiques de l'activité</h2>
+          <div class="activity-label mx-2">
+            <label title="Amusant">
+              <%= cl_image_tag("funny.svg", class: "label-easy") %>
+            </label>
+          </div>
+          <div class="activity-label mx-2">
+            <label title="Recommandé">
+              <%= cl_image_tag("forall_xnas3p.svg", class: "label-easy") %>
+            </label>
+          </div>
+          <div class="activity-label mx-2">
+            <label title="En intérieur">
+              <%= cl_image_tag("indoor_jb5nw7.svg", class: "label-easy") %>
+            </label>
+          </div>
+          <div class="activity-label mx-2">
+            <label title="Bien-être">
+              <%= cl_image_tag("bienetre_gfzf5h.svg", class: "label-medium") %>
+            </label>
+          </div>
+          <div class="activity-label mx-2">
+            <label title="Formation">
+              <%= cl_image_tag("formation_indylg.svg", class: "label-medium") %>
+            </label>
+          </div>
+          <div class="activity-label mx-2">
+            <label title="Activité physique">
+              <%= cl_image_tag("healthy_1_fezu7m.svg", class: "label-hard") %>
+            </label>
+          </div>
+        </div>
 
       </div>
       <% if user_signed_in? %>
@@ -62,15 +76,15 @@
           <%= link_to "Groupe de discussion", group_memberships_path(@activity.group), method: :post , class: "button-outline-green" %>
         <% end %>
       <% else %>
-         <%= link_to "Groupe de discussion", new_user_session_path,class: "button-outline-green" %>
+         <%= link_to "Groupe de discussion", new_user_session_path, class: "button-outline-green" %>
       <% end %>
     </div>
 
-    <div class="white-box col-md-4 mx-4">
-      <h2>Prochaines dates</h2>
-        <% if current_user == @activity.user %>
-          <%= render partial: "events/form", locals: { activity: @activity } %>
-        <% end %>
+    <div class="white-box flex-md-fill mx-2" style="min-width: 400px;">
+      <h2 class="text-center">Prochaines dates</h2>
+      <% if current_user == @activity.user %>
+        <%= render partial: "events/form", locals: { activity: @activity } %>
+      <% end %>
       <ul>
         <% @activity.events.future_events.each do |event| %>
           <%= render partial: "shared/event_card", locals: { event: event, booking: @booking } %>
@@ -78,6 +92,4 @@
       </ul>
     </div>
   </div>
-
-
-
+</div>
