@@ -66,8 +66,8 @@
       <ul class="nav-links">
         <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100" %></li>
         <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Créer un évènement (prochainement)", '#', class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Gérer mes évènements (prochainement)", '#', class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Créer un évènement (prochainement)", "#", class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Gérer mes évènements (prochainement)", "#", class: "button-outline-green w-100" %></li>
       </ul>
     </div>
   </div>
@@ -82,9 +82,12 @@
       </div>
       <% if user_signed_in? %>
         <ul class="nav-links" >
-          <li><%# link_to "Mon profil", "#", class: "button-outline-green link-green w-100" %></li>
-          <li><%# link_to "Mes activités", "#", class: "button-outline-green link-green w-100" %></li>
-          <li><%= link_to "Mes amis/invitations", friendships_path, class: "button-outline-green w-100" %></li>
+          <li><%= link_to friendships_path, class: "#{@notification_invitations.empty? ? "button-outline-green" : "button-full-green"} w-100" do %>
+          <p class="m-0 p-0">Mes amis</p>
+          <% unless @notification_invitations.empty? %>
+            <p class="m-0 p-0"><%= @notification_invitations.count %> invitation(s)</p>
+          <% end %>
+          <% end %></li>
           <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
           <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100" %></li>
         </ul>

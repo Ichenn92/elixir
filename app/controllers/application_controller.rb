@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nickname, :photo])
   end
+
+  before_action :notification_invitations
+
+  def notification_invitations
+    @notification_invitations = current_user.friendships.pending_invitations.select do |friendship|
+      friendship.user if friendship.friend == current_user
+    end.map { |friendship| friendship.user }
+    @test = 2
+  end
 end
