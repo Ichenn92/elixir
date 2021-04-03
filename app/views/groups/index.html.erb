@@ -1,8 +1,6 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-    <div class="white-box col-md-6">
+
+<%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+    <div class="white-box-max-height">
       <%= cl_image_tag("undraw_Messaging_re_pgx8_1_ythxuy", class: 'img-fluid') %>
     </div>
-  </div>
-</div>
+

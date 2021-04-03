@@ -3,13 +3,18 @@
       margin-bottom: auto;
     }
 
-.card-header {
-      border-radius: 15px 15px !important;
-      background-color: #EDE7F6;
-    }
-
 .card-footer{
     border-radius: 15px 15px !important;
     border-top: 0 !important;
-    background-color: #EDE7F6;
+    background-color: white;
   }
+
+.card-body {
+  flex-grow: 1;
+  padding: 16px 0;
+  overflow-y: scroll;
+}
+
+.card-header {
+  background-color: white;
+}

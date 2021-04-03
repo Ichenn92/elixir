@@ -1,9 +1,24 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-    <div class="white-box col-md-6">
-      <%= render "chat_content", group: @group, messages: @messages, message: @message %>
+<div class="one-box-screen row gx-5 mx-2">
+  <div class=" box-max-height col col-3">
+    <div class="h-50">
+      <div class="scrollable">
+        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+        <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+        </div>
+      </div>
+      <div class="h-50">
+        <div class="scrollable">
+          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+          <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+        </div>
+      </div>
     </div>
+  <div class="white-box-max-height col col-9">
+    <%= render "chat_content", group: @group, messages: @messages, message: @message %>
   </div>
 </div>
+
+
 
