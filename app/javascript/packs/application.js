@@ -26,6 +26,7 @@ import { initDatetimePicker } from './_datetime-picker';
 import { initNavBar } from './_navbar-toggle';
 import { initSearchNavbarToggle } from './_search-navbar-toggle';
 import { initChatgroupCable } from '../channels/group_channel';
+import { initScrollFromBottom } from './_div-scroll-from-bottom';
 
 window.addEventListener('resize', setHeightOfScreen);
 
@@ -34,4 +35,5 @@ document.addEventListener('turbolinks:load', () => {
   initSearchNavbarToggle();
   initChatgroupCable();
   initDatetimePicker();
+  initScrollFromBottom();
 });
