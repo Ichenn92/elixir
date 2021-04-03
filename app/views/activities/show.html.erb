@@ -52,9 +52,17 @@
         <% else %>
           <%= link_to "Voir profil", "/", class: "button-outline-green" %>
           <%= link_to "Voir activités", "/", class: "button-outline-green" %>
-          <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
         <% end %>
       </div>
+      <% if user_signed_in? %>
+        <% if @activity.is_member_of_activity_group?(current_user) %>
+          <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
+        <% else %>
+          <%= link_to "Devenir membre", group_memberships_path(@activity.group), method: :post , class: "button-outline-green" %>
+        <% end %>
+      <% else %>
+         <%= link_to "Devenir membre", new_user_session_path,class: "button-outline-green" %>
+      <% end %>
     </div>
 
     <div class="white-box col-md-4 mx-4">
