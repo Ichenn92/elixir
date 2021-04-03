@@ -3,11 +3,11 @@
     <h1><%= @activity.name %></h1>
   </div>
   <div class="activity-location text-center pb-3">
-    <h2><%= @activity.street %> à <%= @activity.city %></h2>
+    <h3><%= @activity.street %> à <%= @activity.city %></h3>
   </div>
   
-  <div class="row d-flex justify-content-around">
-    <div class="white-box col-md-7">
+  <div class="d-flex flex-wrap flex-md-wrap flex-lg-nowrap mx-2">
+    <div class="white-box flex-grow-1 mx-2">
       <h2 class="text-center">Détails de l'activité</h2>
       <div class="row">
         
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div class="white-box col-md-4">
+    <div class="white-box flex-md-fill mx-2" style="min-width: 400px;">
       <h2 class="text-center">Prochaines dates</h2>
       <% if current_user == @activity.user %>
         <%= render partial: "events/form", locals: { activity: @activity } %>
