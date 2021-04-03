@@ -1,6 +1,6 @@
 .button-outline-green {
   background: $color-primary-0;
-  color: $color-primary-700;
+  color: $color-primary-600;
   border: 2px solid $color-primary-600;
   border-radius: 1.5em;
   transition: 0.3s ease;
@@ -10,7 +10,58 @@
 
   &:hover {
       background: $color-primary-600;
-      color:white;
+      color:$color-primary-0;
+      text-decoration: none;
+  }
+}
+
+.button-outline-purple {
+  background: $color-secondary-50;
+  color: $color-secondary-600;
+  border: 2px solid $color-secondary-600;
+  border-radius: 1.5em;
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 8px 16px;
+
+  &:hover {
+      background: $color-secondary-600;
+      color:$color-secondary-50;
+      text-decoration: none;
+  }
+}
+
+.button-full-green {
+  background: $color-primary-600;
+  color: $color-primary-50;
+  border: 2px solid $color-primary-600;
+  border-radius: 1.5em;
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 8px 16px;
+
+  &:hover {
+      background: $color-primary-50;
+      color:$color-primary-600;
+      text-decoration: none;
+  }
+}
+
+.button-full-purple {
+  background: $color-secondary-600;
+  color: $color-secondary-50;
+  border: 2px solid $color-secondary-600;
+  border-radius: 1.5em;
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 8px 16px;
+
+  &:hover {
+      background: $color-secondary-50;
+      color:$color-secondary-600;
       text-decoration: none;
   }
 }

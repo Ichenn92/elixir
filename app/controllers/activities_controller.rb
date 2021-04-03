@@ -4,17 +4,13 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def show
-    @activity = Activity.find(params[:id])
-    #@group = @activity.group
-    #@messages = @group.messages
-    #@message = Message.new
   end
-
+  
   def new
     @activity = Activity.new
   end
 
-  def index
+  def index()
     @activities = Activity.where(user: current_user)
   end
 
@@ -23,7 +19,7 @@ class ActivitiesController < ApplicationController
     @photo = activity_params[:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
-    @activity = Activity.new({ name: @name, description: @description })
+    @activity = Activity.new({name: @name, description: @description})
     @activity.user = @user
     if @activity.save
       @activity.photo.attach(@photo)
@@ -39,7 +35,7 @@ class ActivitiesController < ApplicationController
   def update
     @activity.update(activity_params)
     @photo = activity_params[:photo]
-    if @activity.save
+    if @activity.save   
       @activity.photo.attach(@photo) unless @photo.nil?
       redirect_to activity_path(@activity)
     else
