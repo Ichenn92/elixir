@@ -31,11 +31,11 @@ module SEED_ACTIVITIES
     city: "Lausanne",
     street: "Rue du Pont 22",
     price: 7.40,
-  # photo: {
-  #   io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616444228/pilates_rbelrt.png"),
-  #   filename: "activity_3.png",
-  #   content_type: "image/png",
-  # },
+    photo: {
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
+    filename: "activity_3.png",
+    content_type: "image/png",
+   },
   }
   activity_4 = {
     name: "Yoga",

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:index, :show] do
     resources :messages, only: :create
+    resources :memberships, only: :create
   end
 
   resources :friendships, only: [:index, :create, :destroy] do

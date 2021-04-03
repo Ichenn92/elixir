@@ -3,8 +3,7 @@ class Activity < ApplicationRecord
 
   belongs_to :user
   has_one_attached :photo
-
-  #has_one :group
+  has_one :group, dependent: :destroy
 
   has_many :events, dependent: :delete_all
 
@@ -18,4 +17,8 @@ class Activity < ApplicationRecord
     using: {
       tsearch: { prefix: true },
     }
+
+  def is_member_of_activity_group?(user)
+    !self.group.memberships.where(user_id: user.id).empty?
+  end
 end

@@ -35,7 +35,7 @@
         
 
         <div class="activity-labels col-md-6 d-flex justify-content-center flex-column">
-          <h2 class="text-center">Labèles de l'activité</h2>
+          <h2 class="text-center">Caractéristiques de l'activité</h2>
           <div class="activity-label mx-2">
             <label title="Amusant">
               <%= cl_image_tag("funny.svg", class: "label-easy") %>
@@ -69,6 +69,15 @@
         </div>
 
       </div>
+      <% if user_signed_in? %>
+        <% if @activity.is_member_of_activity_group?(current_user) %>
+          <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
+        <% else %>
+          <%= link_to "Groupe de discussion", group_memberships_path(@activity.group), method: :post , class: "button-outline-green" %>
+        <% end %>
+      <% else %>
+         <%= link_to "Groupe de discussion", new_user_session_path,class: "button-outline-green" %>
+      <% end %>
     </div>
 
     <div class="white-box flex-md-fill mx-2" style="min-width: 400px;">
@@ -82,8 +91,5 @@
         <% end %>
       </ul>
     </div>
-
   </div>
-
-
-
+</div>
