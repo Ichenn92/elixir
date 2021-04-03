@@ -1,5 +1,5 @@
 <ul class="cards h-100">
   <% @activities.each do |activity| %>
-    <%= render partial: "shared/activity_menu", locals: { activity: activity } %>
+    <%= render partial: "shared/activity_card", locals: { activity: activity } %>
   <% end %>
 </ul>
