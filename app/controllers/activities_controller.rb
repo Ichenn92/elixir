@@ -4,6 +4,10 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def show
+    @booking = Booking.new
+    #@group = @activity.group
+    #@messages = @group.messages
+    #@message = Message.new
   end
   
   def new
