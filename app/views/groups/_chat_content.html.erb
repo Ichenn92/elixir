@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-    <div class="card-body">
+    <div class="card-body" id="scroll-from-bottom">
       <div id="messages" data-group-id="<%= group.id %>">
         <% messages.each do |message| %>
         <%= render "messages/message", message: message %>
