@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_174729) do
+ActiveRecord::Schema.define(version: 2021_04_03_123004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_04_02_174729) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "city"
+    t.string "street"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
@@ -67,6 +69,15 @@ ActiveRecord::Schema.define(version: 2021_04_02_174729) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "activity_id", null: false
+    t.index ["activity_id"], name: "index_categorizations_on_activity_id"
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -98,6 +109,15 @@ ActiveRecord::Schema.define(version: 2021_04_02_174729) do
     t.bigint "activity_id"
     t.index ["activity_id"], name: "index_groups_on_activity_id"
     t.index ["friendship_id"], name: "index_groups_on_friendship_id"
+  end
+
+  create_table "labelings", force: :cascade do |t|
+    t.bigint "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "activity_id", null: false
+    t.index ["activity_id"], name: "index_labelings_on_activity_id"
+    t.index ["label_id"], name: "index_labelings_on_label_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -155,10 +175,14 @@ ActiveRecord::Schema.define(version: 2021_04_02_174729) do
   add_foreign_key "activities", "users"
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
+  add_foreign_key "categorizations", "activities"
+  add_foreign_key "categorizations", "categories"
   add_foreign_key "events", "activities"
   add_foreign_key "friendships", "users"
   add_foreign_key "groups", "activities"
   add_foreign_key "groups", "friendships"
+  add_foreign_key "labelings", "activities"
+  add_foreign_key "labelings", "labels"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "messages", "groups"
