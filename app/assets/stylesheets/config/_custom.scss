@@ -56,6 +56,7 @@ body {
 h1, h2, h3, h4, h5 {
     color: $color-primary-900;
     line-height: 2.0;
+    font-weight: 700 !important;
 }
 h1 {
     font-size: $big-font-size;
@@ -73,6 +74,10 @@ h5 {
     font-size: calc($big-font-size - 16px);
 }
 
+p, a, span {
+    font-family: $body-font !important;
+}
+
 small {
   font-size: $xsmall-font-size !important;
 }
@@ -86,7 +91,6 @@ ul {
     padding-left: 0;
     list-style: none;
 }
-
 
 i, .fa-clock, .fa-calendar, .fa-arrow-up, .fa-arrow-down, .fa-calendar-check-o {
     font-size: $icon-font-size;
