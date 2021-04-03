@@ -2,7 +2,7 @@ module SEED_ACTIVITIES
   include OpenURI
 
   activity_1 = {
-    name: "Randonnées",
+    name: "Randonnée",
     description: "Du Chalet-à-Gobet à Montheron le long du Talent, cette balade est effectuée en compagnie d’un spécialiste de la nature. Initiation à la gestion forestière et traversée des forêts le long de la rivière en direction de l’Abbaye de Montheron. Grande marche d’environ 12 km pour une durée d'environ 7 heures, pauses incluses plutôt destinée aux bons marcheurs.",
     city: "Lausanne",
     street: "Route de Cojonnex 95",
