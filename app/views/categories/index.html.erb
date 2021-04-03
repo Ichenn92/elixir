@@ -1,7 +1,7 @@
 <div class="row gx-5 mx-2">
   <div class="col">
     <div class="white-box text-center col">
-      <h1>Toutes les catégories</h1>
+      <h2>Toutes les catégories</h2>
       <div class="category-index my-4">
         <% @categories.each do |category| %>
           <%= link_to category_path(category) do %>
@@ -17,14 +17,14 @@
   </div>
   <div class="col">
     <div class=" white-box text-center col">
-      <h1>Toutes les Villes</h1>
+      <h2>Toutes les Villes</h2>
       <div class="category-index my-4">
-        <% @categories.each do |category| %>
-          <%= link_to category_path(category) do %>
+        <% @cities = %w(lausanne berne genève sion) %>
+        <% @cities.each do |city| %>
+          <%= link_to activities_path do %>
             <div class="category-index-card">
-              <%= cl_image_tag(category.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 250, height: 150, crop: :scale }]) %>
-              <h3><%= category.name %></h3>
-              <% # , transformation: [ { quality: :auto, fetch_format: :auto}, {width: 550, height: 150}, {gravity: "face"} ]> %>
+              <img src= <%= "https://source.unsplash.com/250x150/?switzerland&city&#{city}" %> />
+              <h3><%= city.capitalize %></h3>
             </div>
           <% end %>
         <% end %>
