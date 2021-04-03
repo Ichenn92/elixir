@@ -3,7 +3,9 @@ module SEED_ACTIVITIES
 
   activity_1 = {
     name: "Randonnées",
-    description: "Pour tous ceux qui aiment les longues marches, en particulier sur les bords du lac Léman ou dans l'arrière-pays Lausannois.",
+    description: "Du Chalet-à-Gobet à Montheron le long du Talent, cette balade est effectuée en compagnie d’un spécialiste de la nature. Initiation à la gestion forestière et traversée des forêts le long de la rivière en direction de l’Abbaye de Montheron. Grande marche d’environ 12 km pour une durée d'environ 7 heures, pauses incluses plutôt destinée aux bons marcheurs.",
+    city: "Lausanne",
+    street: "Route de Cojonnex 95",
     price: "0.00",
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
@@ -14,6 +16,8 @@ module SEED_ACTIVITIES
   activity_2 = {
     name: "Aquagym",
     description: "Pour garder la forme au rythme de la musique en profitant du contact de l'eau tout en travaillant des mouvements tenant compte de la résistance de l'eau à ses propres mouvements.",
+    city: "Epalinges",
+    street: "Piscine scolaire, Bois-Murat 13",
     price: 9.20,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449354/binsfgms0fsq9l38fqd0c34fadlt.png"),
@@ -24,6 +28,8 @@ module SEED_ACTIVITIES
   activity_3 = {
     name: "Pilates",
     description: "Pour pratiquer de l'exercice physique adapté à ses capacités et visant au renforcement des muscles centraux et au bon équilibre du corps.",
+    city: "Lausanne",
+    street: "Rue du Pont 22",
     price: 7.40,
   # photo: {
   #   io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616444228/pilates_rbelrt.png"),
@@ -34,6 +40,8 @@ module SEED_ACTIVITIES
   activity_4 = {
     name: "Yoga",
     description: "Pratique commune à plusieurs époques et courants, visant, par la méditation, l'ascèse et les exercices corporels, à réaliser l'unification de l'être humain dans ses aspects physique, psychique et spirituel.",
+    city: "Renens",
+    street: "Rue de Lausanne 60",
     price: 12.50,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446837/yoga_qosaak.png"),
@@ -44,6 +52,8 @@ module SEED_ACTIVITIES
   activity_5 = {
     name: "Taï Chi",
     description: "Gymnastique chinoise, constituée par un enchaînement lent de mouvements, selon des schémas précis.",
+    city: "Lausanne",
+    street: "Rue Pré-de-Marché 23, Lausanne",
     price: 0.00,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446848/taichi_dywwol.png"),
@@ -54,6 +64,8 @@ module SEED_ACTIVITIES
   activity_6 = {
     name: "Qi Gong",
     description: "Gymnastique traditionnelle chinoise et une science de la respiration fondée sur la connaissance et la maîtrise du souffle et qui associe mouvements lents, exercices respiratoires et concentration.",
+    city: "Lausanne",
+    street: "Rue Pré-de-Marché 23, Lausanne",
     price: 8.50,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446878/qiqong_jptlqy.png"),
@@ -64,6 +76,8 @@ module SEED_ACTIVITIES
   activity_7 = {
     name: "Méditation guidée",
     description: "Cette discipline se mue en art quand on la pratique de façon régulière, l’utilisation consciente du cerveau droit favorise l’équilibre, aide à contrôler les douleurs chroniques, soulage de tous les désordres liés au stress.",
+    city: "Renens",
+    street: "Chemin des Lilas 11",
     price: 4.00,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446899/meditation_iirtaj.png"),
@@ -78,6 +92,8 @@ module SEED_ACTIVITIES
     SEED_ACTIVITIES::ACTIVITIES.each_with_index do |attribute, index|
       activity = Activity.create!(name: attribute[:name],
                                   description: attribute[:description],
+                                  city: attribute[:city],
+                                  street: attribute[:street],
                                   price: attribute[:price],
                                   user: User.find(rand(1..User.count)))
       photo = attribute[:photo]
