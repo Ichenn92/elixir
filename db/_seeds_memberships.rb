@@ -56,6 +56,58 @@ module SEED_MEMBERSHIPS
     group_id: 3,
   }
 
+  membership_15 = {
+    user_id: 1,
+    group_id: 4,
+  }
+  membership_16 = {
+    user_id: 11,
+    group_id: 4,
+  }
+  membership_17 = {
+    user_id: 8,
+    group_id: 4,
+  }
+  membership_18 = {
+    user_id: 4,
+    group_id: 5,
+  }
+
+  membership_19 = {
+    user_id: 8,
+    group_id: 7,
+  }
+  membership_20 = {
+    user_id: 4,
+    group_id: 7,
+  }
+
+  membership_21 = {
+    user_id: 1,
+    group_id: 6,
+  }
+  membership_22 = {
+    user_id: 11,
+    group_id: 6,
+  }
+  membership_23 = {
+    user_id: 8,
+    group_id: 5,
+  }
+  membership_24 = {
+    user_id: 4,
+    group_id: 5,
+  }
+
+  membership_25 = {
+    user_id: 8,
+    group_id: 7,
+  }
+  membership_26 = {
+    user_id: 4,
+    group_id: 7,
+  }
+
   MEMBERSHIPS = [membership_1,
                  membership_2,
                  membership_3,
