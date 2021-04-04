@@ -17,6 +17,8 @@ class GroupsController < ApplicationController
 
   def set_groups
     @friendship_groups = current_user.groups.where(group?: false)
+      .order("memberships.last_visit DESC")
     @activity_groups = current_user.groups.where(group?: true)
+      .order("memberships.last_visit DESC")
   end
 end
