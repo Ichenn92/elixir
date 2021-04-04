@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  prepend_before_action :set_locale
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -20,5 +21,11 @@ class ApplicationController < ActionController::Base
     else
       @notification_invitations = []
     end
+  end
+
+  private
+
+  def set_locale
+    I18n.locale = :fr
   end
 end
