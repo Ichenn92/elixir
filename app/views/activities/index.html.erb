@@ -7,19 +7,34 @@
 </div>
 
 <% if @activities.empty? %>
-  <ul class="cards h-100">
-    <li class="user-card">
-      <div class="name text-medium d-flex align-items-center">
-        <p>
-        Vous n'avez pas encore créé d'activité. 
-        Cliquez sur "Créer une activité" pour commencer
-        </p>
-      </div>
-      <%= link_to new_activity_path do %>
-        <button class="btn button-outline-green mx-1">Créer une activité</button>
-      <% end %>
-    </li>
-  </ul>
+   <% if @param.nil? %>
+    <ul class="cards h-100">
+      <li class="user-card">
+        <div class="name text-medium d-flex align-items-center">
+          <p>
+          Il n'y a pas d'activité pour cette catégorie.
+          </p>
+        </div>
+        <%= link_to categories_path do %>
+          <button class="btn button-outline-green mx-1">Découvrir d'autres catégories</button>
+        <% end %>
+      </li>
+    </ul>
+   <% else %>
+    <ul class="cards h-100">
+      <li class="user-card">
+        <div class="name text-medium d-flex align-items-center">
+          <p>
+          Vous n'avez pas encore créé d'activité. 
+          Cliquez sur "Créer une activité" pour commencer
+          </p>
+        </div>
+        <%= link_to new_activity_path do %>
+          <button class="btn button-outline-green mx-1">Créer une activité</button>
+        <% end %>
+      </li>
+    </ul>
+   <% end %>
 <% else %>
   <ul class="cards h-100">
     <% @activities.each do |activity| %>

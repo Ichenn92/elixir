@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     if current_user && current_page_is_group_chat
       @notifications_messages_all_groups = 0
       @group = Group.find(group_id)
-      save_last_visit_on_group_chat_helper(current_user, @group)
+      save_last_visit_on_group_chat_helper(current_user, @group) unless @group.nil?
     end
   end
 
