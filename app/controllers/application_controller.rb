@@ -29,8 +29,6 @@ class ApplicationController < ActionController::Base
 
   def save_current_visit_on_group_chat
     return if request.env["PATH_INFO"].nil?
-    p "lasttt"
-    p request.env["PATH_INFO"]
     current_path = URI(request.env["PATH_INFO"]).path.split("/").reject { |c| c.empty? }
     group_id = current_path[1].to_i
     current_page_is_group_chat = current_path.first == "groups" && group_id != 0
