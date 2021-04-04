@@ -70,7 +70,9 @@
       </div>
       <ul class="nav-links">
         <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100" %></li>
-        <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
+        <% if current_user %>
+          <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
+        <% end %>
         <li><%= link_to "Voir toutes les activités", categories_path, class: "button-outline-green w-100" %></li>
       </ul>
     </div>
