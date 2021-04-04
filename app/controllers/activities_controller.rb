@@ -7,6 +7,9 @@ class ActivitiesController < ApplicationController
     if params[:city]
       @activities = Activity.where(city: params[:city])
       @param = params[:city]
+    elsif params[:user]
+      @activities = Activity.where(user: params[:user])
+      @param = params[:user]
     elsif params[:category_id]
       @activities = Category.find(params[:category_id]).activities
       @param = Category.find(params[:category_id]).name
