@@ -18,7 +18,13 @@ class GroupsController < ApplicationController
   def set_groups
     @friendship_groups = current_user.groups.where(group?: false)
       .order("memberships.last_visit DESC")
+    @friendship_groups_unread, @friendship_groups_read = @friendship_groups.partition do |group|
+      group.unread?(current_user)
+    end
     @activity_groups = current_user.groups.where(group?: true)
       .order("memberships.last_visit DESC")
+    @activity_groups_unread, @activity_groups_read = @activity_groups.partition do |group|
+      group.unread?(current_user)
+    end
   end
 end
