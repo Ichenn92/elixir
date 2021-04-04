@@ -65,9 +65,11 @@ class ApplicationController < ActionController::Base
 
   def save_last_visit_on_group_chat_helper(user, group_id)
     @membership = Membership.find_by(user: user, group: @group)
-    now = DateTime.now
-    @membership.last_visit = now
-    @membership.save
+    unless @membership.nil?
+      now = DateTime.now
+      @membership.last_visit = now
+      @membership.save
+    end
   end
 
   def set_locale
