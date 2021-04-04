@@ -8,8 +8,6 @@
         <% @friendship_groups_unread.each do |group| %>
           <%= render partial: "chat_menu_friendship", locals: { group: group } %>
         <% end %>
-      </ul>
-      <ul>
         <% @friendship_groups_read.each do |group| %>
           <%= render partial: "chat_menu_friendship", locals: { group: group } %>
         <% end %>
@@ -29,8 +27,6 @@
         <% @activity_groups_unread.each do |group| %>
           <%= render partial: "chat_menu_group", locals: { group: group } %>
         <% end %>
-      </ul>
-      <ul>
         <% @activity_groups_read.each do |group| %>
           <%= render partial: "chat_menu_group", locals: { group: group } %>
         <% end %>

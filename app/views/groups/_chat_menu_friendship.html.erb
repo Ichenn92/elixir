@@ -6,6 +6,6 @@
         <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
       </div>
     <% end %>
-    <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
+    <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group), class: "ml-3" %>
   </div>
 </li>
