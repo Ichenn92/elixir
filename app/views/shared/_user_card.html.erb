@@ -7,7 +7,7 @@
 
 
     <% # Check if user has no relationship with current_user %>
-    <% # if user_signed_in? %>
+    <% if user_signed_in? %>
       <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
         <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
           <%= f.hidden_field :friend, value: user.id %>
@@ -48,9 +48,7 @@
 
       <% end %>
 
-    <!--
-    <% # else %>
-      <% # link_to "Ajouter en ami", new_user_session_path, class: "btn button-full-green mx-1" %>
-    <% # end %>
-    -->
+    <% else %>
+      <% link_to "Ajouter en ami", new_user_session_path, class: "btn button-full-green mx-1" %>
+    <% end %>
 </li>
