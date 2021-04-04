@@ -4,11 +4,12 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
   has_one :group, dependent: :destroy
-
   has_many :events, dependent: :delete_all
 
-  validates :name, presence: true
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 
+  validates :name, presence: true
   validates :city, presence: true
   validates :street, presence: true
 

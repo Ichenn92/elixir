@@ -3,6 +3,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
-    @cities = Activity.distinct.pluck(:name)
+    @cities = Activity.distinct.pluck(:city)
   end
 end
