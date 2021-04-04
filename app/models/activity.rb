@@ -9,6 +9,9 @@ class Activity < ApplicationRecord
   has_many :categorizations
   has_many :categories, through: :categorizations
 
+  has_many :labelings
+  has_many :labels, through: :labelings
+
   validates :name, presence: true
   validates :city, presence: true
   validates :street, presence: true

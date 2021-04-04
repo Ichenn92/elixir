@@ -1,6 +1,16 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
 fr:
+  activerecord:
+    errors:
+      models:
+        activity:
+          attributes:
+            city:
+              blank: "ne peut pas être vide"
+            street:
+              blank: "ne peut pas être vide"
+fr:
   errors:
     messages:
       not_found: "n'a pas été trouvé(e)"
