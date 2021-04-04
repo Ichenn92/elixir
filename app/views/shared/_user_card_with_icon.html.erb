@@ -5,50 +5,53 @@
 
   <div class="name text-small d-flex align-items-center ml-1">@<%= user.nickname %></div>
 
-
-    <% unless user == current_user %>
-      <% # Check if user has no relationship with current_user %>
-      <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
-        <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
-          <%= f.hidden_field :friend, value: user.id %>
-          <%= button_tag(type: 'submit', class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green") do %>
-            <i class="fas fa-user-plus text-small"></i>
-          <% end %>
-        <% end %>
-
-      <% else %>
-
-        <% # Check if current_user is the requestor of the frienship %>
-        <% friendship = user.friendships.include_current_user(current_user).first %>
-
-        <% if friendship.pending? %>
-          <% if current_user == friendship.user %>
-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
-              <i class="fas fa-user-clock text-small"></i>
-            <% end %>
-
-          <% else %>
-            <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
-              <button class="btn btn-danger btn-lg">Refuser</button>
-            <% end %>
-            <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
-              <button class="btn btn-primary btn-lg">Accepter</button>
-            <% end %>
-          <% end %>
-
-        <% elsif friendship.rejected? %>
-            <div class="btn btn-outline-primary btn-lg disabled">
-              <%= friendship.status_fr %>
-            </div>
-
-        <% elsif friendship.accepted? %>
-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
-              <i class="far fa-comments text-small"></i>
-            <% end %>
-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
-              <i class="fas fa-user-check text-small"></i>
-            <% end %>
+  <% if user_signed_in? %>
+    <% # Check if user has no relationship with current_user %>
+    <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
+      <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
+        <%= f.hidden_field :friend, value: user.id %>
+        <%= button_tag(type: "submit", class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green") do %>
+          <i class="fas fa-user-plus text-small"></i>
         <% end %>
       <% end %>
+
+    <% else %>
+
+      <% # Check if current_user is the requestor of the frienship %>
+      <% friendship = user.friendships.include_current_user(current_user).first %>
+
+      <% if friendship.pending? %>
+        <% if current_user == friendship.user %>
+          <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+            <i class="fas fa-user-clock text-small"></i>
+          <% end %>
+
+        <% else %>
+          <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
+            <button class="btn btn-danger btn-lg">Refuser</button>
+          <% end %>
+          <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
+            <button class="btn btn-primary btn-lg">Accepter</button>
+          <% end %>
+        <% end %>
+
+      <% elsif friendship.rejected? %>
+          <div class="btn btn-outline-primary btn-lg disabled">
+            <%= friendship.status_fr %>
+          </div>
+
+      <% elsif friendship.accepted? %>
+          <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+            <i class="far fa-comments text-small"></i>
+          <% end %>
+          <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+            <i class="fas fa-user-check text-small"></i>
+          <% end %>
+      <% end %>
     <% end %>
+  <% else %>
+    <%= link_to new_user_session_path, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+      <i class="fas fa-user-plus text-small"></i>
+    <% end %>
+  <% end %>
 </li>
