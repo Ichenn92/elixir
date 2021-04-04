@@ -150,3 +150,14 @@ button {
     position: absolute;
     transform: translateY(-50vh);
 }
+
+.notification-badge {
+    width: 100px;
+    position: absolute;
+    top: -45%;
+    left: calc(50% - 70px);
+
+    span {
+        width: 140px;
+    }
+}

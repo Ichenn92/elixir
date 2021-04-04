@@ -1,6 +1,6 @@
 .category-index {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
 }
 
@@ -25,6 +25,7 @@
 .category-index-card {
   // background-position: center;
   height: 150px;
+  min-width: 250px;
   width: auto;
   position: relative;
 
