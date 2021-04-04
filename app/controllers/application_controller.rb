@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   private
 
   def save_last_visit_on_group_chat_helper(user, group_id)
-    @membership = Membership.find_by(user: user, group: @group)
+    @membership = Membership.find_by(user: user, group: group_id)
     unless @membership.nil?
       now = DateTime.now
       @membership.last_visit = now
