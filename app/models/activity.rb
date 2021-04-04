@@ -23,6 +23,7 @@ class Activity < ApplicationRecord
     }
 
   def is_member_of_activity_group?(user)
+    return false if self.group.nil?
     !self.group.memberships.where(user_id: user.id).empty?
   end
 end
