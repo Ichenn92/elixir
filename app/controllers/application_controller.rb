@@ -38,9 +38,11 @@ class ApplicationController < ActionController::Base
 
   def notification_messages_all_groups
     if current_user
-      @notification_unread_message = current_user.groups.any? do |group|
+      @notification_unread_message = current_user.groups.count do |group|
         group.unread?(current_user)
       end
+    else
+      @notification_unread_message = 0
     end
   end
 
