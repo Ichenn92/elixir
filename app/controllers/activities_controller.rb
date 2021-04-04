@@ -28,10 +28,15 @@ class ActivitiesController < ApplicationController
     @photo = activity_params[:photo]
     @name = activity_params[:name]
     @description = activity_params[:description]
-    @activity = Activity.new({ name: @name, description: @description })
+    @city = activity_params[:city]
+    @street = activity_params[:street]
+    
+    @activity = Activity.new({ name: @name, description: @description, city: @city, street: @street })
     @activity.user = @user
     if @activity.save
       @activity.photo.attach(@photo)
+      Group.create({name: @activity.name, activity: @activity})
+      Membership.create({user: @user, group: @activity.group})
       redirect_to activity_path(@activity)
     else
       render :new
@@ -65,6 +70,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :photo)
+    params.require(:activity).permit(:name, :description, :photo, :city, :street)
   end
 end
