@@ -11,9 +11,8 @@ class Group < ApplicationRecord
 
     return false if self.messages.empty?
     last_message = self.messages.last.created_at
-    p "yooooo"
-    p last_visit
-    p last_message
-    return last_visit < last_message
+    unless last_visit.nil? || last_message.nil?
+      return last_visit < last_message
+    end
   end
 end
