@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
       )
       redirect_to group_path(@group, anchor: "message-#{@message.id}")
     else
-      render "groups/show"
+      redirect_to group_path(@group)
     end
   end
 

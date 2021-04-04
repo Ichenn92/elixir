@@ -26,7 +26,7 @@ class Friendship < ApplicationRecord
 
   def create_private_chat
     if (saved_change_to_status? && self.status == "accepted")
-      Group.create(name:"Chat privé", group?: false, friendship_id: self.id)
+      Group.create(name: "Chat privé", group?: false, friendship_id: self.id)
       Membership.create(group_id: group.id, user_id: self.user_id)
       Membership.create(group_id: group.id, user_id: self.friend_id)
     end

@@ -1,35 +1,36 @@
 <div class="h-50 d-flex flex-column">
   <h3>Amis</h3>
   <div class="scrollable flex-grow-1">
-    <% if @friendship_groups.empty? %>
+    <% if current_user.friendships.empty? %>
       <p>Vous n'avez pas encore d'amis. Cliquez sur la loupe à gauche pour rechercher vos amis</p>
     <% else %>
-      <% @friendship_groups.each do |group| %>
-        <ul>
-          <li>
-            <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
-            <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
-          </li>
-        </ul>
-      <% end %>
+      <ul>
+        <% @friendship_groups_unread.each do |group| %>
+          <%= render partial: "chat_menu_friendship", locals: { group: group } %>
+        <% end %>
+        <% @friendship_groups_read.each do |group| %>
+          <%= render partial: "chat_menu_friendship", locals: { group: group } %>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 </div>
+
 <div class="h-50 d-flex flex-column">
   <h3>Groupes</h3>
   <div class="scrollable flex-grow-1">
-    <% if @activity_groups.empty? %>
+    <% if @activity_groups_unread.empty? && @activity_groups_read.empty? %>
       <p>Vous ne participez pas encore a des groupes de discussion</p>
       <%= link_to "Cliquez ici pour découvrir des activités et pouvoir participer aux groupes", categories_path %>
     <% else %>
-      <% @activity_groups.each do |group| %>
-        <ul>
-          <li>
-            <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
-            <%= link_to "#{group.name}", group_path(group) %>
-          </li>
-        </ul>
-      <% end %>
+      <ul>
+        <% @activity_groups_unread.each do |group| %>
+          <%= render partial: "chat_menu_group", locals: { group: group } %>
+        <% end %>
+        <% @activity_groups_read.each do |group| %>
+          <%= render partial: "chat_menu_group", locals: { group: group } %>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 </div>

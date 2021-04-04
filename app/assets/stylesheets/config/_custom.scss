@@ -26,6 +26,7 @@ $color-secondary-800: #4527A0;
 $color-secondary-900: #311B92;
 
 //Font size definitions
+$xxsmall-font-size: 16px;
 $xsmall-font-size: 20px;
 $small-font-size: 24px;
 $medium-font-size: 32px;
@@ -79,7 +80,7 @@ p, a, span {
 }
 
 small {
-  font-size: $xsmall-font-size !important;
+  font-size: $xxsmall-font-size !important;
 }
 
 a {
@@ -113,6 +114,12 @@ button {
 // -------------------------------------------
 // CLASSES
 // -------------------------------------------
+.text-color-secondary {
+    color: $color-secondary-700;
+}
+.text-xxsmall {
+    font-size: $xxsmall-font-size;
+}
 .text-xsmall {
     font-size: $xsmall-font-size;
 }
