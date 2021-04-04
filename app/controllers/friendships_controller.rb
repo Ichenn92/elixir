@@ -2,9 +2,9 @@ class FriendshipsController < ApplicationController
   def index
     @friends = User.friends(current_user)
     @pending_invitations = current_user.friendships.pending_invitations
-    @invited_by = @pending_invitations.map do |friendship|
-      friendship.user == current_user ? friendship.friend : friendship.user
-    end
+    @invited_by = @pending_invitations.select do |friendship|
+      friendship.user if friendship.friend == current_user
+    end.map { |friendship| friendship.user }
   end
 
   def create

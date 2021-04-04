@@ -2,7 +2,7 @@
   <div class="container container-sign">
     <div class="row row-sign">
       <div class="col-md-6 order-md-2 col-sign d-flex align-items-center">
-        <%= cl_image_tag("undraw_suburbs_wk7ulf", class: 'img-fluid') %>
+        <%= cl_image_tag("undraw_suburbs_wk7ulf", class: "img-fluid") %>
       </div>
 
       <div class="col-md-6 contents col-sign">
@@ -15,12 +15,12 @@
                 <div class="form-group">
                   <%= f.input :email,
                               label: "Votre adresse email",
-                              required: false,
+                              required: true,
                               autofocus: true,
                               input_html: { autocomplete: "email" } %>
                   <%= f.input :password,
                               label: "Votre mot de passe",
-                              required: false,
+                              required: true,
                               input_html: { autocomplete: "current-password" } %>
                   <%= f.input :remember_me,
                               label: "Se souvenir de moi",

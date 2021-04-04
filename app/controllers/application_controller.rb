@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
+  prepend_before_action :set_locale
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :notification_invitations
   before_action :save_last_visit_on_group_chat
+  before_action :notification_messages_all_groups
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -10,13 +13,6 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nickname, :photo])
   end
-
-  before_action :notification_messages_all_groups
-
-  def notification_messages_all_groups
-  end
-
-  #---------------------------------------------------------------
 
   def save_last_visit_on_group_chat
     previous_path = URI(request.referrer).path.split("/").reject { |c| c.empty? }
@@ -30,6 +26,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def notification_invitations
+    if current_user
+      @notification_invitations = current_user.friendships.pending_invitations.select do |friendship|
+        friendship.user if friendship.friend == current_user
+      end.map { |friendship| friendship.user }
+    else
+      @notification_invitations = []
+    end
+  end
+
+  def notification_messages_all_groups
+  end
+
+  #---------------------------------------------------------------
+
   private
 
   def save_last_visit_on_group_chat_helper(user, group_id)
@@ -37,5 +48,9 @@ class ApplicationController < ActionController::Base
     now = DateTime.now
     @membership.last_visit = now
     @membership.save
+  end
+
+  def set_locale
+    I18n.locale = :fr
   end
 end

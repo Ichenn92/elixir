@@ -1,9 +1,16 @@
-<div class="d-flex mb-4">
-  <div class="message-container" id="message-<%= message.id %>">
-    <i class="author">
-      <%= cl_image_tag(message.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
-      <small><%= message.created_at.strftime("%d.%m.%Y à %Hh%M") %></small>
-    </i>
-    <p><%= message.content %></p>
+<% class_add = message.user == @current_user_ws ? "self" : "other" %>
+
+<div class="message message-<%= class_add %>">
+  <div class="d-flex align-items-end message-block" id="message-<%= message.id %>">
+    <div class="chat-avatar-container">
+      <%= cl_image_tag(message.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large chat-avatar") %>
+    </div>
+    <div class="message-content">
+      <p class="p-0 m-0"><%= message.content %></p>
+    </div>
+  </div>
+
+  <div class="created_at">
+    <small><%= message.created_at.strftime("%Hh%M") %></small>
   </div>
 </div>

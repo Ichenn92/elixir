@@ -1,30 +1,35 @@
 <div class="h-50 d-flex flex-column">
   <h3>Amis</h3>
   <div class="scrollable flex-grow-1">
-    <% @groups.each do |group| %>
-      <ul>
-        <li>
-          <% unless group.group? %>
-            <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
-            <%= link_to "#{group.memberships.where.not( user: current_user).first.user.nickname }", group_path(group) %>
-          <% end %>
-        </li>
-      </ul>
+    <% if @friendship_groups.empty? %>
+      <p>Vous n'avez pas encore d'amis. Cliquez sur la loupe à gauche pour rechercher vos amis</p>
+    <% else %>
+      <% @friendship_groups.each do |group| %>
+        <ul>
+          <li>
+            <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
+            <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
+          </li>
+        </ul>
+      <% end %>
     <% end %>
   </div>
 </div>
 <div class="h-50 d-flex flex-column">
   <h3>Groupes</h3>
   <div class="scrollable flex-grow-1">
-    <% @groups.each do |group| %>
-      <ul>
-        <li>
-          <% if group.group? %>
-            <%= link_to cl_image_tag(group.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150}], class: "avatar-large"), group_path(group) %>
+    <% if @activity_groups.empty? %>
+      <p>Vous ne participez pas encore a des groupes de discussion</p>
+      <%= link_to "Cliquez ici pour découvrir des activités et pouvoir participer aux groupes", categories_path %>
+    <% else %>
+      <% @activity_groups.each do |group| %>
+        <ul>
+          <li>
+            <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
             <%= link_to "#{group.name}", group_path(group) %>
-          <% end %>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      <% end %>
     <% end %>
   </div>
 </div>
