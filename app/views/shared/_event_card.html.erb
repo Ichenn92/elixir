@@ -7,7 +7,7 @@
     <div class="d-flex mb-3 p-0">
     
         <div class="flex-grow-1 m-0 p-0 mr-2">
-            <%= form_for booking, html: { class: "h-100" }, remote: true do |f| %>
+            <%= form_for booking, html: { class: "h-100" } do |f| %>
                 <% if booking.user.nil? %>
                     <%= f.hidden_field :booking, value: booking.id %>
                 <% end %>

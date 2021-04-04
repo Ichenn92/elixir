@@ -1,12 +1,30 @@
 <div class="activity-name text-center pt-3">
-  <% if @param %>
+  <% p @param %>
+  <% unless @param.nil? %>
     <h1>Activités de : <%= @param %></h1>
   <% else %>
     <h1>Mes activités</h1>
 <% end %>
 </div>
-<ul class="cards h-100">
-  <% @activities.each do |activity| %>
-    <%= render partial: "shared/activity_card", locals: { activity: activity } %>
-  <% end %>
-</ul>
+
+<% if @activities.empty? %>
+  <ul class="cards h-100">
+    <li class="user-card">
+      <div class="name text-medium d-flex align-items-center">
+        <p>
+        Vous n'avez pas encore créé d'activité. 
+        Cliquez sur "Créer une activité" pour commencer
+        </p>
+      </div>
+      <%= link_to new_activity_path do %>
+        <button class="btn button-outline-green mx-1">Créer une activité</button>
+      <% end %>
+    </li>
+  </ul>
+<% else %>
+  <ul class="cards h-100">
+    <% @activities.each do |activity| %>
+      <%= render partial: "shared/activity_card", locals: { activity: activity } %>
+    <% end %>
+  </ul>
+<% end %>

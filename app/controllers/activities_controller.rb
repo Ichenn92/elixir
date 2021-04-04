@@ -9,7 +9,7 @@ class ActivitiesController < ApplicationController
       @param = params[:city]
     elsif params[:category_id]
       @activities = Category.find(params[:category_id]).activities
-      @param = params[:city]
+      @param = Category.find(params[:category_id]).name
     else
       @activities = Activity.where(user: current_user)
     end
