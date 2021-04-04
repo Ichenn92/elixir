@@ -1,7 +1,7 @@
 <div class="h-50 d-flex flex-column">
   <h3>Amis</h3>
   <div class="scrollable flex-grow-1">
-    <% if current_user.friendships.empty? %>
+    <% if @friendship_groups_unread.empty? && @friendship_groups_read.empty? %>
       <p>Vous n'avez pas encore d'amis. Cliquez sur la loupe à gauche pour rechercher vos amis</p>
     <% else %>
       <ul>
