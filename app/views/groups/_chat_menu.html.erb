@@ -7,9 +7,19 @@
       <% @friendship_groups.each do |group| %>
         <ul>
           <li>
-            <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
-            <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
-            <%= "YA" if group.unread?(current_user) %>
+            <div class="mt-2 position-relative">
+              <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
+              <% if group.unread?(current_user) %>
+                <div class="d-flex justify-content-center align-items-center px-1 m-0 rounded position-absolute" style="background-color:#F6FBFB;top:0px;left:41px;">
+                  <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
+                </div>
+              <% end %>
+              <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
+            </div>
+          </li>
+        </ul>
+        <ul>
+          <li>
           </li>
         </ul>
       <% end %>
@@ -26,9 +36,15 @@
       <% @activity_groups.each do |group| %>
         <ul>
           <li>
-            <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
-            <%= link_to "#{group.name}", group_path(group) %>
-            <%= "YA" if group.unread?(current_user) %>
+            <div class="mt-2 position-relative">
+              <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
+              <% if group.unread?(current_user) %>
+                <div class="d-flex justify-content-center align-items-center px-1 m-0 rounded position-absolute" style="background-color:#F6FBFB;top:0px;left:41px;">
+                  <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
+                </div>
+              <% end %>
+              <%= link_to "#{group.name}", group_path(group), class: "ml-3" %>
+            </div>
           </li>
         </ul>
       <% end %>
