@@ -28,8 +28,8 @@
             <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
             <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
           <% else %>
-            <%= link_to "Voir profil", "/", class: "button-outline-green" %>
-            <%= link_to "Voir activités", "/", class: "button-outline-green" %>
+            <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
+            <%= link_to "Voir activités", activities_path(user: @activity.user), class: "button-outline-green" %>
           <% end %>
         </div>
         
