@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     return if request.referrer.nil?
     previous_path = URI(request.referrer).path.split("/").reject { |c| c.empty? }
     group_id = previous_path[1].to_i
-    previous_page_is_group_chat = previous_path.first == "groups" && @group_id != 0
+    previous_page_is_group_chat = previous_path.first == "groups" && group_id != 0
     if current_user && previous_page_is_group_chat
       @notifications_messages_all_groups = 0
       @group = Group.find(group_id)
