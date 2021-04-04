@@ -1,9 +1,11 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
-    <div class="white-box margin-top-50 col-md-6">
-      <%= render "chat_content", group: @group, messages: @messages, message: @message %>
-    </div>
+<div class="one-box-screen d-flex">
+  <div class=" box-max-height" style="width:250px;">
+    <%= render "chat_menu", group: @group, messages: @messages, message: @message %>
+  </div>
+  <div class="white-box-max-height flex-grow-1">
+    <%= render "chat_content", group: @group, messages: @messages, message: @message %>
   </div>
 </div>
+
+
 

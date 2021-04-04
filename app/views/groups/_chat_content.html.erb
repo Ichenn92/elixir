@@ -1,13 +1,13 @@
 
-  <div class="card-header">
+  <div class="card-header border-bottom">
     <div class="bd-highlight">
       <div class="img_cont">
         <% if group.group? %>
-          <%= cl_image_tag(group.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
+          <%= cl_image_tag(group.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150}], class: "avatar-large") %>
           <%= link_to "Voir l'activité", activity_path(@group.activity), class: "button-outline-green" %>
           <%= link_to "Quitter", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
         <% else %>
-          <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
+          <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
         <% end %>
         <span class="online_icon"></span>
       </div>
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-    <div class="card-body">
+    <div class="card-body" id="scroll-from-bottom">
       <div id="messages" data-group-id="<%= group.id %>">
         <% messages.each do |message| %>
         <%= render "messages/message", message: message %>
