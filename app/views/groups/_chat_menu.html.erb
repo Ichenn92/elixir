@@ -9,6 +9,7 @@
           <li>
             <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
             <%= link_to "#{group.memberships.where.not(user: current_user).first.user.nickname}", group_path(group) %>
+            <%= "YA" if group.unread?(current_user) %>
           </li>
         </ul>
       <% end %>
@@ -27,6 +28,7 @@
           <li>
             <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
             <%= link_to "#{group.name}", group_path(group) %>
+            <%= "YA" if group.unread?(current_user) %>
           </li>
         </ul>
       <% end %>
