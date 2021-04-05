@@ -100,7 +100,7 @@
             <div class="text-left pt-3">
               <h1 class="text-white"><%= @activity.name %></h1>
             </div>
-            <p class="text-white text-justify w-75 pb-4 border-bottom mb-0"><%= @activity.description %></p>
+            <p class="text-white text-justify w-75 pb-4 border-bottom mb-0" style="min-height:250px;"><%= @activity.description %></p>
           </div>
           <div class="d-flex justify-content-start align-items-center p-4">
             <i class="text-white fas fa-map-marked-alt"></i>
@@ -122,18 +122,24 @@
         <% # Categories and Labels %>
         <div class="row">
           <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-right">
-            <h2 class="text-right">Labels</h2>
+            <li class="d-flex justify-content-end align-items-center">
+              <h2 class="text-right">Labels</h2>
+              <i class="w-25"></i>
+            </li>
             <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-end align-items-center mt-4">
+              <li class="d-flex justify-content-end align-items-center my-4">
                 <p style="margin: 0;"><%= label.name %></p>
                 <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
               </li>
             <% end %>  
           </ul>
           <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-left">
-            <h2 class="text-left">Catégories</h2>
+            <li class="d-flex justify-content-start align-items-center">
+              <i class="w-25"></i>
+              <h2 class="text-right">Catégories</h2>
+            </li>
             <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-start align-items-center mt-4">
+              <li class="d-flex justify-content-start align-items-center my-4">
                 <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
                 <p style="margin: 0;"><%= label.name %></p>
               </li>
@@ -144,7 +150,7 @@
         <% # Organisator profile %>
         <div class="border-bottom">
           <div class="position-relative d-flex justify-content-center align-items-center w-100">
-            <div class="position-absolute border-top w-100"></div>
+            <div class="position-absolute border-top w-100" style="z-index:-1;"></div>
             <%= cl_image_tag(@activity.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-xlg-bordered-white-surround") %>
           </div>
           <h4 class="text-center"><%= @activity.user.nickname %></h4>
@@ -168,7 +174,7 @@
       <% # Photo and Events %>
       <div class="col-lg-6 col-md-12">
         <div class="mt-4 pt-4 position-relative" style="left:-25%;">
-          <div class="image-activity-show mt-4">
+          <div class="image-activity-show my-4">
             <%= cl_image_tag(@activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, height: 300, width: 450, radius: 10, crop: :fill }], class: "my-4", style: "box-shadow: 5px 5px 10px #00796B; border-radius: 20px") %>
           </div>
         </div>
