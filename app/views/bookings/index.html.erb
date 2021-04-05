@@ -1,0 +1,14 @@
+<div class="activity-name text-center pt-3">
+  <h1>Mes réservations</h1>
+</div>
+
+<% @bookings_per_activity.transform_values.each do |activity| %>
+  <%= render partial: "shared/activity_card", locals: { activity: activity.first.activity } %>
+  <ul class="container p-4">
+    <% activity.each do |booking| %>
+      <li>
+        <%= render partial: "shared/event_card", locals: { event: booking.event } %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -4,47 +4,5 @@
   </div>
 
   <div class="name text-medium d-flex align-items-center">@<%= user.nickname %></div>
-    <% # Check if user has no relationship with current_user %>
-    <% if user_signed_in? %>
-      <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
-        <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
-          <%= f.hidden_field :friend, value: user.id %>
-          <%= f.submit "Ajouter en ami", class: "btn button-full-green mx-1" %>
-        <% end %>
-
-      <% else %>
-
-        <% # Check if current_user is the requestor of the frienship %>
-        <% friendship = user.friendships.include_current_user(current_user).first %>
-
-        <% if friendship.pending? %>
-          <% if current_user == friendship.user %>
-            <%= link_to friendship_path(friendship), method: "delete", remote: true do %>
-              <button class="btn button-outline-green mx-1 cancel-hover"><span><%= friendship.status_fr %></span></button>
-            <% end %>
-          <% else %>
-            <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
-              <button class="btn button-full-purple mx-1">Refuser</button>
-            <% end %>
-            <%= link_to friendship_accept_path(friendship.id), method: "post", remote: true do %>
-              <button class="btn button-full-green mx-1">Accepter</button>
-            <% end %>
-          <% end %>
-        <% elsif friendship.rejected? %>
-            <div class="btn button-outline-green mx-1 disabled">
-              <%= friendship.status_fr %>
-            </div>
-
-        <% elsif friendship.accepted? %>
-            <div class="btn button-outline-green mx-1 disabled">
-              <%= friendship.status_fr %>
-            </div>
-            <%= link_to "Supprimer amitié", friendship_path(friendship), method: "delete", data: { confirm: "Êtes-vous sûr ?" }, class: "btn button-full-green mx-1" %>
-        <% end %>
-
-      <% end %>
-
-    <% else %>
-      <%= link_to "Ajouter en ami", new_user_session_path, class: "btn button-full-green mx-1" %>
-    <% end %>
+  <%= render partial: "shared/user_friendship_action", locals: { user: user } %>
 </li>

@@ -5,9 +5,6 @@
 
   <div class="name text-xsmall d-flex justify-content-center flex-column align-items-start ml-1">
     <p class="my-0">@<%= user.nickname %></p>
-    <% if user_signed_in? && user == @activity.user %>
-      <small class="my-0">organisateur/trice</small>
-    <% end %>
   </div>
 
   <% unless current_user == user %>
@@ -48,7 +45,7 @@
             </div>
 
         <% elsif friendship.accepted? %>
-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+            <%= link_to group_path(Group.find_by(friendship_id: friendship.id)), class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
               <i class="far fa-comments text-small"></i>
             <% end %>
             <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
