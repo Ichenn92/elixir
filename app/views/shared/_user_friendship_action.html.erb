@@ -1,10 +1,4 @@
-<li class="user-card">
-  <div class="photo avatar-large">
-    <%= cl_image_tag(user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
-  </div>
-
-  <div class="name text-medium d-flex align-items-center">@<%= user.nickname %></div>
-    <% # Check if user has no relationship with current_user %>
+<% # Check if user has no relationship with current_user %>
     <% if user_signed_in? %>
       <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
         <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
@@ -19,17 +13,19 @@
 
         <% if friendship.pending? %>
           <% if current_user == friendship.user %>
-            <%= link_to friendship_path(friendship), method: "delete", remote: true do %>
-              <button class="btn button-outline-green mx-1 cancel-hover"><span><%= friendship.status_fr %></span></button>
-            <% end %>
+            <div class="btn button-outline-green mx-1 disabled">
+              <%= friendship.status_fr %>
+            </div>
+
           <% else %>
             <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
               <button class="btn button-full-purple mx-1">Refuser</button>
             <% end %>
-            <%= link_to friendship_accept_path(friendship.id), method: "post", remote: true do %>
+            <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
               <button class="btn button-full-green mx-1">Accepter</button>
             <% end %>
           <% end %>
+
         <% elsif friendship.rejected? %>
             <div class="btn button-outline-green mx-1 disabled">
               <%= friendship.status_fr %>
@@ -47,4 +43,3 @@
     <% else %>
       <%= link_to "Ajouter en ami", new_user_session_path, class: "btn button-full-green mx-1" %>
     <% end %>
-</li>
