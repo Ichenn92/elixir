@@ -1,11 +1,13 @@
 <li>
-  <div class="mt-2 position-relative">
-    <%= link_to cl_image_tag(group.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large"), group_path(group) %>
+  <div class="mt-2 position-relative d-flex align-items-center">
+    <%= link_to cl_image_tag(group.activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large mr-3"), group_path(group) %>
     <% if group.unread?(current_user) %>
       <div class="d-flex justify-content-center align-items-center px-1 m-0 rounded position-absolute" style="background-color:#F6FBFB;top:0px;left:41px;">
         <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
       </div>
     <% end %>
-    <%= link_to "#{group.name}", group_path(group), class: "ml-3" %>
+    <div class="flex-grow-1">
+      <%= link_to "#{group.name}", group_path(group) %>
+    </div>
   </div>
 </li>

@@ -58,12 +58,12 @@
 </li>
 
 <div class="collapse" id="participant-event-<%= event.id %>">
-    <div class="card card-body mb-4">
+    <div class="card card-body p-3 pb-0 mb-4">
         <h4>Participants</h4>
         <ul>
             <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
             <% if event.bookings.all_confirmed.empty? %>
-                <p>Il n'y a pas encore de participants</p>
+                <p class="text-xsmall">Il n'y a pas encore de participants</p>
             <% else %>
                 <% event.bookings.all_confirmed.each do |booking| %>
                         <% unless booking.user == event.activity.user %>
