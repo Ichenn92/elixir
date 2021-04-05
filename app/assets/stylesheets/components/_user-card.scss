@@ -19,3 +19,13 @@ li.user-card {
     margin-left: 24px;
   }
 }
+
+.cancel-hover > span {
+  content: "En attente de validation";
+}
+.cancel-hover:hover > span {
+  display: none;
+}
+.cancel-hover:hover:after {
+  content: "Annuler demande" ;
+}
