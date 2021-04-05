@@ -11,12 +11,12 @@
     <ul class="cards h-100">
       <li class="user-card">
         <div class="name text-medium d-flex align-items-center">
-          <p>
+          <p class="m-0">
             Il n'y a pas d'activité pour cette catégorie.
           </p>
         </div>
         <%= link_to categories_path do %>
-          <button class="btn button-outline-green mx-1">Découvrir d'autres catégories</button>
+          <button class="btn button-outline-green my-0 mx-1">Découvrir d'autres catégories</button>
         <% end %>
       </li>
     </ul>
@@ -24,13 +24,13 @@
     <ul class="cards h-100">
       <li class="user-card">
         <div class="name text-medium d-flex align-items-center">
-          <p>
+          <p class="m-0">
             Vous n'avez pas encore créé d'activité. 
             Cliquez sur "Créer une activité" pour commencer
           </p>
         </div>
         <%= link_to new_activity_path do %>
-          <button class="btn button-outline-green mx-1">Créer une activité</button>
+          <button class="btn button-outline-green my-0 mx-1">Créer une activité</button>
         <% end %>
       </li>
     </ul>
