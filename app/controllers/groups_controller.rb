@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @messages = @group.messages
+    @messages_per_date = @group.messages.group_by { |msg| msg.created_at.to_date }
     @message = Message.new
     @groups = current_user.groups
     users = @group.users

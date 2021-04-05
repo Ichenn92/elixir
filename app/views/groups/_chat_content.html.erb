@@ -25,9 +25,19 @@
   </div>
     <div class="card-body" id="scroll-from-bottom">
       <div id="messages" data-group-id="<%= group.id %>">
-        <% messages.each do |message| %>
-        <%= render "messages/message", message: message %>
-      <% end %>
+        <% messages_per_date.each do |date, messages| %>
+          <div class="text-center" style="position:-webkit-sticky;position:sticky;top:10px;">
+            <% if date >= Date.yesterday %>
+              <% date = date.today? ? "Aujourd'hui" : "Hier" %>
+              <button class="button-outline-green w-25"><%= date %></button>
+            <% else %>
+              <button class="button-outline-green w-25"><%= l date, format: "%a %d %B" %></button>
+            <% end %>
+          </div>
+          <% messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+        <% end %>
     </div>
   </div>
   <div class="card-footer">
