@@ -12,6 +12,9 @@ class MembershipsController < ApplicationController
   def destroy
     group = Group.find(params[:id])
     membership = group.memberships.find_by(user: current_user)
+    if current_user.id == activity.creator_id
+      flash[:alert] = "Vous ne pouvez pas quitter ce groupe dont vous êtes le créateur"
+    else
     membership.destroy
     redirect_to "/groups"
   end
