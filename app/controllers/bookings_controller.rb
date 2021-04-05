@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    @bookings_per_activity = Booking.where(user: current_user).group_by(&:activity)
+    @bookings_per_activity = Booking.where(user: current_user, status: "confirmed").group_by(&:activity)
   end
 
   def create
