@@ -1,5 +1,5 @@
 <div class="h-50 d-flex flex-column position-relative">
-  <i class="fas fa-bars position-absolute text-medium text-color-primary" style="top:0;right:0;"></i>
+  <i class="fas fa-bars position-absolute text-medium text-color-primary" id="toggle-chat-menu" style="top:0;right:0;"></i>
   <h3>Amis</h3>
   <div class="scrollable flex-grow-1">
     <% if @friendship_groups_unread.empty? && @friendship_groups_read.empty? %>
@@ -22,7 +22,9 @@
   <div class="scrollable flex-grow-1">
     <% if @activity_groups_unread.empty? && @activity_groups_read.empty? %>
       <p>Vous ne participez pas encore a des groupes de discussion</p>
-      <%= link_to "Cliquez ici pour découvrir des activités et pouvoir participer aux groupes", categories_path %>
+      <span>
+        <%= link_to "Cliquez ici pour découvrir des activités et pouvoir participer aux groupes", categories_path %>
+      </span>
     <% else %>
       <ul>
         <% @activity_groups_unread.each do |group| %>
