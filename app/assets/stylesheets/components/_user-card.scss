@@ -29,3 +29,16 @@ li.user-card {
 .cancel-hover:hover:after {
   content: "Annuler demande" ;
 }
+
+.icon-user > .fa-user-times {
+  display: none;
+}
+.icon-user:hover > .fa-user-times {
+  display: block;
+}
+.icon-user > .fa-user-clock {
+  display: block;
+}
+.icon-user:hover > .fa-user-clock {
+  display: none;
+}
