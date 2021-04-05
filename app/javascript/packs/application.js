@@ -27,8 +27,9 @@ import { initNavBar } from './_navbar-toggle';
 import { initSearchNavbarToggle } from './_search-navbar-toggle';
 import { initChatgroupCable } from '../channels/group_channel';
 import { initScrollFromBottom } from './_div-scroll-from-bottom';
+import { initToggleChatMenu, toggleChatMenu } from './_toggle-chat-menu';
 
-window.addEventListener('resize', setHeightOfScreen);
+window.addEventListener('resize', setHeightOfScreen)
 
 document.addEventListener('turbolinks:load', () => {
   initNavBar();
@@ -36,4 +37,9 @@ document.addEventListener('turbolinks:load', () => {
   initChatgroupCable();
   initDatetimePicker();
   initScrollFromBottom();
+  initToggleChatMenu();
+  if (window.innerWidth < 992) {
+    toggleChatMenu();
+  }
 });
+

@@ -114,6 +114,9 @@ button {
 // -------------------------------------------
 // CLASSES
 // -------------------------------------------
+.text-color-primary {
+    color: $color-primary-700;
+}
 .text-color-secondary {
     color: $color-secondary-700;
 }
@@ -167,4 +170,8 @@ button {
     span {
         width: 140px;
     }
+}
+
+.no-text-decoration {
+    text-decoration: none !important;
 }
