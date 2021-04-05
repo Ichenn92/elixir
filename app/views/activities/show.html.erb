@@ -121,19 +121,19 @@
 
         <% # Categories and Labels %>
         <div class="row">
-          <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 my-4 border-right">
+          <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-right">
             <h2 class="text-right">Labels</h2>
             <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-end align-items-center my-4">
+              <li class="d-flex justify-content-end align-items-center mt-4">
                 <p style="margin: 0;"><%= label.name %></p>
                 <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
               </li>
             <% end %>  
           </ul>
-          <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 my-4 border-left">
+          <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-left">
             <h2 class="text-left">Catégories</h2>
             <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-start align-items-center my-4">
+              <li class="d-flex justify-content-start align-items-center mt-4">
                 <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
                 <p style="margin: 0;"><%= label.name %></p>
               </li>
@@ -142,23 +142,25 @@
         </div>
 
         <% # Organisator profile %>
-        <div class="position-relative d-flex align-items-center w-100">
-          <div class="position-absolute border-top w-100"></div>
-          <%= cl_image_tag(@activity.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: ".avatar-xlg-bordered-white-surround") %>
-        </div>
-        <h4><%= @activity.user.nickname %></h4>
+        <div class="border-bottom">
+          <div class="position-relative d-flex justify-content-center align-items-center w-100">
+            <div class="position-absolute border-top w-100"></div>
+            <%= cl_image_tag(@activity.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-xlg-bordered-white-surround") %>
+          </div>
+          <h4 class="text-center"><%= @activity.user.nickname %></h4>
 
-          <% # Organisator button %>
-        <div class="d-flex justify-content-center flex-columns">
-          <% if (current_user == @activity.user) %>
-            <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
-            <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
-          <% else %>
-            <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
-            <%= link_to activities_path(user: @activity.user) do %>
-              <button class="btn button-full-green my-0 mx-1">Voir activités</button>
+            <% # Organisator button %>
+          <div class="d-flex justify-content-center flex-columns">
+            <% if (current_user == @activity.user) %>
+              <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
+              <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
+            <% else %>
+              <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
+              <%= link_to activities_path(user: @activity.user) do %>
+                <button class="btn button-full-green my-0 mx-1">Voir activités</button>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
       </div>
