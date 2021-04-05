@@ -1,9 +1,55 @@
 <div class="activity">
-  <div class="activity-name text-center pt-3">
-    <h1><%= @activity.name %></h1>
-  </div>
-  <div class="activity-location text-center pb-3">
-    <h3><%= @activity.street %> à <%= @activity.city %></h3>
+  <div class="d-flex flex-wrap flex-md-wrap flex-lg-nowrap mx-2">
+    <div class="row flex-grow-1 mx-2 align-items-center">
+      <div class="white-box text-center mx-2 col-md-6 activity-user my-3">
+        <h3>Personne de contact</h3>
+
+        <div class="d-flex justify-content-center align-items-center flex-columns">
+          <% if (current_user == @activity.user) %>
+            <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
+            <div class="user">
+              <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
+              <h4><%= @activity.user.nickname %></h4>
+            </div>
+            <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
+          <% else %>
+            <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
+            <div class="user">
+              <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
+              <h4><%= @activity.user.nickname %></h4>
+            </div>
+            <%= link_to activities_path(user: @activity.user) do %>
+              <button class="btn button-full-green my-0 mx-1">Voir activités</button>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    
+      <div class="justify-content-center name-location px-3">
+        <div class="activity-name text-center pt-3">
+          <h1><%= @activity.name %></h1>
+        </div>
+        <div class="activity-location text-center pb-3">
+          <h3><%= @activity.street %> à <%= @activity.city %></h3>
+        </div>
+      </div>
+    </div>
+    <div class="white-box text-center flex-md-fill mx-2 activity-user my-3" style="max-width: 400px;">
+      <div class="activity-group"> 
+        <h3 class="text-center">Groupe de discussion</h3>
+        <div class="flex-column flex-grow-1">
+          <% if user_signed_in? %>
+            <% if @activity.is_member_of_activity_group?(current_user) %>
+              <%= link_to "Rejoindre", group_path(@activity.group), class: "btn button-full-green my-0 mx-1 flex-grow-1" %>
+            <% else %>
+              <%= link_to "Rejoindre", group_memberships_path(@activity.group), method: :post , class: "btn button-full-green my-0 mx-1 flex-grow-1" %>
+            <% end %>
+          <% else %>
+            <%= link_to "Se connecter", new_user_session_path, class: "btn button-full-green my-0 mx-1 flex-grow-1" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   
   <div class="d-flex flex-wrap flex-md-wrap flex-lg-nowrap mx-2 ">
@@ -11,67 +57,48 @@
       
       <div class="row text-center m-3">
         
-        <div class="activity-desc col-md-6 text-left mb-4">
-          <h3 class="text-center">Description</h3>
-          <p class="text-justify"><%= @activity.description %></p>
-
-        </div>
-
-        <div class="activity-image col-md-6 mb-4">
-          <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, height: 300, width: :auto, radius: 10, crop: :fill}], class: "img-fluid") %>
-        </div>
-
-        <div class="col-md-6 text-center align-items-center">
-          
-          <div class="activity-user mb-4">
-            <h3 class="text-center">Personne de contact</h3>
-            <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
-            <h4><%= @activity.user.nickname %></h4>
-
-            <div class="d-flex justify-content-center flex-columns">
-              <% if (current_user == @activity.user) %>
-                <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
-                <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
-              <% else %>
-                <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
-                <%= link_to activities_path(user: @activity.user) do %>
-                  <button class="btn button-full-green my-0 mx-1">Voir activités</button>
+        <div class="col-md-6">
+          <div class="activity-categories">
+            <h3 class="text-center">Catégories</h3>
+            <div class="categories row d-flex justify-content-around mb-4">
+              <% @activity.categories.each do |category| %>
+                <%= link_to activities_path(category_id: category.id) do %>
+                  <div class="category-index-card mb-4 mx-3">
+                    <%= cl_image_tag(category.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 90, crop: :scale }]) %>
+                    <h4><%= category.name %></h4>
+                  </div>
                 <% end %>
               <% end %>
             </div>
           </div>
 
-          <div class="activity-group mb-4"> 
-            <% if user_signed_in? %>
-              <h3 class="text-center">Groupe de discussion</h3>
-              <% if @activity.is_member_of_activity_group?(current_user) %>
-                <%= link_to "Rejoindre", group_path(@activity.group), class: "btn button-full-green my-0 mx-1" %>
-              <% else %>
-                <%= link_to "Rejoindre", group_memberships_path(@activity.group), method: :post , class: "btn button-full-green my-0 mx-1" %>
-              <% end %>
-            <% else %>
-              <%= link_to "Se connecter", new_user_session_path, class: "btn button-full-green my-0 mx-1" %>
-            <% end %>
+          <div class="activity-labels d-flex flex-column mb-4">
+          
+            <h3 class="text-center">Caractéristiques</h3>
+            <div class="labels">
+              <ul class="label" style="margin-left: 25%">
+                <% @activity.labels.each do |label| %>
+                  <li class="d-flex justify-content-start align-items-center mb-2">
+                    <i class="<%= label.icon %> w-25" style="color: #00897B; font-size: 32px;"></i>
+                    <p style="margin: 0;"><%= label.name %></p>
+                  </li>
+                <% end %>  
+              </ul>
+            </div>
+
           </div>
         </div>
-          
 
-        <div class="activity-labels col-md-6 d-flex flex-column mb-4">
-          
-          <h3 class="text-center">Caractéristiques</h3>
-          <div class="labels">
-            <ul class="label" style="margin-left: 25%">
-              <% @activity.labels.each do |label| %>
-                <li class="d-flex justify-content-start align-items-center mb-2">
-                  <i class="<%= label.icon %> w-25" style="color: #00897B; font-size: 32px;"></i>
-                  <p style="margin: 0;"><%= label.name %></p>
-                </li>
-              <% end %>  
-            </ul>
+        <div class="col-md-6">
+          <div class="activity-image mb-4">
+            <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, height: 300, width: :auto, radius: 10, crop: :fill}], class: "img-fluid") %>
           </div>
 
-        </div>
-        
+          <div class="activity-desc text-left mb-4">
+            <h3 class="text-center">Description</h3>
+            <p class="text-justify"><%= @activity.description %></p>
+          </div>
+        </div>  
       </div>
     </div>  
 
