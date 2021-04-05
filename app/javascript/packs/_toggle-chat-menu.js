@@ -3,6 +3,8 @@ const initToggleChatMenu = () => {
   const button = document.getElementById("toggle-chat-menu")
   if (button) {
     button.addEventListener("click", () => {
+      var menu = document.getElementById("chat-menu")
+      menu = menu.classList.add("transition")
       toggleChatMenu();
     });
   };
