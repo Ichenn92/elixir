@@ -1,11 +1,8 @@
 <div class="one-box-screen d-flex pl-0">
-  <div class=" box-max-height" id="chat-menu">
-    <%= render "chat_menu", group: @group, messages: @messages, message: @message %>
-  </div>
-  <div class="white-box-max-height flex-grow-1">
-    <%= render "chat_content", group: @group, messages_per_date: @messages_per_date, message: @message %>
-  </div>
-</div>
-
-
-
+   <div class=" box-max-height" id="chat-menu">
+     <%= render "chat_menu" %>
+   </div>
+   <div class="white-box-max-height flex-grow-1">
+     <%= render "chat_content", group: @group, messages_per_date: @messages_per_date, message: @message %>
+   </div>
+ </div>
