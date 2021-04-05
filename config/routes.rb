@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :activities
   resources :events, only: [:create]
-  resources :bookings, only: [:create, :update]
+  resources :bookings, only: [:index, :create, :update]
   resources :categories, only: [:index, :show]
 
   resources :groups, only: [:index, :show] do
