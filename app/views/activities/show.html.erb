@@ -12,7 +12,7 @@
       <div class="row">
         
         <div class="activity-image col-md-6 mt-2">
-          <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, height: 300, crop: :fill}], class: "img-fluid") %>
+          <%= cl_image_tag(@activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, height: 300, crop: :fill }], class: "img-fluid") %>
         </div>
 
         <div class="activity-desc col-md-6 pt-2">
@@ -21,7 +21,7 @@
 
         <div class="activity-user col-md-6 text-center">
           <h2 class="text-center">Créateur de l'activité</h2>
-          <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
+          <%= cl_image_tag(@activity.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
           <h2><%= @activity.user.nickname %></h2>
 
           <% if (current_user == @activity.user) %>
@@ -73,10 +73,10 @@
         <% if @activity.is_member_of_activity_group?(current_user) %>
           <%= link_to "Discuter de l'activité", group_path(@activity.group), class: "button-outline-green" %>
         <% else %>
-          <%= link_to "Groupe de discussion", group_memberships_path(@activity.group), method: :post , class: "button-outline-green" %>
+          <%= link_to "Groupe de discussion", group_memberships_path(@activity.group), method: :post, class: "button-outline-green" %>
         <% end %>
       <% else %>
-         <%= link_to "Groupe de discussion", new_user_session_path, class: "button-outline-green" %>
+        <%= link_to "Groupe de discussion", new_user_session_path, class: "button-outline-green" %>
       <% end %>
     </div>
 

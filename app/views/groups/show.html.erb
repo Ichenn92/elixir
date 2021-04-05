@@ -3,7 +3,7 @@
     <%= render "chat_menu", group: @group, messages: @messages, message: @message %>
   </div>
   <div class="white-box-max-height flex-grow-1">
-    <%= render "chat_content", group: @group, messages: @messages, message: @message %>
+    <%= render "chat_content", group: @group, messages_per_date: @messages_per_date, message: @message %>
   </div>
 </div>
 

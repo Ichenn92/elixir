@@ -20,14 +20,20 @@ li.user-card {
   }
 }
 
+.cancel-hover {
+  position: relative;
+}
 .cancel-hover > span {
   content: "En attente de validation";
 }
 .cancel-hover:hover > span {
-  display: none;
+  visibility: hidden;
 }
 .cancel-hover:hover:after {
-  content: "Annuler demande" ;
+  position: absolute;
+  left: 0;
+  right: 0;
+  content: "Annuler demande";
 }
 
 .icon-user > .fa-user-times {
