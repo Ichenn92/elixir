@@ -29,9 +29,9 @@
           <div class="text-center" style="position:-webkit-sticky;position:sticky;top:10px;">
             <% if date >= Date.yesterday %>
               <% date = date.today? ? "Aujourd'hui" : "Hier" %>
-              <button class="button-outline-green w-25"><%= date %></button>
+              <button class="button-outline-green w-25" style="max-width:250px;min-width: 200px"><%= date %></button>
             <% else %>
-              <button class="button-outline-green w-25"><%= l date, format: "%a %d %B" %></button>
+              <button class="button-outline-green w-25" style="max-width:250px;min-width: 200px"><%= l date, format: "%a %d %B" %></button>
             <% end %>
           </div>
           <% messages.each do |message| %>
