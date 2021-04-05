@@ -19,3 +19,22 @@
   background-color: white;
   padding: 22px;
 }
+
+.transition {
+  transition: .5s ease;
+}
+
+#chat-menu {
+  min-width: 350px;
+  width: 350px;
+}
+
+.chat-menu-close {
+  width: 100px !important;
+  min-width: 100px !important;
+}
+
+.chat-button-center {
+  left:0;
+  text-align: center;
+}
