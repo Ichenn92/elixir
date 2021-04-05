@@ -74,18 +74,18 @@
         <h2>Activités</h2>
       </div>
       <ul class="nav-links">
-        <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100 mb-3" %></li>
         <% if current_user %>
-          <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
+          <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100 mb-3" %></li>
         <% end %>
-        <li><%= link_to "Toutes les activités", categories_path, class: "button-outline-green w-100" %></li>
+        <li><%= link_to "Toutes les activités", categories_path, class: "button-outline-green w-100 mb-3" %></li>
       </ul>
       <% if current_user %>
         <div class="title">
           <h2>Réservations</h2>
         </div>
         <ul>
-          <li><%= link_to "Mes réservations", bookings_path, class: "button-outline-green w-100" %></li>
+          <li><%= link_to "Mes réservations", bookings_path, class: "button-outline-green w-100 mb-3" %></li>
         </ul>
       <% end %>
     </div>
@@ -102,7 +102,7 @@
       <% if user_signed_in? %>
         <ul class="nav-links" >
           <li>
-            <%= link_to friendships_path, class: "#{@notification_invitations.empty? ? "button-outline-green" : "button-full-green"} w-100 position-relative" do %>
+            <%= link_to friendships_path, class: "#{@notification_invitations.empty? ? "button-outline-green" : "button-full-green"} w-100 mb-3 position-relative" do %>
               <p class="m-0 p-0">Mes amis</p>
               <% unless @notification_invitations.empty? %>
                 <h5 class="notification-badge">
@@ -111,13 +111,13 @@
               <% end %>
             <% end %>
           </li>
-          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
-          <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100" %></li>
+          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100 mb-3" %></li>
+          <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100 mb-3" %></li>
         </ul>
       <% else %>
         <ul class="nav-links">
-          <li><%= link_to "Se connecter", new_user_session_path, class: "button-outline-green w-100" %></li>
-          <li><%= link_to "S'inscrire", new_user_registration_path, class: "button-outline-green w-100" %></li>
+          <li><%= link_to "Se connecter", new_user_session_path, class: "button-outline-green w-100 mb-3" %></li>
+          <li><%= link_to "S'inscrire", new_user_registration_path, class: "button-outline-green w-100 mb-3" %></li>
         </ul>
       <% end %>
     </div>

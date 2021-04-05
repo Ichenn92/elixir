@@ -63,7 +63,7 @@
             <div class="categories row d-flex justify-content-around mb-4">
               <% @activity.categories.each do |category| %>
                 <%= link_to activities_path(category_id: category.id) do %>
-                  <div class="category-index-card mb-4 mx-3">
+                  <div class="category-activity-show-card mb-4 mx-3">
                     <%= cl_image_tag(category.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 90, crop: :scale }]) %>
                     <h4><%= category.name %></h4>
                   </div>

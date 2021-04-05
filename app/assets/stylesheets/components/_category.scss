@@ -24,8 +24,8 @@
 
 .category-index-card {
   // background-position: center;
-  height: 90px;
-  min-width: 150px;
+  height: 150px;
+  min-width: 250px;
   width: auto;
   position: relative;
 
@@ -52,7 +52,21 @@
     font-weight: bolder;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
   }
+}
 
+.category-activity-show-card {
+  // background-position: center;
+  height: 90px;
+  min-width: 150px;
+  width: auto;
+  position: relative;
+
+  img {
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    filter: brightness(70%);
+  }
+  
   h4 {
     position: absolute;
     margin-left: auto;
@@ -65,11 +79,10 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 24px;
+    font-size: 30px;
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
   }
-
 }
 
