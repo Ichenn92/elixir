@@ -7,12 +7,12 @@
 </div>
 
 <% if @activities.empty? %>
-   <% if @param.nil? %>
+  <% unless @param.nil? %>
     <ul class="cards h-100">
       <li class="user-card">
         <div class="name text-medium d-flex align-items-center">
           <p>
-          Il n'y a pas d'activité pour cette catégorie.
+            Il n'y a pas d'activité pour cette catégorie.
           </p>
         </div>
         <%= link_to categories_path do %>
@@ -20,13 +20,13 @@
         <% end %>
       </li>
     </ul>
-   <% else %>
+  <% else %>
     <ul class="cards h-100">
       <li class="user-card">
         <div class="name text-medium d-flex align-items-center">
           <p>
-          Vous n'avez pas encore créé d'activité. 
-          Cliquez sur "Créer une activité" pour commencer
+            Vous n'avez pas encore créé d'activité. 
+            Cliquez sur "Créer une activité" pour commencer
           </p>
         </div>
         <%= link_to new_activity_path do %>
@@ -34,7 +34,7 @@
         <% end %>
       </li>
     </ul>
-   <% end %>
+  <% end %>
 <% else %>
   <ul class="cards h-100">
     <% @activities.each do |activity| %>
