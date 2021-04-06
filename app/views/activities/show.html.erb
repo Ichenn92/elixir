@@ -1,10 +1,10 @@
-<div class="m-4">
+<div class="m-4 pb-4">
     <div class="row">
       <div class="col-lg-7 col-md-12">
         <% # Green box Activity description %>
         <div class="box-color mt-4">
           <div class="d-flex justify-content-center position-relative">
-            <%= cl_image_tag(@activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: :auto, crop: :fill }], class: "image-fluid w-100", style: "margin-top: 60px;") %>
+            <%= cl_image_tag(@activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: :auto, crop: :fit }], class: "image-fluid w-100", style: "height: 400px;object-fit: cover;margin-top: 60px;") %>
             <div class="d-flex justify-content-between position-absolute w-100 px-4" style="bottom:0;z-index:1">
               <% if (current_user == @activity.user) %>
                     <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green mb-4" %>
@@ -27,29 +27,29 @@
 
           <div class="pb-4 px-4">
             <div class="px-4">
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <div class="text-left">
-                  <h1 class="text-white mb-0"><%= @activity.name %></h1>
-                  <span class="text-white text-xsmall"><%= @activity.street %> à <%= @activity.city %></span>
+              <div class="row">
+                <div class="col-xl-6 col-md-12 mb-4">
+                  <div class="text-left">
+                    <h1 class="text-white mb-0"><%= @activity.name %></h1>
+                    <span class="text-white text-xsmall"><%= @activity.street %> à <%= @activity.city %></span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="h-100 d-flex justify-content-end align-items-start"> 
-                  <% if user_signed_in? %>
-                    <% if @activity.is_member_of_activity_group?(current_user) %>
-                      <%= link_to "Rejoindre groupe de discussion", group_path(@activity.group), class: "btn btn-lg button-full-purple m-0" %>
+                <div class="col-xl-6 col-md-12 mb-4">
+                  <div class="h-100 d-flex flex-column align-items-end"> 
+                    <% if user_signed_in? %>
+                      <% if @activity.is_member_of_activity_group?(current_user) %>
+                        <%= link_to "Rejoindre groupe de discussion", group_path(@activity.group), class: "btn btn-lg button-full-purple m-0" %>
+                      <% else %>
+                        <%= link_to "Rejoindre groupe de discussion", group_memberships_path(@activity.group), method: :post, class: "btn btn-lg button-full-purple m-0" %>
+                      <% end %>
                     <% else %>
-                      <%= link_to "Rejoindre groupe de discussion", group_memberships_path(@activity.group), method: :post, class: "btn btn-lg button-full-purple m-0" %>
+                      <%= link_to "Rejoindre groupe de discussion", new_user_session_path, class: "btn btn-lg button-full-purple m-0" %>
                     <% end %>
-                  <% else %>
-                    <%= link_to "Rejoindre groupe de discussion", new_user_session_path, class: "btn btn-lg button-full-purple m-0" %>
-                  <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
 
-              <div class="my-4 d-flex flex-wrap align-items-center">
+              <div class="mb-4 d-flex flex-wrap align-items-center">
                 <% @activity.categories.each do |category| %>
                   <%= link_to activities_path(category_id: category.id) do %>
                     <button class="button-outline-green mb-0"><%= category.name %></button>
@@ -57,7 +57,7 @@
                 <% end %>
               </div>
               <p class="text-white text-justify pb-4 mb-0"><%= @activity.description %></p>
-              <div class="pb-4 border-bottom"></div>
+              <div class="py-4 border-bottom"></div>
             </div>
 
             <div class="px-4 pt-4">
@@ -81,7 +81,7 @@
       </div>
 
       <% # Photo and Events %>
-      <div class="col-lg-5 col-md-12">
+      <div class="col-lg-5 col-md-12 mt-4">
         <div class="white-box flex-md-fill" style="margin: 0 auto;">
           <h2 class="text-center">Prochaines dates</h2>
           <% if current_user == @activity.user %>
