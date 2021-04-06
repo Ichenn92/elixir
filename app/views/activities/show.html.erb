@@ -29,28 +29,32 @@
         <% # Categories and Labels %>
         <div class="row">
           <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-right">
-            <li class="d-flex justify-content-end align-items-center">
-              <h2 class="text-right">Labels</h2>
-              <i class="w-25"></i>
+            <li class="d-flex justify-content-center align-items-center">
+              <h2>Labels</h2>
             </li>
             <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-end align-items-center my-4">
-                <p style="margin: 0;"><%= label.name %></p>
+              <li class="d-flex justify-content-center align-items-center my-4">
                 <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
+                <p style="margin: 0;"><%= label.name %></p>
               </li>
             <% end %>  
           </ul>
           <ul class="col-xl-6 col-lg-12 col-md-6 col-sm-12 mt-4 mb-0 border-left">
-            <li class="d-flex justify-content-start align-items-center">
-              <i class="w-25"></i>
-              <h2 class="text-right">Catégories</h2>
+            <li class="d-flex justify-content-center align-items-center">
+              <h2>Catégories</h2>
             </li>
-            <% @activity.labels.each do |label| %>
-              <li class="d-flex justify-content-start align-items-center my-4">
-                <i class="<%= label.icon %> text-center w-25" style="color: #00897B; font-size: 32px;"></i>
-                <p style="margin: 0;"><%= label.name %></p>
-              </li>
-            <% end %>  
+            <div class="activity-categories">
+              <div class="categories d-flex flex-column align-items-center justify-content-around my-4">
+                <% @activity.categories.each do |category| %>
+                  <%= link_to activities_path(category_id: category.id) do %>
+                    <div class="category-activity-show-card mb-4 mx-3">
+                      <%= cl_image_tag(category.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 90, crop: :scale }]) %>
+                      <h4><%= category.name %></h4>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div> 
           </ul>
         </div>
 
