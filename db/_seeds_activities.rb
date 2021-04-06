@@ -8,10 +8,11 @@ module SEED_ACTIVITIES
     street: "Route de Cojonnex 95",
     price: "0.00",
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617717653/Activity/Walking_rnzmuf.png"),
       filename: "activity_1.png",
       content_type: "image/png",
     },
+    user: 5,
   }
   activity_2 = {
     name: "Aquagym",
@@ -20,10 +21,11 @@ module SEED_ACTIVITIES
     street: "Piscine scolaire, Bois-Murat 13",
     price: 9.20,
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449354/binsfgms0fsq9l38fqd0c34fadlt.png"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617720898/Activity/Untitled_design_2_hikcpk.png"),
       filename: "activity_2.png",
       content_type: "image/png",
     },
+    user: 1,
   }
   activity_3 = {
     name: "Pilates",
@@ -32,10 +34,11 @@ module SEED_ACTIVITIES
     street: "Rue du Pont 22",
     price: 7.40,
     photo: {
-    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
+    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718597/Activity/pilates_tp0s1i.png"),
     filename: "activity_3.png",
     content_type: "image/png",
    },
+   user: 7,
   }
   activity_4 = {
     name: "Yoga",
@@ -44,34 +47,37 @@ module SEED_ACTIVITIES
     street: "Rue de Lausanne 60",
     price: 12.50,
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446837/yoga_qosaak.png"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617717758/Activity/yoga_jckdir.png"),
       filename: "activity_4.png",
       content_type: "image/png",
     },
+    user: 7,
   }
   activity_5 = {
     name: "Taï Chi",
     description: "Gymnastique chinoise, constituée par un enchaînement lent de mouvements, selon des schémas précis.",
     city: "Lausanne",
-    street: "Rue Pré-de-Marché 23, Lausanne",
+    street: "Rue Pré-de-Marché 23",
     price: 0.00,
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446848/taichi_dywwol.png"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718673/Activity/tai_chi_iyvuki.png"),
       filename: "activity_5.png",
       content_type: "image/png",
     },
+    user: 34,
   }
   activity_6 = {
     name: "Qi Gong",
     description: "Gymnastique traditionnelle chinoise et une science de la respiration fondée sur la connaissance et la maîtrise du souffle et qui associe mouvements lents, exercices respiratoires et concentration.",
     city: "Lausanne",
-    street: "Rue Pré-de-Marché 23, Lausanne",
+    street: "Rue Pré-de-Marché 23",
     price: 8.50,
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446878/qiqong_jptlqy.png"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718710/Activity/qiqong_hecxhm.png"),
       filename: "activity_6.png",
       content_type: "image/png",
     },
+    user: 34,
   }
   activity_7 = {
     name: "Méditation guidée",
@@ -80,13 +86,56 @@ module SEED_ACTIVITIES
     street: "Chemin des Lilas 11",
     price: 4.00,
     photo: {
-      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446899/meditation_iirtaj.png"),
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718801/Activity/meditation_q1kxan.png"),
       filename: "activity_7.png",
       content_type: "image/png",
     },
+    user: 34,
   }
 
-  ACTIVITIES = [activity_1, activity_2, activity_3, activity_4, activity_5, activity_6, activity_7]
+  activity_8 = {
+    name: "Echec",
+    description: "« On n'a jamais que l'âge auquel on a commencé à jouer aux échecs car après on cesse de vieillir » J-R Capablanca. Venez découvrir les joies du jeu d'échec pour tous les niveaux",
+    city: "Lausanne",
+    street: "Ch. d'Ombreval 5",
+    price: 4.00,
+    photo: {
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617717888/Activity/echec_twasvk.png"),
+      filename: "activity_8.png",
+      content_type: "image/png",
+    },
+    user: 33,
+  }
+
+  activity_9 = {
+    name: "Apéro",
+    description: "Partagons un petit verre! En principe, chaque semaine, l'association des aînés de Lausanne organise un apéro sur un thème spécifique. Réservez votre place afin de participer au prochain apéro qui sera comme d'habitude, un instant de partages, de rencontres et de découvertes.",
+    city: "Lausanne",
+    street: "Rue de Genève 23",
+    price: 4.00,
+    photo: {
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718254/Activity/apero_cqoxtb.png"),
+      filename: "activity_9.png",
+      content_type: "image/png",
+    },
+    user: 33,
+  }
+
+    activity_10 = {
+    name: "Musée Chaplin",
+    description: "Découverte du musée de Charlie Chaplin sur les hauts de Vevey. Nous découvrirons les trésors de la personnalité de Charlie Chaplin. Départ depuis Lausanne",
+    city: "Lausanne",
+    street: "Route de Fenil 2",
+    price: 4.00,
+    photo: {
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617719657/Activity/7330A84F-9B8E-4CAE-A0BC-8DED3D12D95C_svztma.jpg"),
+      filename: "activity_9.png",
+      content_type: "image/png",
+    },
+    user: 33,
+  }
+
+  ACTIVITIES = [activity_1, activity_2, activity_3, activity_4, activity_5, activity_6, activity_7, activity_8, activity_9, activity_10]
 
   def seed
     SEED_ACTIVITIES::ACTIVITIES.each_with_index do |attribute, index|

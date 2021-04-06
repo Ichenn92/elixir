@@ -98,6 +98,49 @@ module SEED_CATEGORIZATIONS
     category_id: 8
   }
 
+  categorization_24 = {
+    activity_id: 8,
+    category_id: 4
+  }
+  categorization_25 = {
+      activity_id: 8,
+      category_id: 9
+  }
+  categorization_26 = {
+      activity_id: 8,
+      category_id: 8
+  }
+
+  categorization_27 = {
+    activity_id: 9,
+    category_id: 2
+  }
+  categorization_28 = {
+      activity_id: 9,
+      category_id: 8
+  }
+  categorization_29 = {
+      activity_id: 9,
+      category_id: 9
+  }
+
+  categorization_30 = {
+    activity_id: 10,
+    category_id: 3
+  }
+  categorization_31 = {
+      activity_id: 10,
+      category_id: 4
+  }
+  categorization_32 = {
+      activity_id: 10,
+      category_id: 5
+  }
+  categorization_33 = {
+      activity_id: 10,
+      category_id: 9
+  }
+
   CATEGORIZATIONS = [categorization_1,
                      categorization_2,
                      categorization_3,
@@ -120,13 +163,24 @@ module SEED_CATEGORIZATIONS
                      categorization_20,
                      categorization_21,
                      categorization_22,
-                     categorization_23]
+                     categorization_23,
+                     categorization_24,
+                     categorization_25,
+                     categorization_26,
+                     categorization_27,
+                     categorization_28,
+                     categorization_29,
+                     categorization_30,
+                     categorization_31,
+                     categorization_32,
+                     categorization_33
+                   ]
 
   def seed
     puts "Binding a few categorizations..."
     SEED_CATEGORIZATIONS::CATEGORIZATIONS.each_with_index do |attribute, index|
       categorization = Categorization.create!(attribute)
-      
+
       puts "Linking the category #{categorization.category.name} with activity #{categorization.activity.name}"
     end
   end
