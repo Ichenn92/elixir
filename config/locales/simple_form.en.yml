@@ -30,13 +30,3 @@ en:
     #   defaults:
     #     age: 'Select your age'
 
-fr:
-  activerecord:
-    errors:
-      models:
-        activity:
-          attributes:
-            city:
-              blank: "ne peut pas être vide"
-            street:
-              blank: "ne peut pas être vide"
