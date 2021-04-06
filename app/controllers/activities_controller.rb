@@ -30,6 +30,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     @photo = activity_params[:photo]
+
     if @activity.save
       @activity.photo.attach(@photo) unless @photo.nil?
       Group.create({name: @activity.name, activity: @activity})

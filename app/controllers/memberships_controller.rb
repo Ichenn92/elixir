@@ -5,15 +5,16 @@ class MembershipsController < ApplicationController
     if membership.save
       redirect_to group_path(group)
     else
-      flash[:alert] = "Veuillez contacter l'organisateur de l'activité"
+      flash.alert = "Veuillez contacter l'organisateur de l'activité"
     end
   end
 
   def destroy
-    group = Group.find(params[:id])
-    membership = group.memberships.find_by(user: current_user)
+    @group = Group.find(params[:id])
+    membership = @group.memberships.find_by(user: current_user)
     membership.destroy
-    redirect_to "/groups"
+    redirect_to group_path(group)
+    end
   end
 
 end
