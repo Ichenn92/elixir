@@ -37,13 +37,11 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new({ name: @name, description: @description, city: @city, street: @street })
     @activity.user = @user
 
-    labels = params[][labels]
-    labels.each do ||
-    @activities_categories({activity: @activity, category: @activity.category })
-    end
-
     if @activity.save
       @activity.photo.attach(@photo)
+      #label_ids.each do |label_id|
+        #save_label(label_id)
+      #end
       Group.create({name: @activity.name, activity: @activity})
       Membership.create({user: @user, group: @activity.group})
       redirect_to activity_path(@activity)
@@ -79,6 +77,15 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :photo, :city, :street)
+    params.require(:activity).permit(:name, :description, :photo, :city, :street, :category_ids => [], :label_ids => [])
+  end
+
+  def save_label(label_id)
+    unless type_id.empty?
+      label = Label.new
+      label.activity = @activity
+      label.label_id = label_id
+      label.save
+    end
   end
 end
