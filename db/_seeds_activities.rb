@@ -32,10 +32,10 @@ module SEED_ACTIVITIES
     street: "Rue du Pont 22",
     price: 7.40,
     photo: {
-    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
-    filename: "activity_3.png",
-    content_type: "image/png",
-   },
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
+      filename: "activity_3.png",
+      content_type: "image/png",
+    },
   }
   activity_4 = {
     name: "Yoga",
@@ -53,7 +53,7 @@ module SEED_ACTIVITIES
     name: "Taï Chi",
     description: "Gymnastique chinoise, constituée par un enchaînement lent de mouvements, selon des schémas précis.",
     city: "Lausanne",
-    street: "Rue Pré-de-Marché 23, Lausanne",
+    street: "Rue Pré-de-Marché 23",
     price: 0.00,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446848/taichi_dywwol.png"),
@@ -65,7 +65,7 @@ module SEED_ACTIVITIES
     name: "Qi Gong",
     description: "Gymnastique traditionnelle chinoise et une science de la respiration fondée sur la connaissance et la maîtrise du souffle et qui associe mouvements lents, exercices respiratoires et concentration.",
     city: "Lausanne",
-    street: "Rue Pré-de-Marché 23, Lausanne",
+    street: "Rue Pré-de-Marché 23",
     price: 8.50,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446878/qiqong_jptlqy.png"),

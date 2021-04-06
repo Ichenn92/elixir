@@ -21,3 +21,15 @@
   border: red 3px solid;
   border-radius: 50%;
 }
+
+.box-color {
+  position: relative;
+  background-color: $color-primary-600;
+  border-radius: 0 60px 60px 0;
+}
+
+@media (max-width: 960px) {
+  .image-activity-show {
+    display: none;
+  }
+}
