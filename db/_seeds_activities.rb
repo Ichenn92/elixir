@@ -144,7 +144,7 @@ module SEED_ACTIVITIES
                                   city: attribute[:city],
                                   street: attribute[:street],
                                   price: attribute[:price],
-                                  user: User.find(rand(1..User.count)))
+                                  user_id: attribute[:user_id])
       photo = attribute[:photo]
 
       unless photo.nil?
