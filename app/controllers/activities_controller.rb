@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
-  def index()
+  def index
     if params[:city]
       @activities = Activity.where(city: params[:city])
       @param = params[:city]
@@ -27,21 +27,11 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @user = current_user
+    @activity = Activity.new(activity_params)
+    @activity.user = current_user
     @photo = activity_params[:photo]
-    @name = activity_params[:name]
-    @description = activity_params[:description]
-    @city = activity_params[:city]
-    @street = activity_params[:street]
-
-    @activity = Activity.new({ name: @name, description: @description, city: @city, street: @street })
-    @activity.user = @user
-
     if @activity.save
-      @activity.photo.attach(@photo)
-      #label_ids.each do |label_id|
-        #save_label(label_id)
-      #end
+      @activity.photo.attach(@photo) unless @photo.nil?
       Group.create({name: @activity.name, activity: @activity})
       Membership.create({user: @user, group: @activity.group})
       redirect_to activity_path(@activity)
@@ -78,14 +68,5 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :description, :photo, :city, :street, :category_ids => [], :label_ids => [])
-  end
-
-  def save_label(label_id)
-    unless type_id.empty?
-      label = Label.new
-      label.activity = @activity
-      label.label_id = label_id
-      label.save
-    end
   end
 end
