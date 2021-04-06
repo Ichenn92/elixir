@@ -8,7 +8,7 @@ module SEED_MEMBERSHIPS
     group_id: 1,
   }
   membership_3 = {
-    user_id: 8,
+    user_id: 32,
     group_id: 1,
   }
   membership_4 = {
@@ -52,7 +52,7 @@ module SEED_MEMBERSHIPS
     group_id: 3,
   }
   membership_14 = {
-    user_id: 4,
+    user_id: 32,
     group_id: 3,
   }
 
@@ -108,6 +108,75 @@ module SEED_MEMBERSHIPS
     group_id: 7,
   }
 
+  membership_23 = {
+    user_id: 33,
+    group_id: 8,
+  }
+  membership_24 = {
+    user_id: 34,
+    group_id: 8,
+  }
+
+  membership_25 = {
+    user_id: 1,
+    group_id: 8,
+  }
+  membership_26 = {
+    user_id: 23,
+    group_id: 8,
+  }
+  membership_23 = {
+    user_id: 12,
+    group_id: 9,
+  }
+  membership_24 = {
+    user_id: 4,
+    group_id: 9,
+  }
+
+  membership_25 = {
+    user_id: 32,
+    group_id: 9,
+  }
+  membership_26 = {
+    user_id: 28,
+    group_id: 9,
+  }
+
+  membership_23 = {
+    user_id: 4,
+    group_id: 9,
+  }
+  membership_24 = {
+    user_id: 33,
+    group_id: 10,
+  }
+
+  membership_25 = {
+    user_id: 34,
+    group_id: 10,
+  }
+  membership_26 = {
+    user_id: 32,
+    group_id: 10,
+  }
+  membership_26 = {
+    user_id: 29,
+    group_id: 10,
+  }
+  membership_26 = {
+    user_id: 1,
+    group_id: 10,
+  }
+  membership_26 = {
+    user_id: 6,
+    group_id: 10,
+  }
+  membership_26 = {
+    user_id: 5,
+    group_id: 10,
+  }
+
   MEMBERSHIPS = [membership_1,
                  membership_2,
                  membership_3,
@@ -121,7 +190,19 @@ module SEED_MEMBERSHIPS
                  membership_11,
                  membership_12,
                  membership_13,
-                 membership_14]
+                 membership_14,
+                 membership_15,
+                 membership_16,
+                 membership_17,
+                 membership_18,
+                 membership_19,
+                 membership_20,
+                 membership_21,
+                 membership_22,
+                 membership_23,
+                 membership_24,
+                 membership_25,
+                 membership_26]
 
   def seed
     puts "Seeding Memberships"
