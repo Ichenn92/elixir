@@ -12,7 +12,7 @@ module SEED_ACTIVITIES
       filename: "activity_1.png",
       content_type: "image/png",
     },
-    user: 5,
+    user_id: 5,
   }
   activity_2 = {
     name: "Aquagym",
@@ -25,7 +25,7 @@ module SEED_ACTIVITIES
       filename: "activity_2.png",
       content_type: "image/png",
     },
-    user: 1,
+    user_id: 1,
   }
   activity_3 = {
     name: "Pilates",
@@ -38,7 +38,7 @@ module SEED_ACTIVITIES
     filename: "activity_3.png",
     content_type: "image/png",
    },
-   user: 7,
+   user_id: 7,
   }
   activity_4 = {
     name: "Yoga",
@@ -51,7 +51,7 @@ module SEED_ACTIVITIES
       filename: "activity_4.png",
       content_type: "image/png",
     },
-    user: 7,
+    user_id: 7,
   }
   activity_5 = {
     name: "Taï Chi",
@@ -64,7 +64,7 @@ module SEED_ACTIVITIES
       filename: "activity_5.png",
       content_type: "image/png",
     },
-    user: 34,
+    user_id: 34,
   }
   activity_6 = {
     name: "Qi Gong",
@@ -77,7 +77,7 @@ module SEED_ACTIVITIES
       filename: "activity_6.png",
       content_type: "image/png",
     },
-    user: 34,
+    user_id: 34,
   }
   activity_7 = {
     name: "Méditation guidée",
@@ -90,7 +90,7 @@ module SEED_ACTIVITIES
       filename: "activity_7.png",
       content_type: "image/png",
     },
-    user: 34,
+    user_id: 34,
   }
 
   activity_8 = {
@@ -104,7 +104,7 @@ module SEED_ACTIVITIES
       filename: "activity_8.png",
       content_type: "image/png",
     },
-    user: 33,
+    user_id: 33,
   }
 
   activity_9 = {
@@ -118,7 +118,7 @@ module SEED_ACTIVITIES
       filename: "activity_9.png",
       content_type: "image/png",
     },
-    user: 33,
+    user_id: 33,
   }
 
     activity_10 = {
@@ -132,7 +132,7 @@ module SEED_ACTIVITIES
       filename: "activity_9.png",
       content_type: "image/png",
     },
-    user: 33,
+    user_id: 33,
   }
 
   ACTIVITIES = [activity_1, activity_2, activity_3, activity_4, activity_5, activity_6, activity_7, activity_8, activity_9, activity_10]

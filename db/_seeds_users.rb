@@ -215,7 +215,7 @@ module SEED_USERS
     email: "philippe.meyer@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252052/pexels-rodnae-productions-7020950_wgmbcw.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715213/Users/pexels-linkedin-sales-navigator-2182970_vephtx.jpg",
       filename: "user_18",
       content_type: "image/png",
     },
@@ -254,7 +254,7 @@ module SEED_USERS
     email: "ginette.fiaux@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715219/Users/pexels-rodnae-productions-7020993_rnw38c.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/curology-EPBZw35YQr0-unsplash_uuehlr.jpg",
       filename: "user_21",
       content_type: "image/png",
     },
@@ -293,7 +293,7 @@ module SEED_USERS
     email: "emmanuelle.wicht@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-victor-l-2790438_nqsnb8.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715224/Users/rita-profil_bnmfmp.jpg",
       filename: "user_24",
       content_type: "image/png",
     },
@@ -306,7 +306,7 @@ module SEED_USERS
     email: "patricia.moret@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rodnae-productions-7020950_wcviex.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/pexels-anna-shvets-5231279_avz1gj.jpg",
       filename: "user_25",
       content_type: "image/png",
     },
@@ -319,7 +319,7 @@ module SEED_USERS
     email: "louis.keim@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715215/Users/pexels-marcelo-chagas-4565418_q4z5oi.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/pexels-andrea-piacquadio-3846508_ksosxh.jpg",
       filename: "user_26",
       content_type: "image/png",
     },
@@ -332,7 +332,7 @@ module SEED_USERS
     email: "julia.fontannaz@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rfstudio-3867132_muuf5q.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-victor-l-2790438_nqsnb8.jpg",
       filename: "user_27",
       content_type: "image/png",
     },
@@ -345,7 +345,7 @@ module SEED_USERS
     email: "nicolas.pugin@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715215/Users/daisy-obryan-7JPGg8S-QD4-unsplash_ckiox9.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/pexels-pixabay-53159_zb4v91.jpg",
       filename: "user_28",
       content_type: "image/png",
     },
@@ -358,7 +358,7 @@ module SEED_USERS
     email: "barthelemy.visinand@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715215/Users/filipe-almeida-XHpgMMiOvuM-unsplash_tcsxq7.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-steshka-willems-3018993_btlrsh.jpg",
       filename: "user_29",
       content_type: "image/png",
     },
@@ -371,7 +371,7 @@ module SEED_USERS
     email: "marga.genoud@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715215/Users/pexels-pixabay-509236_r3unoa.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rodnae-productions-7020950_wcviex.jpg",
       filename: "user_30",
       content_type: "image/png",
     },
@@ -383,7 +383,7 @@ module SEED_USERS
     email: "paola.vuarnoz@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715215/Users/pexels-polina-tankilevitch-5473079_qri1aj.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rfstudio-3867132_muuf5q.jpg",
       filename: "user_31",
       content_type: "image/png",
     },
