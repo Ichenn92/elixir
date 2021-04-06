@@ -1,6 +1,6 @@
 <li class="user-card">
   <div class="photo avatar-large">
-    <%= cl_image_tag(activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
+    <%= cl_image_tag(activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :fill }], class: "avatar-large") %>
   </div>
   <div class="name text-medium d-flex align-items-center"><%= activity.name %></div>
   <%= link_to activity_path(activity) do %>
