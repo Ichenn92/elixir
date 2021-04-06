@@ -14,7 +14,5 @@ class MembershipsController < ApplicationController
     membership = @group.memberships.find_by(user: current_user)
     membership.destroy
     redirect_to group_path(group)
-    end
   end
-
 end
