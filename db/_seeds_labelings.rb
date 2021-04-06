@@ -230,6 +230,104 @@ module SEED_LABELINGS
     label_id: 15
   }
 
+  labeling_57 = {
+    activity_id: 8,
+    label_id: 1
+  }
+  labeling_58 = {
+    activity_id: 8,
+    label_id: 4
+  }
+  labeling_59 = {
+    activity_id: 8,
+    label_id: 6
+  }
+  labeling_60 = {
+    activity_id: 8,
+    label_id: 7
+  }
+  labeling_61 = {
+    activity_id: 8,
+    label_id: 10
+  }
+  labeling_62 = {
+    activity_id: 8,
+    label_id: 11
+  }
+  labeling_63 = {
+    activity_id: 8,
+    label_id: 13
+  }
+  labeling_64 = {
+    activity_id: 8,
+    label_id: 14
+  }
+
+  labeling_65 = {
+  activity_id: 9,
+  label_id: 1
+  }
+  labeling_66 = {
+    activity_id: 9,
+    label_id: 4
+  }
+  labeling_67 = {
+    activity_id: 9,
+    label_id: 6
+  }
+  labeling_68 = {
+    activity_id: 9,
+    label_id: 7
+  }
+  labeling_69 = {
+    activity_id: 9,
+    label_id: 9
+  }
+  labeling_70 = {
+    activity_id: 9,
+    label_id: 11
+  }
+  labeling_71 = {
+    activity_id: 9,
+    label_id: 13
+  }
+  labeling_72 = {
+    activity_id: 9,
+    label_id: 15
+  }
+  labeling_73 = {
+  activity_id: 10,
+  label_id: 1
+  }
+  labeling_74 = {
+    activity_id: 10,
+    label_id: 4
+  }
+  labeling_75 = {
+    activity_id: 10,
+    label_id: 6
+  }
+  labeling_76 = {
+    activity_id: 10,
+    label_id: 8
+  }
+  labeling_77 = {
+    activity_id: 10,
+    label_id: 10
+  }
+  labeling_78 = {
+    activity_id: 10,
+    label_id: 11
+  }
+  labeling_79 = {
+    activity_id: 10,
+    label_id: 13
+  }
+  labeling_80 = {
+    activity_id: 10,
+    label_id: 15
+  }
+
   LABELINGS = [labeling_1,
                labeling_2,
                labeling_3,
@@ -285,13 +383,37 @@ module SEED_LABELINGS
                labeling_53,
                labeling_54,
                labeling_55,
-               labeling_56]
+               labeling_56,
+               labeling_57,
+               labeling_58,
+               labeling_59,
+               labeling_60,
+               labeling_61,
+               labeling_62,
+               labeling_63,
+               labeling_64,
+               labeling_65,
+               labeling_66,
+               labeling_67,
+               labeling_68,
+               labeling_69,
+               labeling_70,
+               labeling_71,
+               labeling_72,
+               labeling_73,
+               labeling_74,
+               labeling_75,
+               labeling_76,
+               labeling_77,
+               labeling_78,
+               labeling_79,
+               labeling_80]
 
   def seed
     puts "Binding a few labelings..."
     SEED_LABELINGS::LABELINGS.each_with_index do |attribute, index|
       labeling = Labeling.create!(attribute)
-      
+
       puts "Linking the label #{labeling.label.name} with activity #{labeling.activity.name}"
     end
   end

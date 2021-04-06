@@ -8,91 +8,91 @@ module SEED_USERS
     email: "yolande.kaiser@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252813/pexels-pixabay-509236_zoafja.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715230/Users/pexels-askar-abayev-5638645_foi3ww.jpg",
       filename: "user_1.png",
       content_type: "image/png",
     },
   }
   user_2 = {
-    nickname: "Pirpir",
+    nickname: "Pierrafeu",
     first_name: "Pierre",
     last_name: "Guntern",
     email: "pierre.guntern@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616249224/IMG_2536_n6gvda.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715221/Users/pexels-andrea-piacquadio-788567_obmwgr.jpg",
       filename: "user_2.png",
       content_type: "image/png",
     },
   }
   user_3 = {
-    nickname: "Anan",
+    nickname: "Anne D'arc",
     first_name: "Anne",
     last_name: "Moret",
     email: "anne.moret@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252773/pexels-anna-shvets-5231279_g5gcnz.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715227/Users/pexels-edu-carvalho-2050999_ivj0eg.jpg",
       filename: "user_3.jpg",
       content_type: "image/jpg",
     },
   }
   user_4 = {
-    nickname: "Mama",
+    nickname: "Maya l'abeille",
     first_name: "Maya",
     last_name: "Parvex",
     email: "maya.parvex@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252685/pexels-victor-l-2790438_zyyifv.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715226/Users/pexels-edu-carvalho-2050998_uz6wm9.jpg",
       filename: "user_4",
       content_type: "image/png",
     },
   }
   user_5 = {
-    nickname: "Wiwi",
-    first_name: "Willy",
+    nickname: "Willy",
+    first_name: "William",
     last_name: "Weidmann",
     email: "willy.weidmann@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252633/pexels-pixabay-53159_p0beom.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715226/Users/pexels-george-desipris-818261_dzx8zl.jpg",
       filename: "user_5",
       content_type: "image/png",
     },
   }
   user_6 = {
-    nickname: "MariT",
+    nickname: "MTV",
     first_name: "Marie-Thérèse",
-    last_name: "Dubuis",
-    email: "marie.dubuis@gmail.com",
+    last_name: "Dupertuis",
+    email: "marie.dupertuis@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252662/pexels-polina-tankilevitch-5473079_t7guco.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715224/Users/pexels-anna-shvets-5231334_xx0nqs.jpg",
       filename: "user_6",
       content_type: "image/png",
     },
   }
   user_7 = {
-    nickname: "Nana",
+    nickname: "Nad'",
     first_name: "Nadine",
     last_name: "Zuffery",
     email: "nadine.zuffery@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252248/pexels-andrea-piacquadio-788567_yq3kia.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715224/Users/pexels-anna-shvets-5257511_rbdfzy.jpg",
       filename: "user_7",
       content_type: "image/png",
     },
   }
   user_8 = {
-    nickname: "Nene",
+    nickname: "Néné",
     first_name: "Nelly",
     last_name: "Venetz",
     email: "nelly.venetz@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252245/pexels-anna-shvets-5257511_huoex3.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715224/Users/rita-profil_bnmfmp.jpg",
       filename: "user_8",
       content_type: "image/png",
     },
@@ -104,19 +104,19 @@ module SEED_USERS
     email: "christiane.tache@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252242/pexels-askar-abayev-5638645_kq97ij.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/pexels-anna-shvets-5231279_avz1gj.jpg",
       filename: "user_9",
       content_type: "image/png",
     },
   }
   user_10 = {
-    nickname: "Carcar",
+    nickname: "Carmelito",
     first_name: "Carmelo",
     last_name: "Monney",
     email: "carmelo.monney@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252227/pexels-elziroy-porter-jr-1674666_xmnhsy.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715227/Users/pexels-elziroy-porter-jr-1674666_lue9hv.jpg",
       filename: "user_10",
       content_type: "image/png",
     },
@@ -128,59 +128,306 @@ module SEED_USERS
     email: "janine.herzog@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252060/pexels-nashua-volquezyoung-1729931_ugacyi.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715221/Users/pexels-andrea-piacquadio-3768140_dczgp3.jpg",
       filename: "user_11",
       content_type: "image/png",
     },
   }
   user_12 = {
-    nickname: "Dada",
+    nickname: "Dada toujours là",
     first_name: "Danielle",
     last_name: "Isoz",
     email: "danielle.isoz@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252057/pexels-edu-carvalho-2050999_cvhxg9.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715221/Users/pexels-andrea-piacquadio-788567_obmwgr.jpg",
       filename: "user_12",
       content_type: "image/png",
     },
   }
   user_13 = {
-    nickname: "Pierpier",
+    nickname: "Pierrette 🥚",
     first_name: "Pierrette",
     last_name: "Duc",
     email: "pierrette.duc@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252056/pexels-rodnae-productions-7020993_dxmdzh.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715220/Users/georg-arthur-pflueger-TeWwYARfcM4-unsplash_lpao80.jpg",
       filename: "user_13",
       content_type: "image/png",
     },
   }
   user_14 = {
-    nickname: "Antant",
+    nickname: "Tonio",
     first_name: "Antonio",
     last_name: "Isler",
     email: "antonio.isler@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252055/pexels-andrea-piacquadio-3831614_rn0fjv.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715223/Users/pexels-thgusstavo-santana-2774292_dqmjzi.jpg",
       filename: "user_14",
       content_type: "image/png",
     },
   }
   user_15 = {
-    nickname: "Yvyv",
+    nickname: "Yvy",
     first_name: "Yvonne",
     last_name: "Bonard",
     email: "yvonne.bonard@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1616252052/pexels-rodnae-productions-7020950_wgmbcw.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715220/Users/todd-cravens-ZPynRLKjp9I-unsplash_lq5nse.jpg",
       filename: "user_15",
       content_type: "image/png",
     },
   }
+
+  user_16 = {
+    nickname: "Gégé",
+    first_name: "Gérald",
+    last_name: "Gilliard",
+    email: "gerald.gilliard@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715223/Users/pexels-andrea-piacquadio-3831614_gsymt9.jpg",
+      filename: "user_16",
+      content_type: "image/png",
+    },
+  }
+
+  user_17 = {
+    nickname: "Claudette21",
+    first_name: "Claudine",
+    last_name: "Grivela",
+    email: "claudine.grivela@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715219/Users/Moi_ev6pts.png",
+      filename: "user_17",
+      content_type: "image/png",
+    },
+  }
+
+  user_18 = {
+    nickname: "Phiphi",
+    first_name: "Philippe",
+    last_name: "Meyer",
+    email: "philippe.meyer@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715213/Users/pexels-linkedin-sales-navigator-2182970_vephtx.jpg",
+      filename: "user_18",
+      content_type: "image/png",
+    },
+  }
+
+  user_19 = {
+    nickname: "André",
+    first_name: "Muller",
+    last_name: "Bonard",
+    email: "andre.muller@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/matteo-vistocco-u_CvU45FLH8-unsplash_lrc4u9.jpg",
+      filename: "user_19",
+      content_type: "image/png",
+    },
+  }
+
+  user_20 = {
+    nickname: "Yavano",
+    first_name: "Yvan",
+    last_name: "Meury",
+    email: "yvan.meury@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-steshka-willems-3018993_btlrsh.jpg",
+      filename: "user_20",
+      content_type: "image/png",
+    },
+  }
+
+  user_21 = {
+    nickname: "GinTonic",
+    first_name: "Ginette",
+    last_name: "Fiaux",
+    email: "ginette.fiaux@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/curology-EPBZw35YQr0-unsplash_uuehlr.jpg",
+      filename: "user_21",
+      content_type: "image/png",
+    },
+  }
+
+  user_22 = {
+    nickname: "Mickel",
+    first_name: "Michel",
+    last_name: "Lambelet",
+    email: "michel.lambelet@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715216/Users/george-kourounis-Qvdl3vzB7fs-unsplash_usbldl.jpg",
+      filename: "user_22",
+      content_type: "image/png",
+    },
+  }
+
+  user_23 = {
+    nickname: "Marly",
+    first_name: "Marlyse",
+    last_name: "Rieben",
+    email: "marlyse.rieben@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715219/Users/ravi-patel-VMGAbeeJTKo-unsplash_xfrn1o.jpg",
+      filename: "user_23",
+      content_type: "image/png",
+    },
+  }
+
+  user_24 = {
+    nickname: "Manu",
+    first_name: "Emmanuelle",
+    last_name: "Wicht",
+    email: "emmanuelle.wicht@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715224/Users/rita-profil_bnmfmp.jpg",
+      filename: "user_24",
+      content_type: "image/png",
+    },
+  }
+
+    user_25 = {
+    nickname: "Pati",
+    first_name: "Patricia",
+    last_name: "Gex-Moret",
+    email: "patricia.moret@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/pexels-anna-shvets-5231279_avz1gj.jpg",
+      filename: "user_25",
+      content_type: "image/png",
+    },
+  }
+
+    user_26 = {
+    nickname: "loulou",
+    first_name: "Louis",
+    last_name: "Keim",
+    email: "louis.keim@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715222/Users/pexels-andrea-piacquadio-3846508_ksosxh.jpg",
+      filename: "user_26",
+      content_type: "image/png",
+    },
+  }
+
+    user_27 = {
+    nickname: "PetitJu",
+    first_name: "Julia",
+    last_name: "Fontannaz",
+    email: "julia.fontannaz@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-victor-l-2790438_nqsnb8.jpg",
+      filename: "user_27",
+      content_type: "image/png",
+    },
+  }
+
+    user_28 = {
+    nickname: "Nico",
+    first_name: "Nicolas",
+    last_name: "Pugin",
+    email: "nicolas.pugin@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/pexels-pixabay-53159_zb4v91.jpg",
+      filename: "user_28",
+      content_type: "image/png",
+    },
+  }
+
+    user_29 = {
+    nickname: "Barth",
+    first_name: "Barthélémy",
+    last_name: "Visinand",
+    email: "barthelemy.visinand@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715218/Users/pexels-steshka-willems-3018993_btlrsh.jpg",
+      filename: "user_29",
+      content_type: "image/png",
+    },
+  }
+
+    user_30 = {
+    nickname: "Margalala",
+    first_name: "Marga",
+    last_name: "Genoud",
+    email: "marga.genoud@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rodnae-productions-7020950_wcviex.jpg",
+      filename: "user_30",
+      content_type: "image/png",
+    },
+  }
+  user_31 = {
+    nickname: "Paula33",
+    first_name: "Paulina",
+    last_name: "Vuarnoz",
+    email: "paola.vuarnoz@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/pexels-rfstudio-3867132_muuf5q.jpg",
+      filename: "user_31",
+      content_type: "image/png",
+    },
+  }
+
+  user_32 = {
+    nickname: "Micki",
+    first_name: "Michaël",
+    last_name: "Laurac",
+    email: "michael.laurac@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/michael_pehutf.jpg",
+      filename: "user_32",
+      content_type: "image/png",
+    },
+  }
+
+  user_33 = {
+    nickname: "Binh",
+    first_name: "Tristan",
+    last_name: "Hoerler",
+    email: "tristan.hoerler@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715221/Users/tristan_ngdqrf.jpg",
+      filename: "user_33",
+      content_type: "image/png",
+    },
+  }
+
+  user_34 = {
+    nickname: "Clem",
+    first_name: "Clémentine",
+    last_name: "Dubuis",
+    email: "clementine.dubuis@gmail.com",
+    password: "123456",
+    photo: {
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/clementine_i2ueaw.jpg",
+      filename: "user_34",
+      content_type: "image/png",
+    },
+  }
+
 
   USERS = [user_1,
            user_2,
@@ -196,7 +443,27 @@ module SEED_USERS
            user_12,
            user_13,
            user_14,
-           user_15]
+           user_15,
+           user_16,
+           user_17,
+           user_18,
+           user_19,
+           user_20,
+           user_21,
+           user_22,
+           user_23,
+           user_24,
+           user_25,
+           user_26,
+           user_27,
+           user_28,
+           user_29,
+           user_30,
+           user_31,
+           user_32,
+           user_33,
+           user_34
+         ]
 
   def seed
     puts "Registering a few users..."

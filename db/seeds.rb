@@ -9,6 +9,21 @@ require_relative "./_seeds_events"
 require_relative "./_seeds_categorizations"
 require_relative "./_seeds_labelings"
 
+# Cleaning seeds -------------------------
+puts "Cleaning database..."
+
+Label.destroy_all
+Category.destroy_all
+Labeling.all.destroy_all
+Categorization.destroy_all
+Event.destroy_all
+Activity.destroy_all
+Membership.destroy_all
+Group.destroy_all
+Friendship.destroy_all
+User.destroy_all
+
+
 # Seeds without dependency -------------------------
 SEED_USERS.seed
 SEED_LABELS.seed
