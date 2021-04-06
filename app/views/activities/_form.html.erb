@@ -2,17 +2,32 @@
   <div class="form-inputs">
     <%= f.input :name,
                 label: "Nom de l'activité",
+                error: "Le nom de l'activité ne peut pas être vide",
                 autofocus: true %>
-    <%= f.input :photo, 
+    <%= f.input :photo,
                 as: :file,
-                label: "Photo de l'activité" %>
+                label: "Photo de l'activité",
+                error: "Vous devez insérer une image de l'activité" %>
     <%= f.input :description,
                 label: "Description de l'activité",
-                input_html: {:rows => 5} %>
+                input_html: {:rows => 5},
+                error: "La description de l'activité ne peut pas être vide" %>
     <%= f.input :city,
-                label: "Ville de l'activité" %>
+                label: "Ville de l'activité",
+                error: "La ville de l'activité ne peut pas être vide" %>
     <%= f.input :street,
-                label: "Rue et numéro de l'activité" %>
+                label: "Rue et numéro de l'activité",
+                error: "L'adresse de l'activité ne peut pas être vide" %>
+    <%= f.association :labels,
+                  as: :check_boxes,
+                  input_html: { class: "tag-selector" },
+                  item_wrapper_class: 'tag-item',
+                  error: "Veuillez sélectionner au moins un label" %>
+    <%= f.association :categories,
+                  as: :check_boxes,
+                  input_html: { class: "tag-selector" },
+                  item_wrapper_class: 'tag-item',
+                  error: "Veuillez sélectionner au moins une catégorie" %>
   </div>
 
   <div class="form-actions">

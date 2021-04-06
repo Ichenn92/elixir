@@ -15,6 +15,10 @@ class Activity < ApplicationRecord
   validates :name, presence: true
   validates :city, presence: true
   validates :street, presence: true
+  validates :description, presence: true
+  validates :photo, presence: true
+  validates :labels, presence: true
+  validates :categories, presence: true
 
   pg_search_scope :search_by_name_and_description,
     against: [:name, :description, :city],
