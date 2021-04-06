@@ -33,9 +33,15 @@ class ActivitiesController < ApplicationController
     @description = activity_params[:description]
     @city = activity_params[:city]
     @street = activity_params[:street]
-    
+
     @activity = Activity.new({ name: @name, description: @description, city: @city, street: @street })
     @activity.user = @user
+
+    labels = params[][labels]
+    labels.each do ||
+    @activities_categories({activity: @activity, category: @activity.category })
+    end
+
     if @activity.save
       @activity.photo.attach(@photo)
       Group.create({name: @activity.name, activity: @activity})
