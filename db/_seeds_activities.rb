@@ -34,11 +34,11 @@ module SEED_ACTIVITIES
     street: "Rue du Pont 22",
     price: 7.40,
     photo: {
-    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718597/Activity/pilates_tp0s1i.png"),
-    filename: "activity_3.png",
-    content_type: "image/png",
-   },
-   user_id: 7,
+      io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617718597/Activity/pilates_tp0s1i.png"),
+      filename: "activity_3.png",
+      content_type: "image/png",
+    },
+    user_id: 7,
   }
   activity_4 = {
     name: "Yoga",
