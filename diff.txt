@@ -1,0 +1,3652 @@
+diff --git a/Gemfile b/Gemfile
+index a6ef420..5cbbb9c 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -17,6 +17,7 @@ gem "sass-rails", ">= 6"
+ gem "webpacker", "~> 5.0"
+ # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+ gem "turbolinks", "~> 5"
++gem "turbolinks_render" # Rendering form with errors
+ # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+ gem "jbuilder", "~> 2.7"
+ # Use Redis adapter to run Action Cable in production
+
+
+
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 09d550e..b553b53 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -231,6 +231,11 @@ GEM
+     turbolinks (5.2.1)
+       turbolinks-source (~> 5.2)
+     turbolinks-source (5.2.0)
++    turbolinks_render (0.9.21)
++      actionpack (>= 5.2.0)
++      activesupport (>= 5.2.0)
++      railties (>= 5.2.0)
++      turbolinks-source (~> 5.1)
+     tzinfo (2.0.4)
+       concurrent-ruby (~> 1.0)
+     unf (0.1.4)
+@@ -288,6 +293,7 @@ DEPENDENCIES
+   simple_form
+   spring
+   turbolinks (~> 5)
++  turbolinks_render
+   tzinfo-data
+   web-console (>= 4.1.0)
+   webdrivers
+
+
+
+diff --git a/app/assets/stylesheets/components/_activity.scss b/app/assets/stylesheets/components/_activity.scss
+deleted file mode 100644
+index c3be814..0000000
+--- a/app/assets/stylesheets/components/_activity.scss
++++ /dev/null
+@@ -1,33 +0,0 @@
+-.activity-index {
+-  display: grid;
+-  grid-template-columns: 1fr 1fr 1fr 1fr;
+-  grid-gap: 16px;
+-}
+-
+-@media(max-width: 992px) {
+-  .activity-index {
+-    grid-template-columns: 1fr 1fr;
+-  }
+-}
+-
+-@media(max-width: 768px) {
+-  .activity-index {
+-    grid-template-columns: 1fr;
+-  }
+-}
+-
+-.activity-index-card {
+-  background-position: center;
+-  height: 150px;
+-  border-radius: 3px;
+-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+-  display: flex;
+-  align-items: center;
+-  justify-content: space-around;
+-  font-size: 22px;
+-  color: white;
+-  font-weight: bolder;
+-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+-
+-}
+-
+
+
+
+diff --git a/app/assets/stylesheets/components/_button.scss b/app/assets/stylesheets/components/_button.scss
+index 5441e7e..1f9d0f2 100644
+--- a/app/assets/stylesheets/components/_button.scss
++++ b/app/assets/stylesheets/components/_button.scss
+@@ -1,6 +1,6 @@
+ .button-outline-green {
+   background: $color-primary-0;
+-  color: $color-primary-700;
++  color: $color-primary-600;
+   border: 2px solid $color-primary-600;
+   border-radius: 1.5em;
+   transition: 0.3s ease;
+@@ -10,7 +10,58 @@
+ 
+   &:hover, &.active {
+       background: $color-primary-600;
+-      color:white;
++      color:$color-primary-0;
++      text-decoration: none;
++  }
++}
++
++.button-outline-purple {
++  background: $color-secondary-50;
++  color: $color-secondary-600;
++  border: 2px solid $color-secondary-600;
++  border-radius: 1.5em;
++  transition: 0.3s ease;
++  margin-bottom: 20px;
++  display: inline-block;
++  padding: 8px 16px;
++
++  &:hover {
++      background: $color-secondary-600;
++      color:$color-secondary-50;
++      text-decoration: none;
++  }
++}
++
++.button-full-green {
++  background: $color-primary-600;
++  color: $color-primary-50;
++  border: 2px solid $color-primary-600;
++  border-radius: 1.5em;
++  transition: 0.3s ease;
++  margin-bottom: 20px;
++  display: inline-block;
++  padding: 8px 16px;
++
++  &:hover {
++      background: $color-primary-50;
++      color:$color-primary-600;
++      text-decoration: none;
++  }
++}
++
++.button-full-purple {
++  background: $color-secondary-600;
++  color: $color-secondary-50;
++  border: 2px solid $color-secondary-600;
++  border-radius: 1.5em;
++  transition: 0.3s ease;
++  margin-bottom: 20px;
++  display: inline-block;
++  padding: 8px 16px;
++
++  &:hover {
++      background: $color-secondary-50;
++      color:$color-secondary-600;
+       text-decoration: none;
+   }
+ 
+
+
+
+diff --git a/app/assets/stylesheets/components/_category.scss b/app/assets/stylesheets/components/_category.scss
+index dc17820..d45d7bd 100644
+--- a/app/assets/stylesheets/components/_category.scss
++++ b/app/assets/stylesheets/components/_category.scss
+@@ -1,6 +1,6 @@
+ .category-index {
+   display: grid;
+-  grid-template-columns: 1fr 1fr 1fr 1fr;
++  grid-template-columns: 1fr 1fr 1fr;
+   grid-gap: 16px;
+ }
+ 
+@@ -25,6 +25,7 @@
+ .category-index-card {
+   // background-position: center;
+   height: 150px;
++  min-width: 250px;
+   width: auto;
+   position: relative;
+ 
+
+
+
+diff --git a/app/assets/stylesheets/components/_group_chat.scss b/app/assets/stylesheets/components/_group_chat.scss
+index 7eab69a..5a1281c 100644
+--- a/app/assets/stylesheets/components/_group_chat.scss
++++ b/app/assets/stylesheets/components/_group_chat.scss
+@@ -3,13 +3,38 @@
+       margin-bottom: auto;
+     }
+ 
+-.card-header {
+-      border-radius: 24px 24px !important;
+-      background-color: white !important;
+-      border-bottom: 0 !important;
+-    }
+-
+ .card-footer{
+-    border-radius: 0 0 15px 15px !important;
+-      border-top: 0 !important;
++    border-radius: 15px 15px !important;
++    border-top: 0 !important;
++    background-color: white;
+   }
++
++.card-body {
++  flex-grow: 1;
++  padding: 16px 0;
++  overflow-y: scroll;
++}
++
++.card-header {
++  background-color: white;
++  padding: 22px;
++}
++
++.transition {
++  transition: .5s ease;
++}
++
++#chat-menu {
++  min-width: 350px;
++  width: 350px;
++}
++
++.chat-menu-close {
++  width: 100px !important;
++  min-width: 100px !important;
++}
++
++.chat-button-center {
++  left:0;
++  text-align: center;
++}
+\ No newline at end of file
+
+
+
+diff --git a/app/assets/stylesheets/components/_index.scss b/app/assets/stylesheets/components/_index.scss
+index c2e1232..145ea7c 100644
+--- a/app/assets/stylesheets/components/_index.scss
++++ b/app/assets/stylesheets/components/_index.scss
+@@ -1,5 +1,4 @@
+ // Import your components CSS files here.
+-@import "activity";
+ @import "category";
+ @import "alert";
+ @import "avatar";
+@@ -9,3 +8,5 @@
+ @import "one-box-screen";
+ @import "white-box";
+ @import "user-card";
++@import "group_chat";
++@import "message";
+
+
+
+diff --git a/app/assets/stylesheets/components/_message.scss b/app/assets/stylesheets/components/_message.scss
+new file mode 100644
+index 0000000..2d6179b
+--- /dev/null
++++ b/app/assets/stylesheets/components/_message.scss
+@@ -0,0 +1,54 @@
++// General CSS properties for message
++.message {
++  margin: 1em 0; 
++  .message-block {
++    .chat-avatar-container {
++      display: flex;
++      justify-content: center;
++      width:100px;
++    }
++    .message-content {
++      width: 60%;
++      margin: 0 10px;
++      border-radius: $border-radius;
++      padding: 1.5em;
++      color: white;
++      text-align: justify;
++      text-justify: inter-word;
++    }
++  }
++  .created_at {
++    margin: 0 110px;
++  }
++}
++
++// Specific CSS for message coming from current_user
++.message-self {
++  .message-block {
++    flex-direction: row-reverse;
++    .chat-avatar {
++      border: 3px solid $color-primary-600;
++    }
++    .message-content {
++      background-color: $color-primary-600;
++    }
++  }
++  .created_at {
++    text-align: right;
++  }
++}
++
++// Specific CSS for message coming from other than urrent_user
++.message-other {
++  .message-block {
++    .chat-avatar-container {
++      .chat-avatar {
++        border: 2px solid $color-secondary-600;
++      }
++    }
++    .message-content {
++      background-color: $color-secondary-600;
++    }
++  }
++}
++
+
+
+
+diff --git a/app/assets/stylesheets/components/_user-card.scss b/app/assets/stylesheets/components/_user-card.scss
+index 103b8ba..5514258 100644
+--- a/app/assets/stylesheets/components/_user-card.scss
++++ b/app/assets/stylesheets/components/_user-card.scss
+@@ -18,4 +18,33 @@ li.user-card {
+     flex-grow: 1;
+     margin-left: 24px;
+   }
++}
++
++.cancel-hover {
++  position: relative;
++}
++.cancel-hover > span {
++  content: "En attente de validation";
++}
++.cancel-hover:hover > span {
++  visibility: hidden;
++}
++.cancel-hover:hover:after {
++  position: absolute;
++  left: 0;
++  right: 0;
++  content: "Annuler demande";
++}
++
++.icon-user > .fa-user-times {
++  display: none;
++}
++.icon-user:hover > .fa-user-times {
++  display: block;
++}
++.icon-user > .fa-user-clock {
++  display: block;
++}
++.icon-user:hover > .fa-user-clock {
++  display: none;
+ }
+\ No newline at end of file
+
+
+
+diff --git a/app/assets/stylesheets/components/_white-box.scss b/app/assets/stylesheets/components/_white-box.scss
+index f02e723..5f604a3 100644
+--- a/app/assets/stylesheets/components/_white-box.scss
++++ b/app/assets/stylesheets/components/_white-box.scss
+@@ -1,7 +1,10 @@
++.margin-top-50 {
++  margin-top: 50px;
++}
++
+ .white-box {
+   background: white;
+-  padding: 10px 20px;
+-  margin-top: 50px;
++  padding: 10px 10px; 
+   border-radius: 24px;
+   box-shadow: 0px 0px 6px 4px rgba($color-primary-900,0.1);
+ }
+@@ -12,8 +15,17 @@
+   height: 100%;
+   width: 100%;
+   background: white;
+-  padding: 10px 20px;
++  padding: 10px 10px;
+   margin-top: 50px;
+   border-radius: 24px;
+   box-shadow: 0px 0px 6px 4px rgba($color-primary-900,0.1);
+-}
+\ No newline at end of file
++}
++
++.box-max-height {
++  display: flex;
++  flex-direction: column;
++  height: 100%;
++  width: 100%;
++  padding: 10px 20px;
++  margin-top: 50px;
++}
+
+
+
+diff --git a/app/assets/stylesheets/config/_bootstrap_variables.scss b/app/assets/stylesheets/config/_bootstrap_variables.scss
+index 8a68b21..f4b7fd2 100755
+--- a/app/assets/stylesheets/config/_bootstrap_variables.scss
++++ b/app/assets/stylesheets/config/_bootstrap_variables.scss
+@@ -2,8 +2,8 @@
+ // 1. All Bootstrap variables are here => https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
+ // 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
+ // 3. You can override them below!
+-
+ // General style
++
+ $font-family-sans-serif:  $body-font;
+ $headings-font-family:    $headers-font;
+ $body-bg:                 $light-gray;
+
+
+
+diff --git a/app/assets/stylesheets/config/_colors.scss b/app/assets/stylesheets/config/_colors.scss
+index 162d74b..e3fd402 100644
+--- a/app/assets/stylesheets/config/_colors.scss
++++ b/app/assets/stylesheets/config/_colors.scss
+@@ -1,7 +1,7 @@
+ // Define variables for your color scheme
+ 
+ // For example:
+-$red: #FD1015;
++$red: #512DA8;
+ $blue: #167FFB;
+ $yellow: #FFC65A;
+ $orange: #E67E22;
+
+
+
+diff --git a/app/assets/stylesheets/config/_custom.scss b/app/assets/stylesheets/config/_custom.scss
+index d49b325..fc3cdfc 100644
+--- a/app/assets/stylesheets/config/_custom.scss
++++ b/app/assets/stylesheets/config/_custom.scss
+@@ -26,7 +26,8 @@ $color-secondary-800: #4527A0;
+ $color-secondary-900: #311B92;
+ 
+ //Font size definitions
+-$xsmall-font-size: 16px;
++$xxsmall-font-size: 16px;
++$xsmall-font-size: 20px;
+ $small-font-size: 24px;
+ $medium-font-size: 32px;
+ $big-font-size: 40px;
+@@ -54,8 +55,9 @@ body {
+ }
+ 
+ h1, h2, h3, h4, h5 {
+-    color: $color-primary-900;
++    color: $color-primary-700;
+     line-height: 2.0;
++    font-weight: 700 !important;
+ }
+ h1 {
+     font-size: $big-font-size;
+@@ -73,8 +75,12 @@ h5 {
+     font-size: calc($big-font-size - 16px);
+ }
+ 
++p, a, span {
++    font-family: $body-font !important;
++}
++
+ small {
+-  font-size: $xsmall-font-size !important;
++  font-size: $xxsmall-font-size !important;
+ }
+ 
+ a {
+@@ -87,7 +93,6 @@ ul {
+     list-style: none;
+ }
+ 
+-
+ i, .fa-clock, .fa-calendar, .fa-arrow-up, .fa-arrow-down, .fa-calendar-check-o {
+     font-size: $icon-font-size;
+ }
+@@ -109,6 +114,15 @@ button {
+ // -------------------------------------------
+ // CLASSES
+ // -------------------------------------------
++.text-color-primary {
++    color: $color-primary-700;
++}
++.text-color-secondary {
++    color: $color-secondary-700;
++}
++.text-xxsmall {
++    font-size: $xxsmall-font-size;
++}
+ .text-xsmall {
+     font-size: $xsmall-font-size;
+ }
+@@ -145,4 +159,19 @@ button {
+     visibility: hidden;
+     position: absolute;
+     transform: translateY(-50vh);
++}
++
++.notification-badge {
++    width: 100px;
++    position: absolute;
++    top: -45%;
++    left: calc(50% - 70px);
++
++    span {
++        width: 140px;
++    }
++}
++
++.no-text-decoration {
++    text-decoration: none !important;
+ }
+\ No newline at end of file
+
+
+
+diff --git a/app/assets/stylesheets/config/_fonts.scss b/app/assets/stylesheets/config/_fonts.scss
+index 751306f..477890e 100755
+--- a/app/assets/stylesheets/config/_fonts.scss
++++ b/app/assets/stylesheets/config/_fonts.scss
+@@ -1,10 +1,10 @@
+ // Import Google fonts
+-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
++@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap');
+ 
+ // Define fonts for body and headers
+-$body-font: "Light 300", "Lato", "sans-serif";
+-$headers-font: "Bold 700", "Lato", "sans-serif";
++$body-font: "Lato", "sans-serif";
++$headers-font: "Lato", "sans-serif";
+ 
+ // To use a font file (.woff) uncomment following lines
+ // @font-face {
+
+
+
+diff --git a/app/controllers/activities_controller.rb b/app/controllers/activities_controller.rb
+index 890f3af..a083ba5 100644
+--- a/app/controllers/activities_controller.rb
++++ b/app/controllers/activities_controller.rb
+@@ -1,33 +1,45 @@
+ class ActivitiesController < ApplicationController
+-  skip_before_action :authenticate_user!, only: [:show, :new]
++  skip_before_action :authenticate_user!, only: [:index, :show]
+ 
+   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+ 
++  def index()
++    if params[:city]
++      @activities = Activity.where(city: params[:city])
++      @param = params[:city]
++    elsif params[:user]
++      @activities = Activity.where(user: params[:user])
++      @param = params[:user]
++    elsif params[:category_id]
++      @activities = Category.find(params[:category_id]).activities
++      @param = Category.find(params[:category_id]).name
++    else
++      @activities = Activity.where(user: current_user)
++    end
++  end
++
+   def show
+-    @activity = Activity.find(params[:id])
+     @booking = Booking.new
+-    #@group = @activity.group
+-    #@messages = @group.messages
+-    #@message = Message.new
+   end
+ 
+   def new
+     @activity = Activity.new
+   end
+ 
+-  def index
+-    @activities = Activity.where(user: current_user)
+-  end
+-
+   def create
+     @user = current_user
+     @photo = activity_params[:photo]
+     @name = activity_params[:name]
+     @description = activity_params[:description]
+-    @activity = Activity.new({ name: @name, description: @description })
++    @city = activity_params[:city]
++    @street = activity_params[:street]
++    
++    @activity = Activity.new({ name: @name, description: @description, city: @city, street: @street })
+     @activity.user = @user
+     if @activity.save
+       @activity.photo.attach(@photo)
++      Group.create({name: @activity.name, activity: @activity})
++      Membership.create({user: @user, group: @activity.group})
+       redirect_to activity_path(@activity)
+     else
+       render :new
+@@ -61,6 +73,6 @@ class ActivitiesController < ApplicationController
+   end
+ 
+   def activity_params
+-    params.require(:activity).permit(:name, :description, :photo)
++    params.require(:activity).permit(:name, :description, :photo, :city, :street)
+   end
+ end
+
+
+
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index 1a17519..8ff4f2c 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -1,6 +1,11 @@
+ class ApplicationController < ActionController::Base
++  prepend_before_action :set_locale
+   before_action :authenticate_user!
+   before_action :configure_permitted_parameters, if: :devise_controller?
++  before_action :notification_invitations
++  before_action :save_last_visit_on_group_chat
++  before_action :save_current_visit_on_group_chat
++  before_action :notification_messages_all_groups
+ 
+   def configure_permitted_parameters
+     # For additional fields in app/views/devise/registrations/new.html.erb
+@@ -9,4 +14,67 @@ class ApplicationController < ActionController::Base
+     # For additional in app/views/devise/registrations/edit.html.erb
+     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :nickname, :photo])
+   end
++
++  def save_last_visit_on_group_chat
++    return if request.referrer.nil?
++    previous_path = URI(request.referrer).path.split("/").reject { |c| c.empty? }
++    group_id = previous_path[1].to_i
++    previous_page_is_group_chat = previous_path.first == "groups" && group_id != 0
++    if current_user && previous_page_is_group_chat
++      @notifications_messages_all_groups = 0
++      @group = Group.find_by_id(group_id)
++      redirect_to groups_path if @group.nil?
++      save_last_visit_on_group_chat_helper(current_user, @group)
++    end
++  end
++
++  def save_current_visit_on_group_chat
++    return if request.env["PATH_INFO"].nil?
++    current_path = URI(request.env["PATH_INFO"]).path.split("/").reject { |c| c.empty? }
++    group_id = current_path[1].to_i
++    current_page_is_group_chat = current_path.first == "groups" && group_id != 0
++    if current_user && current_page_is_group_chat
++      @notifications_messages_all_groups = 0
++      @group = Group.find_by_id(group_id)
++      redirect_to groups_path if @group.nil?
++      save_last_visit_on_group_chat_helper(current_user, @group)
++    end
++  end
++
++  def notification_invitations
++    if current_user
++      @notification_invitations = current_user.friendships.pending_invitations.select do |friendship|
++        friendship.user if friendship.friend == current_user
++      end.map { |friendship| friendship.user }
++    else
++      @notification_invitations = []
++    end
++  end
++
++  def notification_messages_all_groups
++    if current_user
++      @notification_unread_message = current_user.groups.count do |group|
++        group.unread?(current_user)
++      end
++    else
++      @notification_unread_message = 0
++    end
++  end
++
++  #---------------------------------------------------------------
++
++  private
++
++  def save_last_visit_on_group_chat_helper(user, group_id)
++    @membership = Membership.find_by(user: user, group: group_id)
++    unless @membership.nil?
++      now = DateTime.now
++      @membership.last_visit = now
++      @membership.save
++    end
++  end
++
++  def set_locale
++    I18n.locale = :fr
++  end
+ end
+
+
+
+diff --git a/app/controllers/bookings_controller.rb b/app/controllers/bookings_controller.rb
+index 3ff6441..85efbeb 100644
+--- a/app/controllers/bookings_controller.rb
++++ b/app/controllers/bookings_controller.rb
+@@ -1,22 +1,38 @@
+ class BookingsController < ApplicationController
++  def index
++    @bookings_per_activity = Booking.where(user: current_user, status: "confirmed").group_by(&:activity)
++  end
++
+   def create
+     @booking = Booking.new()
+     @event = Event.find(params[:booking][:event])
+     @booking.event = @event
+     @booking.user = current_user
+ 
+-    flash.alert = "Un problème est survenu" unless @booking.save
+-    redirect_to activity_path(@event.activity, anchor: "event-#{@event.id}")
++    if @booking.save
++      flash.notice = "Vous vous êtes inscrit à un événement"
++    else
++      flash.alert = "Un problème est survenu"
++    end
++    redirect_to back_with_anchor anchor: "event-#{@booking.event.id}"
+   end
+ 
+   def update
+     puts "i am in update"
+     @booking = Booking.find(params[:id])
+     if @booking.confirmed?
++      flash.notice = "Vous avez annulé votre participation à un événement"
+       @booking.canceled!
+     else
++      flash.notice = "Vous avez reconfirmé votre participation à un événement"
+       @booking.confirmed!
+     end
+-    redirect_to activity_path(@booking.event.activity, anchor: "event-#{@booking.event.id}")
++    redirect_to back_with_anchor anchor: "event-#{@booking.event.id}"
++  end
++
++  private
++
++  def back_with_anchor(anchor: "")
++    "#{request.referrer}##{anchor}"
+   end
+ end
+
+
+
+diff --git a/app/controllers/categories_controller.rb b/app/controllers/categories_controller.rb
+index bd5c5ed..b222ac8 100644
+--- a/app/controllers/categories_controller.rb
++++ b/app/controllers/categories_controller.rb
+@@ -3,5 +3,6 @@ class CategoriesController < ApplicationController
+ 
+   def index
+     @categories = Category.all
++    @cities = Activity.distinct.pluck(:city)
+   end
+ end
+
+
+
+diff --git a/app/controllers/categorizations_controller.rb b/app/controllers/categorizations_controller.rb
+new file mode 100644
+index 0000000..bdb2c91
+--- /dev/null
++++ b/app/controllers/categorizations_controller.rb
+@@ -0,0 +1,2 @@
++class CategorizationsController < ApplicationController
++end
+
+
+
+diff --git a/app/controllers/friendships_controller.rb b/app/controllers/friendships_controller.rb
+index 0269b7f..c72dd83 100644
+--- a/app/controllers/friendships_controller.rb
++++ b/app/controllers/friendships_controller.rb
+@@ -2,9 +2,9 @@ class FriendshipsController < ApplicationController
+   def index
+     @friends = User.friends(current_user)
+     @pending_invitations = current_user.friendships.pending_invitations
+-    @invited_by = @pending_invitations.map do |friendship|
+-      friendship.user == current_user ? friendship.friend : friendship.user
+-    end
++    @invited_by = @pending_invitations.select do |friendship|
++      friendship.user if friendship.friend == current_user
++    end.map { |friendship| friendship.user }
+   end
+ 
+   def create
+@@ -13,12 +13,14 @@ class FriendshipsController < ApplicationController
+     @friendship.user = current_user
+     @friendship.friend = @friend
+     @friendship.save
++    flash.notice = "Votre demande d'amitié à été envoyé à @#{@friend.nickname}"
+     redirect_back fallback_location: root_path
+   end
+ 
+   def destroy
+-    puts params
+     @friendship = Friendship.find(params[:id])
++    user = @friendship.user == current_user ? @friendship.friend : @friendship.user
++    flash.notice = "Vous avez retiré @#{user.nickname} de votre liste d'amis"
+     @friendship.destroy
+     redirect_back fallback_location: root_path
+   end
+@@ -26,12 +28,15 @@ class FriendshipsController < ApplicationController
+   def accept
+     @friendship = Friendship.find(params[:friendship_id])
+     @friendship.accepted!
++    flash.notice = "Vous êtes maintenant ami avec @#{@friendship.user.nickname}"
+     redirect_back fallback_location: root_path
+   end
+ 
+   def reject
+     @friendship = Friendship.find(params[:friendship_id])
+-    @friendship.rejected!
++    user = @friendship.user == current_user ? @friendship.friend : @friendship.user
++    flash.notice = "Vous avez refusé @#{user.nickname}"
++    @friendship.destroy
+     redirect_back fallback_location: root_path
+   end
+ end
+
+
+
+diff --git a/app/controllers/groups_controller.rb b/app/controllers/groups_controller.rb
+index c338605..175a4a0 100644
+--- a/app/controllers/groups_controller.rb
++++ b/app/controllers/groups_controller.rb
+@@ -1,15 +1,30 @@
+ class GroupsController < ApplicationController
++  before_action :set_groups, only: [:index, :show]
++
++  def index
++  end
++
+   def show
+     @group = Group.find(params[:id])
+-    @messages = @group.messages
++    @messages_per_date = @group.messages.group_by { |msg| msg.created_at.to_date }
+     @message = Message.new
+     @groups = current_user.groups
+     users = @group.users
+-    @friend = users.where.not( email: current_user.email).first
++    @friend = users.where.not(email: current_user.email).first
+   end
+ 
+-  def index
+-    @groups = current_user.groups
+-  end
++  private
+ 
++  def set_groups
++    @friendship_groups = current_user.groups.where(group?: false)
++      .order("memberships.last_visit DESC")
++    @friendship_groups_unread, @friendship_groups_read = @friendship_groups.partition do |group|
++      group.unread?(current_user)
++    end
++    @activity_groups = current_user.groups.where(group?: true)
++      .order("memberships.last_visit DESC")
++    @activity_groups_unread, @activity_groups_read = @activity_groups.partition do |group|
++      group.unread?(current_user)
++    end
++  end
+ end
+
+
+
+diff --git a/app/controllers/labelings_controller.rb b/app/controllers/labelings_controller.rb
+new file mode 100644
+index 0000000..4124817
+--- /dev/null
++++ b/app/controllers/labelings_controller.rb
+@@ -0,0 +1,2 @@
++class LabelingsController < ApplicationController
++end
+
+
+
+diff --git a/app/controllers/memberships_controller.rb b/app/controllers/memberships_controller.rb
+new file mode 100644
+index 0000000..25f91a4
+--- /dev/null
++++ b/app/controllers/memberships_controller.rb
+@@ -0,0 +1,19 @@
++class MembershipsController < ApplicationController
++  def create
++    group = Group.find(params[:group_id])
++    membership = Membership.new(user_id: current_user.id, group_id: group.id)
++    if membership.save
++      redirect_to group_path(group)
++    else
++      flash[:alert] = "Veuillez contacter l'organisateur de l'activité"
++    end
++  end
++
++  def destroy
++    group = Group.find(params[:id])
++    membership = group.memberships.find_by(user: current_user)
++    membership.destroy
++    redirect_to "/groups"
++  end
++
++end
+
+
+
+diff --git a/app/controllers/messages_controller.rb b/app/controllers/messages_controller.rb
+index 6e9f0cc..8d16d87 100644
+--- a/app/controllers/messages_controller.rb
++++ b/app/controllers/messages_controller.rb
+@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
+       )
+       redirect_to group_path(@group, anchor: "message-#{@message.id}")
+     else
+-      render "groups/show"
++      redirect_to group_path(@group)
+     end
+   end
+ 
+
+
+
+diff --git a/app/controllers/pages_controller.rb b/app/controllers/pages_controller.rb
+index 1b28f45..a0cbfe4 100644
+--- a/app/controllers/pages_controller.rb
++++ b/app/controllers/pages_controller.rb
+@@ -6,7 +6,7 @@ class PagesController < ApplicationController
+ 
+   def search
+     query = params[:query]
+-    @users = User.search_by_nick_first_last_name(query)
++    @users = User.search_by_nick_first_last_name(query).select { |user| user != current_user }
+     @activities = Activity.search_by_name_and_description(query)
+   end
+ end
+
+
+
+diff --git a/app/javascript/packs/_div-scroll-from-bottom.js b/app/javascript/packs/_div-scroll-from-bottom.js
+new file mode 100644
+index 0000000..20acbc6
+--- /dev/null
++++ b/app/javascript/packs/_div-scroll-from-bottom.js
+@@ -0,0 +1,7 @@
++const initScrollFromBottom = () => {
++  const scrollBottomDiv = document.getElementById("scroll-from-bottom");
++  if (scrollBottomDiv) {
++    scrollBottomDiv.scrollTop = scrollBottomDiv.scrollHeight;
++  }
++}
++export { initScrollFromBottom };
+
+
+
+diff --git a/app/javascript/packs/_navbar-toggle.js b/app/javascript/packs/_navbar-toggle.js
+index b0c9928..536555b 100644
+--- a/app/javascript/packs/_navbar-toggle.js
++++ b/app/javascript/packs/_navbar-toggle.js
+@@ -1,16 +1,12 @@
+ const initNavBar = () => {
+     const profileButton_dom = document.getElementById("profile-button");
+-    const socialButton_dom = document.getElementById("social-button");
+     const activitiesButton_dom = document.getElementById("activities-button");
+-    const chatButton_dom = document.getElementById("chat-button");
+-    const buttons = [profileButton_dom, socialButton_dom, activitiesButton_dom, chatButton_dom]
++    const buttons = [profileButton_dom, activitiesButton_dom]
+     const buttonsLength = buttons.length;
+     
+     const profileMenu_dom = document.getElementById("profile-menu");
+-    const socialMenu_dom = document.getElementById("social-menu");
+     const activitiesMenu_dom = document.getElementById("activities-menu");
+-    const chatMenu_dom = document.getElementById("chat-menu");
+-    const menues = [profileMenu_dom, socialMenu_dom, activitiesMenu_dom, chatMenu_dom]
++    const menues = [profileMenu_dom, activitiesMenu_dom]
+     
+     const closeButtons_dom = document.querySelectorAll(".close-button");
+ 
+
+
+
+diff --git a/app/javascript/packs/_toggle-chat-menu.js b/app/javascript/packs/_toggle-chat-menu.js
+new file mode 100644
+index 0000000..277dfe3
+--- /dev/null
++++ b/app/javascript/packs/_toggle-chat-menu.js
+@@ -0,0 +1,31 @@
++
++const initToggleChatMenu = () => {
++  const button = document.getElementById("toggle-chat-menu")
++  if (button) {
++    button.addEventListener("click", () => {
++      var menu = document.getElementById("chat-menu")
++      menu = menu.classList.add("transition")
++      toggleChatMenu();
++    });
++  };
++}
++
++const toggleChatMenu = () => {
++  const button = document.getElementById("toggle-chat-menu")
++  if (button) {
++    const menu = document.getElementById("chat-menu")
++    const texts = menu.querySelectorAll("span, p");
++    const headers = menu.querySelectorAll("h3");
++    
++    button.classList.toggle("chat-button-center");
++    menu.classList.toggle("chat-menu-close");
++    texts.forEach(text => {
++      text.classList.toggle("d-none");
++    });
++    headers.forEach(header => {
++      header.classList.toggle("invisible");
++    });
++  }
++}
++
++export { initToggleChatMenu, toggleChatMenu };
+\ No newline at end of file
+
+
+
+diff --git a/app/javascript/packs/application.js b/app/javascript/packs/application.js
+index 3ad63f8..6a0b3ac 100644
+--- a/app/javascript/packs/application.js
++++ b/app/javascript/packs/application.js
+@@ -26,12 +26,20 @@ import { initDatetimePicker } from './_datetime-picker';
+ import { initNavBar } from './_navbar-toggle';
+ import { initSearchNavbarToggle } from './_search-navbar-toggle';
+ import { initChatgroupCable } from '../channels/group_channel';
++import { initScrollFromBottom } from './_div-scroll-from-bottom';
++import { initToggleChatMenu, toggleChatMenu } from './_toggle-chat-menu';
+ 
+-window.addEventListener('resize', setHeightOfScreen);
++window.addEventListener('resize', setHeightOfScreen)
+ 
+ document.addEventListener('turbolinks:load', () => {
+   initNavBar();
+   initSearchNavbarToggle();
+   initChatgroupCable();
+   initDatetimePicker();
+-});
+\ No newline at end of file
++  initScrollFromBottom();
++  initToggleChatMenu();
++  if (window.innerWidth < 992) {
++    toggleChatMenu();
++  }
++});
++
+
+
+
+diff --git a/app/models/activity.rb b/app/models/activity.rb
+index fa1e180..8374ace 100644
+--- a/app/models/activity.rb
++++ b/app/models/activity.rb
+@@ -3,16 +3,27 @@ class Activity < ApplicationRecord
+ 
+   belongs_to :user
+   has_one_attached :photo
++  has_one :group, dependent: :destroy
++  has_many :events, dependent: :delete_all
+ 
+-  #has_one :group
++  has_many :categorizations
++  has_many :categories, through: :categorizations
+ 
+-  has_many :events, dependent: :delete_all
++  has_many :labelings
++  has_many :labels, through: :labelings
+ 
+   validates :name, presence: true
++  validates :city, presence: true
++  validates :street, presence: true
+ 
+   pg_search_scope :search_by_name_and_description,
+-    against: [:name, :description],
++    against: [:name, :description, :city],
+     using: {
+       tsearch: { prefix: true },
+     }
++
++  def is_member_of_activity_group?(user)
++    return false if self.group.nil?
++    !self.group.memberships.where(user_id: user.id).empty?
++  end
+ end
+
+
+
+diff --git a/app/models/booking.rb b/app/models/booking.rb
+index 4bc5af9..dbdfbb1 100644
+--- a/app/models/booking.rb
++++ b/app/models/booking.rb
+@@ -1,6 +1,7 @@
+ class Booking < ApplicationRecord
+   belongs_to :user
+   belongs_to :event
++  has_one :activity, through: :event
+ 
+   # if create the logic of pending, pending must be at index 0 (default value)
+   enum status: [:confirmed, :canceled]
+
+
+
+diff --git a/app/models/categorization.rb b/app/models/categorization.rb
+new file mode 100644
+index 0000000..3d19deb
+--- /dev/null
++++ b/app/models/categorization.rb
+@@ -0,0 +1,4 @@
++class Categorization < ApplicationRecord
++  belongs_to :category
++  belongs_to :activity
++end
+
+
+
+diff --git a/app/models/category.rb b/app/models/category.rb
+index c6ceaad..f6c0ddd 100644
+--- a/app/models/category.rb
++++ b/app/models/category.rb
+@@ -1,5 +1,6 @@
+ class Category < ApplicationRecord
+-  #belongs_to :categorization
++  has_many :categorizations
++  has_many :activities, through: :categorizations
+   has_one_attached :photo
+ 
+   validates :name, presence: true
+
+
+
+diff --git a/app/models/friendship.rb b/app/models/friendship.rb
+index 2b98892..5670d90 100644
+--- a/app/models/friendship.rb
++++ b/app/models/friendship.rb
+@@ -26,8 +26,7 @@ class Friendship < ApplicationRecord
+ 
+   def create_private_chat
+     if (saved_change_to_status? && self.status == "accepted")
+-      group = Group.new(name:"Chat privé", group?: false, friendship_id: self.id)
+-      group.save
++      Group.create(name: "Chat privé", group?: false, friendship_id: self.id)
+       Membership.create(group_id: group.id, user_id: self.user_id)
+       Membership.create(group_id: group.id, user_id: self.friend_id)
+     end
+
+
+
+diff --git a/app/models/group.rb b/app/models/group.rb
+index c7b1ac1..574e51e 100644
+--- a/app/models/group.rb
++++ b/app/models/group.rb
+@@ -3,5 +3,18 @@ class Group < ApplicationRecord
+   has_one_attached :photo
+   has_many :memberships, dependent: :delete_all
+   has_many :users, through: :memberships
+-  # belongs_to :friendship
++  belongs_to :activity, optional: true
++
++  def unread?(user)
++    membership = self.memberships.find_by(user: user)
++    last_visit = membership.last_visit
++
++    return false if self.messages.empty?
++    last_message = self.messages.last.created_at
++    if last_visit.nil?
++      return true
++    else
++      return last_visit < last_message
++    end
++  end
+ end
+
+
+
+diff --git a/app/models/labeling.rb b/app/models/labeling.rb
+new file mode 100644
+index 0000000..8aa0495
+--- /dev/null
++++ b/app/models/labeling.rb
+@@ -0,0 +1,4 @@
++class Labeling < ApplicationRecord
++  belongs_to :label
++  belongs_to :activity
++end
+
+
+
+diff --git a/app/models/message.rb b/app/models/message.rb
+index b81df65..a02737e 100644
+--- a/app/models/message.rb
++++ b/app/models/message.rb
+@@ -1,4 +1,10 @@
+ class Message < ApplicationRecord
+   belongs_to :group
+   belongs_to :user
++
++  validates :content, {
++    :presence => true,
++    :allow_blank => false,
++    :allow_nil => false,
++  }
+ end
+
+
+
+diff --git a/app/models/user.rb b/app/models/user.rb
+index e1456f8..e8d489d 100644
+--- a/app/models/user.rb
++++ b/app/models/user.rb
+@@ -9,6 +9,7 @@ class User < ApplicationRecord
+   validates_uniqueness_of :nickname
+ 
+   has_many :friendships, ->(user) { unscope(:where).where("user_id = ? OR friend_id = ?", user.id, user.id) }
++  has_many :friends, through: :friendships #have to test more but should works
+   has_many :bookings, dependent: :delete_all
+   has_one_attached :photo
+   has_many :memberships
+
+
+
+diff --git a/app/views/activities/_activity_chat.html.erb b/app/views/activities/_activity_chat.html.erb
+deleted file mode 100644
+index e69de29..0000000
+
+
+
+diff --git a/app/views/activities/_form.html.erb b/app/views/activities/_form.html.erb
+index aa985e3..ee4c994 100644
+--- a/app/views/activities/_form.html.erb
++++ b/app/views/activities/_form.html.erb
+@@ -8,7 +8,11 @@
+                 label: "Photo de l'activité" %>
+     <%= f.input :description,
+                 label: "Description de l'activité",
+-                input_html: {:rows => 10} %>
++                input_html: {:rows => 5} %>
++    <%= f.input :city,
++                label: "Ville de l'activité" %>
++    <%= f.input :street,
++                label: "Rue et numéro de l'activité" %>
+   </div>
+ 
+   <div class="form-actions">
+
+
+
+diff --git a/app/views/activities/edit.html.erb b/app/views/activities/edit.html.erb
+index 3c68e33..af9d550 100644
+--- a/app/views/activities/edit.html.erb
++++ b/app/views/activities/edit.html.erb
+@@ -6,7 +6,7 @@
+       </div>
+       <div class="col-md-6 contents col-sign">
+         <div class="row justify-content-center">
+-          <div class="col-md-8 white-box">
++          <div class="col-md-8 white-box margin-top-50">
+             <div class="mb-4">
+               <h2>Modifier une activité</h2>
+               <%= render "form", activity: @activity %>
+
+
+
+diff --git a/app/views/activities/index.html.erb b/app/views/activities/index.html.erb
+index fa216f6..2c21989 100644
+--- a/app/views/activities/index.html.erb
++++ b/app/views/activities/index.html.erb
+@@ -1,5 +1,44 @@
+-<ul class="cards h-100">
+-  <% @activities.each do |activity| %>
+-    <%= render partial: "shared/activity_menu", locals: { activity: activity } %>
++<div class="activity-name text-center pt-3">
++  <% unless @param.nil? %>
++    <h1>Activités de <%= @param %></h1>
++  <% else %>
++    <h1>Mes activités</h1>
++<% end %>
++</div>
++
++<% if @activities.empty? %>
++  <% unless @param.nil? %>
++    <ul class="cards h-100">
++      <li class="user-card">
++        <div class="name text-medium d-flex align-items-center">
++          <p class="m-0">
++            Il n'y a pas d'activité pour cette catégorie.
++          </p>
++        </div>
++        <%= link_to categories_path do %>
++          <button class="btn button-outline-green my-0 mx-1">Découvrir d'autres catégories</button>
++        <% end %>
++      </li>
++    </ul>
++  <% else %>
++    <ul class="cards h-100">
++      <li class="user-card">
++        <div class="name text-medium d-flex align-items-center">
++          <p class="m-0">
++            Vous n'avez pas encore créé d'activité. 
++            Cliquez sur "Créer une activité" pour commencer
++          </p>
++        </div>
++        <%= link_to new_activity_path do %>
++          <button class="btn button-outline-green my-0 mx-1">Créer une activité</button>
++        <% end %>
++      </li>
++    </ul>
+   <% end %>
+-</ul>
++<% else %>
++  <ul class="cards h-100">
++    <% @activities.each do |activity| %>
++      <%= render partial: "shared/activity_card", locals: { activity: activity } %>
++    <% end %>
++  </ul>
++<% end %>
+
+
+
+diff --git a/app/views/activities/index_from_category.html.erb b/app/views/activities/index_from_category.html.erb
+deleted file mode 100644
+index 1e4e5f3..0000000
+--- a/app/views/activities/index_from_category.html.erb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-<div class="container mt-4">
+-  <h1>Toutes les activités</h1>
+-  <div class="activity-index">
+-    <% @activities.where(category: @category).each do |activity| %>
+-      <%= link_to activity_path(activity) do%>
+-        <div class="activity-index-card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= cl_image_path activity.photo.key, crop: :fit %>')">
+-          <%= activity.name %>
+-        </div>
+-      <% end %>
+-    <% end %>
+-  </div>
+-</div>
+-
+
+
+
+diff --git a/app/views/activities/new.html.erb b/app/views/activities/new.html.erb
+index 42c0af6..80a908a 100644
+--- a/app/views/activities/new.html.erb
++++ b/app/views/activities/new.html.erb
+@@ -6,7 +6,7 @@
+       </div>
+       <div class="col-md-6 contents col-sign">
+         <div class="row justify-content-center">
+-          <div class="col-md-8 white-box">
++          <div class="col-md-8 white-box margin-top-50">
+             <div class="mb-4">
+               <h2>Créer une activité</h2>
+               <%= render "form", activity: @activity %>
+
+
+
+diff --git a/app/views/activities/show.html.erb b/app/views/activities/show.html.erb
+index 117f9f7..894d784 100644
+--- a/app/views/activities/show.html.erb
++++ b/app/views/activities/show.html.erb
+@@ -1,79 +1,90 @@
+ <div class="activity">
+-  <div class="activity-name text-center p-4">
++  <div class="activity-name text-center pt-3">
+     <h1><%= @activity.name %></h1>
+   </div>
+-  <div class="activity-labels d-flex justify-content-center">
+-    <div class="activity-label mx-2">
+-      <label title="Amusant">
+-        <%= cl_image_tag("funny.svg", class: "label-easy") %>
+-      </label>
+-    </div>
+-    <div class="activity-label mx-2">
+-      <label title="Recommandé">
+-        <%= cl_image_tag("forall_xnas3p.svg", class: "label-easy") %>
+-      </label>
+-    </div>
+-    <div class="activity-label mx-2">
+-      <label title="En intérieur">
+-        <%= cl_image_tag("indoor_jb5nw7.svg", class: "label-easy") %>
+-      </label>
+-    </div>
+-    <div class="activity-label mx-2">
+-      <label title="Bien-être">
+-        <%= cl_image_tag("bienetre_gfzf5h.svg", class: "label-medium") %>
+-      </label>
+-    </div>
+-    <div class="activity-label mx-2">
+-      <label title="Formation">
+-        <%= cl_image_tag("formation_indylg.svg", class: "label-medium") %>
+-      </label>
+-    </div>
+-    <div class="activity-label mx-2">
+-      <label title="Activité physique">
+-        <%= cl_image_tag("healthy_1_fezu7m.svg", class: "label-hard") %>
+-      </label>
+-    </div>
++  <div class="activity-location text-center pb-3">
++    <h3><%= @activity.street %> à <%= @activity.city %></h3>
+   </div>
+-  <div class="row d-flex justify-content-center">
+-    <div class="white-box col-md-6 mx-4">
+-      <div class="activity-image mt-2">
+-        <%= cl_image_tag(@activity.photo.key, width: 400, height: 300, crop: :fill, class: "img-fluid") %>
+-      </div>
+-      <div class="activity-desc pt-2">
+-        <p class="text-small"><%= @activity.description %></p>
+-      </div>
+-      <div class="activity-user text-center">
+-        <%= cl_image_tag(@activity.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
+-        <h2><%= @activity.user.nickname %></h2>
+-        <% if (current_user == @activity.user) %>
+-        <%# Add supprimer %>
+-          <%= link_to "Modifier", edit_activity_path(@activity), class: "button-outline-green" %>
+-          <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-outline-green" %>
+-        <% else %>
+-          <%= link_to "Voir profil", "/", class: "button-outline-green" %>
+-          <%= link_to "Voir activités", "/", class: "button-outline-green" %>
+-        <% end %>
++  
++  <div class="d-flex flex-wrap flex-md-wrap flex-lg-nowrap mx-2 ">
++    <div class="white-box flex-grow-1 mx-2">
++      
++      <div class="row text-center m-3">
++        
++        <div class="activity-desc col-md-6 text-left mb-4">
++          <h3 class="text-center">Description</h3>
++          <p class="text-justify"><%= @activity.description %></p>
++
++        </div>
++
++        <div class="activity-image col-md-6 mb-4">
++          <%= cl_image_tag(@activity.photo.key, transformation:[{quality: :auto, fetch_format: :auto, height: 300, width: :auto, radius: 10, crop: :fill}], class: "img-fluid") %>
++        </div>
++
++        <div class="col-md-6 text-center align-items-center">
++          
++          <div class="activity-user mb-4">
++            <h3 class="text-center">Personne de contact</h3>
++            <%= cl_image_tag(@activity.user.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face}], class: "avatar-large") %>
++            <h4><%= @activity.user.nickname %></h4>
++
++            <div class="d-flex justify-content-center flex-columns">
++              <% if (current_user == @activity.user) %>
++                <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green" %>
++                <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple" %>
++              <% else %>
++                <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
++                <%= link_to activities_path(user: @activity.user) do %>
++                  <button class="btn button-full-green my-0 mx-1">Voir activités</button>
++                <% end %>
++              <% end %>
++            </div>
++          </div>
++
++          <div class="activity-group mb-4"> 
++            <% if user_signed_in? %>
++              <h3 class="text-center">Groupe de discussion</h3>
++              <% if @activity.is_member_of_activity_group?(current_user) %>
++                <%= link_to "Rejoindre", group_path(@activity.group), class: "btn button-full-green my-0 mx-1" %>
++              <% else %>
++                <%= link_to "Rejoindre", group_memberships_path(@activity.group), method: :post , class: "btn button-full-green my-0 mx-1" %>
++              <% end %>
++            <% else %>
++              <%= link_to "Se connecter", new_user_session_path, class: "btn button-full-green my-0 mx-1" %>
++            <% end %>
++          </div>
++        </div>
++          
++
++        <div class="activity-labels col-md-6 d-flex flex-column mb-4">
++          
++          <h3 class="text-center">Caractéristiques</h3>
++          <div class="labels">
++            <ul class="label" style="margin-left: 25%">
++              <% @activity.labels.each do |label| %>
++                <li class="d-flex justify-content-start align-items-center mb-2">
++                  <i class="<%= label.icon %> w-25" style="color: #00897B; font-size: 32px;"></i>
++                  <p style="margin: 0;"><%= label.name %></p>
++                </li>
++              <% end %>  
++            </ul>
++          </div>
++
++        </div>
++        
+       </div>
+-    </div>
++    </div>  
+ 
+-    <div class="white-box col-md-4 mx-4">
+-      <h2>Prochaines dates</h2>
+-        <% if current_user == @activity.user %>
+-          <%= render partial: "events/form", locals: { activity: @activity } %>
+-        <% end %>
++    <div class="white-box flex-md-fill mx-2" style="min-width: 400px;">
++      <h2 class="text-center">Prochaines dates</h2>
++      <% if current_user == @activity.user %>
++        <%= render partial: "events/form", locals: { activity: @activity } %>
++      <% end %>
+       <ul>
+         <% @activity.events.future_events.each do |event| %>
+           <%= render partial: "shared/event_card", locals: { event: event, booking: @booking } %>
+         <% end %>
+       </ul>
+     </div>
+-    <div class="white-box col-md-12">
+-      <h2>Conversations à propos de cette activité</h2>
+-      <ul>
+-
+-      </ul>
+-    </div>
+   </div>
+-
+-
+-
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/bookings/index.html.erb b/app/views/bookings/index.html.erb
+new file mode 100644
+index 0000000..33e7793
+--- /dev/null
++++ b/app/views/bookings/index.html.erb
+@@ -0,0 +1,14 @@
++<div class="activity-name text-center pt-3">
++  <h1>Mes réservations</h1>
++</div>
++
++<% @bookings_per_activity.transform_values.each do |activity| %>
++  <%= render partial: "shared/activity_card", locals: { activity: activity.first.activity } %>
++  <ul class="container p-4">
++    <% activity.each do |booking| %>
++      <li>
++        <%= render partial: "shared/event_card", locals: { event: booking.event } %>
++      </li>
++    <% end %>
++  </ul>
++<% end %>
+
+
+
+diff --git a/app/views/categories/index.html.erb b/app/views/categories/index.html.erb
+index 76d5709..3e7ab60 100644
+--- a/app/views/categories/index.html.erb
++++ b/app/views/categories/index.html.erb
+@@ -1,15 +1,33 @@
+-<div class="container my-4 text-center">
+-  <h1>Toutes les catégories</h1>
+-  <div class="category-index my-4">
+-    <% @categories.each do |category| %>
+-      <%= link_to category_path(category) do%>
+-        <div class="category-index-card">
+-          <%= cl_image_tag(category.photo.key, transformation:[{quality: :auto, fetch_format: :auto, width: 250, height: 150, crop: :scale}]) %>
+-          <h3><%= category.name %></h3>
+-          <%# , transformation: [ { quality: :auto, fetch_format: :auto}, {width: 550, height: 150}, {gravity: "face"} ]> %>
+-        </div>
+-      <% end %>
+-    <% end %>
++<div class="row gx-5 m-3">
++  <div class="col p-0 m-3">
++    <div class="white-box text-center">
++      <h2>Toutes les catégories</h2>
++      <div class="category-index my-4">
++        <% @categories.each do |category| %>
++          <%= link_to activities_path(category_id: category.id) do %>
++            <div class="category-index-card">
++              <%= cl_image_tag(category.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 250, height: 150, crop: :scale }]) %>
++              <h3><%= category.name %></h3>
++              <% # , transformation: [ { quality: :auto, fetch_format: :auto}, {width: 550, height: 150}, {gravity: "face"} ]> %>
++            </div>
++          <% end %>
++        <% end %>
++      </div>
++    </div>
+   </div>
+-</div>
+-
++  <div class="col p-0 m-3">
++    <div class=" white-box text-center col">
++      <h2>Toutes les Villes</h2>
++      <div class="category-index my-4">
++        <% @cities.each do |city| %>
++          <%= link_to activities_path(city: city) do %>
++            <div class="category-index-card">
++              <img src= <%= "https://source.unsplash.com/250x150/?switzerland&city&#{city}" %> />
++              <h3><%= city.capitalize %></h3>
++            </div>
++          <% end %>
++        <% end %>
++      </div>
++    </div>
++  </div>
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/devise/registrations/edit.html.erb b/app/views/devise/registrations/edit.html.erb
+index 24dde38..df4a79c 100644
+--- a/app/views/devise/registrations/edit.html.erb
++++ b/app/views/devise/registrations/edit.html.erb
+@@ -12,7 +12,7 @@
+       </div>
+       <div class="col-md-6 contents col-sign">
+         <div class="row justify-content-center">
+-          <div class="col-md-8 white-box">
++          <div class="col-md-8 white-box margin-top-50">
+             <div class="mb-4">
+               <h2>Modifier mon profil</h2>
+ 
+@@ -54,7 +54,7 @@
+       </div>
+     </div>
+     <div class="row justify-content-center">
+-      <div class="col-md-8 white-box">
++      <div class="col-md-8 white-box margin-top-50">
+         <div class="mb-4">
+           <h3>Supprimer mon compte</h3>
+ 
+
+
+
+diff --git a/app/views/devise/registrations/new.html.erb b/app/views/devise/registrations/new.html.erb
+index deb7e31..94df574 100644
+--- a/app/views/devise/registrations/new.html.erb
++++ b/app/views/devise/registrations/new.html.erb
+@@ -6,7 +6,7 @@
+       </div>
+       <div class="col-md-6 contents col-sign">
+         <div class="row justify-content-center">
+-          <div class="col-md-8 white-box">
++          <div class="col-md-8 white-box margin-top-50">
+             <div class="mb-4">
+               <h2>Créer un compte</h2>
+ 
+
+
+
+diff --git a/app/views/devise/sessions/new.html.erb b/app/views/devise/sessions/new.html.erb
+index 6b31432..b241f51 100644
+--- a/app/views/devise/sessions/new.html.erb
++++ b/app/views/devise/sessions/new.html.erb
+@@ -2,12 +2,12 @@
+   <div class="container container-sign">
+     <div class="row row-sign">
+       <div class="col-md-6 order-md-2 col-sign d-flex align-items-center">
+-        <%= cl_image_tag("undraw_suburbs_wk7ulf", class: 'img-fluid') %>
++        <%= cl_image_tag("undraw_suburbs_wk7ulf", class: "img-fluid") %>
+       </div>
+ 
+       <div class="col-md-6 contents col-sign">
+         <div class="row justify-content-center">
+-          <div class="col-md-8 white-box">
++          <div class="col-md-8 white-box margin-top-50">
+             <div class="mb-4">
+               <h3>Connexion <strong>Openup Elixir</strong></h3>
+              </div>
+@@ -15,12 +15,12 @@
+                 <div class="form-group">
+                   <%= f.input :email,
+                               label: "Votre adresse email",
+-                              required: false,
++                              required: true,
+                               autofocus: true,
+                               input_html: { autocomplete: "email" } %>
+                   <%= f.input :password,
+                               label: "Votre mot de passe",
+-                              required: false,
++                              required: true,
+                               input_html: { autocomplete: "current-password" } %>
+                   <%= f.input :remember_me,
+                               label: "Se souvenir de moi",
+
+
+
+diff --git a/app/views/events/_form.html.erb b/app/views/events/_form.html.erb
+index 0b6f0f3..be196dc 100644
+--- a/app/views/events/_form.html.erb
++++ b/app/views/events/_form.html.erb
+@@ -5,7 +5,7 @@
+ </p>
+ 
+ <div class="collapse" id="collapseExample">
+-  <div class="card card-body mb-4">
++  <div class="card card-body p-3 mb-4">
+ 
+     <div>
+       <form action="/events" method="post">
+
+
+
+diff --git a/app/views/groups/_chat_content.html.erb b/app/views/groups/_chat_content.html.erb
+index a01acf3..abf0fdb 100644
+--- a/app/views/groups/_chat_content.html.erb
++++ b/app/views/groups/_chat_content.html.erb
+@@ -1,38 +1,48 @@
+-
+-  <div class="card-header">
+-    <div class="bd-highlight">
+-      <div class="img_cont">
+-        <% if group.group? %>
+-          <%= cl_image_tag(group.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
+-        <% else %>
+-          <%= cl_image_tag(group.memberships.where.not( user: current_user).first.user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :center, class: "avatar-large") %>
+-
+-        <% end %>
+-        <span class="online_icon"></span>
+-      </div>
+-      <div class="group_info">
+-        <% if group.group? %>
+-          <h2><%= group.name %></h2>
+-        <% else %>
+-          <h2><%= group.memberships.where.not( user: current_user).first.user.nickname %></h2>
+-        <% end %>
+-        <% group.users.each do |user| %>
+-          <span class="button-group-users"><%= user.nickname %></span>
+-        <% end %>
+-      </div>
++<% @current_user_ws = @current_user %>
++<div class="card-header border-bottom">
++  <div class="bd-highlight">
++    <div class="img_cont">
++      <% if group.group? %>
++        <%= cl_image_tag(group.activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large") %>
++        <%= link_to "Voir l'activité", activity_path(@group.activity), class: "button-outline-green" %>
++        <%= link_to "Quitter", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
++      <% else %>
++        <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
++      <% end %>
++      <span class="online_icon"></span>
+     </div>
+-  </div>
+-    <div class="card-body">
+-      <div id="messages" data-group-id="<%= group.id %>">
+-        <% messages.each do |message| %>
+-        <%= render "messages/message", message: message %>
++    <div class="group_info">
++      <% if group.group? %>
++        <h2><%= group.name %></h2>
++      <% else %>
++        <h2><%= group.memberships.where.not(user: current_user).first.user.nickname %></h2>
++      <% end %>
++      <% group.users.each do |user| %>
++        <span class="button-group-users"><%= user.nickname %></span>
+       <% end %>
+     </div>
+   </div>
+-  <div class="card-footer">
+-    <%= simple_form_for [ group, message ], remote: true do |f| %>
+-      <%= f.input :content, label: false, placeholder: "#{@current_user.first_name}, écrivez votre message ici" %>
+-      <%= f.button :submit, "Envoyer", class: "btn btn-primary btn-block" %>
+-    <% end %>
++</div>
++  <div class="card-body" id="scroll-from-bottom">
++    <div id="messages" data-group-id="<%= group.id %>">
++      <% messages_per_date.each do |date, messages| %>
++        <div class="text-center" style="position:-webkit-sticky;position:sticky;top:10px;">
++          <% if date >= Date.yesterday %>
++            <% date = date.today? ? "Aujourd'hui" : "Hier" %>
++            <button class="button-outline-green w-25" style="max-width:250px;min-width: 200px"><%= date %></button>
++          <% else %>
++            <button class="button-outline-green w-25" style="max-width:250px;min-width: 200px"><%= l date, format: "%a %d %B" %></button>
++          <% end %>
++        </div>
++        <% messages.each do |message| %>
++          <%= render "messages/message", message: message %>
++        <% end %>
++      <% end %>
+   </div>
+-
++</div>
++<div class="card-footer">
++  <%= simple_form_for [group, message], remote: true do |f| %>
++    <%= f.input :content, autofocus: true, label: false, placeholder: "#{@current_user.first_name}, écrivez votre message ici" %>
++    <%= f.button :submit, "Envoyer", class: "btn btn-primary btn-block" %>
++  <% end %>
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/groups/_chat_menu.html.erb b/app/views/groups/_chat_menu.html.erb
+new file mode 100644
+index 0000000..190e1f5
+--- /dev/null
++++ b/app/views/groups/_chat_menu.html.erb
+@@ -0,0 +1,39 @@
++<div class="h-50 d-flex flex-column position-relative">
++  <i class="fas fa-bars position-absolute text-medium text-color-primary" id="toggle-chat-menu" style="top:0;right:0;"></i>
++  <h3>Amis</h3>
++  <div class="scrollable flex-grow-1">
++    <% if @friendship_groups_unread.empty? && @friendship_groups_read.empty? %>
++      <p>Vous n'avez pas encore d'amis. Cliquez sur la loupe à gauche pour rechercher vos amis</p>
++    <% else %>
++      <ul>
++        <% @friendship_groups_unread.each do |group| %>
++          <%= render partial: "chat_menu_friendship", locals: { group: group } %>
++        <% end %>
++        <% @friendship_groups_read.each do |group| %>
++          <%= render partial: "chat_menu_friendship", locals: { group: group } %>
++        <% end %>
++      </ul>
++    <% end %>
++  </div>
++</div>
++
++<div class="h-50 d-flex flex-column">
++  <h3>Groupes</h3>
++  <div class="scrollable flex-grow-1">
++    <% if @activity_groups_unread.empty? && @activity_groups_read.empty? %>
++      <p>Vous ne participez pas encore a des groupes de discussion</p>
++      <span>
++        <%= link_to "Cliquez ici pour découvrir des activités et pouvoir participer aux groupes", categories_path %>
++      </span>
++    <% else %>
++      <ul>
++        <% @activity_groups_unread.each do |group| %>
++          <%= render partial: "chat_menu_group", locals: { group: group } %>
++        <% end %>
++        <% @activity_groups_read.each do |group| %>
++          <%= render partial: "chat_menu_group", locals: { group: group } %>
++        <% end %>
++      </ul>
++    <% end %>
++  </div>
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/groups/_chat_menu_friendship.html.erb b/app/views/groups/_chat_menu_friendship.html.erb
+new file mode 100644
+index 0000000..1c67a1e
+--- /dev/null
++++ b/app/views/groups/_chat_menu_friendship.html.erb
+@@ -0,0 +1,15 @@
++<li>
++  <%= link_to group_path(group), class: "no-text-decoration" do %>
++    <div class="mt-2 position-relative d-flex align-items-center">
++      <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large mr-3") %>
++      <% if group.unread?(current_user) %>
++        <div class="d-flex justify-content-center align-items-center px-1 m-0 rounded position-absolute" style="background-color:#F6FBFB;top:0px;left:41px;">
++          <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
++        </div>
++      <% end %>
++      <div class="flex-grow-1">
++        <span><%= "#{group.memberships.where.not(user: current_user).first.user.nickname}" %></span>
++      </div>
++    </div>
++  <% end %>
++</li>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/groups/_chat_menu_group.html.erb b/app/views/groups/_chat_menu_group.html.erb
+new file mode 100644
+index 0000000..f512479
+--- /dev/null
++++ b/app/views/groups/_chat_menu_group.html.erb
+@@ -0,0 +1,15 @@
++<li>
++  <%= link_to group_path(group), class: "no-text-decoration" do %>
++    <div class="mt-2 position-relative d-flex align-items-center">
++      <%= cl_image_tag(group.activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150 }], class: "avatar-large mr-3") %>
++      <% if group.unread?(current_user) %>
++        <div class="d-flex justify-content-center align-items-center px-1 m-0 rounded position-absolute" style="background-color:#F6FBFB;top:0px;left:41px;">
++          <i class="fas fa-envelope text-xsmall text-color-secondary"></i>
++        </div>
++      <% end %>
++      <div class="flex-grow-1">
++        <span><%= "#{group.name}" %></span>
++      </div>
++    </div>
++  <% end %>
++</li>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/groups/_menu_chat.html.erb b/app/views/groups/_menu_chat.html.erb
+deleted file mode 100644
+index ee14586..0000000
+--- a/app/views/groups/_menu_chat.html.erb
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<div class="white-box col-md-4 mx-4">
+-  <h3>Mes conversations</h3>
+-  <% @groups.each do |group| %>
+-     <ul>
+-      <li>
+-        <% if group.group? %>
+-          <%= link_to cl_image_tag(group.photo.key, width: 100, height: 100, class: "avatar-large"), group_path(group) %>
+-          <%= link_to "#{group.name}", group_path(group) %>
+-        <% end %>
+-      </li>
+-    </ul>
+-    <ul>
+-      <li>
+-        <% unless group.group? %>
+-          <%= link_to "#{group.memberships.where.not( user: current_user).first.user.nickname }", group_path(group) %>
+-        <% end %>
+-      </li>
+-    </ul>
+-  <% end %>
+-</div>
+
+
+
+diff --git a/app/views/groups/index.html.erb b/app/views/groups/index.html.erb
+index a435f74..6e70f27 100644
+--- a/app/views/groups/index.html.erb
++++ b/app/views/groups/index.html.erb
+@@ -1,8 +1,10 @@
+-<div class="container">
+-  <div class="row justify-content-center">
+-    <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+-    <div class="white-box col-md-6">
+-      <%= cl_image_tag("undraw_Messaging_re_pgx8_1_ythxuy", class: 'img-fluid') %>
+-    </div>
++<div class="one-box-screen d-flex pl-0">
++  <div class=" box-max-height" id="chat-menu">
++    <%= render "chat_menu", group: @group, messages: @messages, message: @message %>
++  </div>
++  <div class="white-box-max-height flex-grow-1">
++    <%= cl_image_tag("undraw_Messaging_re_pgx8_1_ythxuy", class: "img-fluid") %>
+   </div>
+ </div>
++
++
+
+
+
+diff --git a/app/views/groups/show.html.erb b/app/views/groups/show.html.erb
+index b1697bc..8d4b61c 100644
+--- a/app/views/groups/show.html.erb
++++ b/app/views/groups/show.html.erb
+@@ -1,9 +1,8 @@
+-<div class="container">
+-  <div class="row justify-content-center">
+-    <%= render "menu_chat", group: @group, messages: @messages, message: @message %>
+-    <div class="white-box col-md-6">
+-      <%= render "chat_content", group: @group, messages: @messages, message: @message %>
+-    </div>
+-  </div>
+-</div>
+-
++<div class="one-box-screen d-flex pl-0">
++   <div class=" box-max-height" id="chat-menu">
++     <%= render "chat_menu" %>
++   </div>
++   <div class="white-box-max-height flex-grow-1">
++     <%= render "chat_content", group: @group, messages_per_date: @messages_per_date, message: @message %>
++   </div>
++ </div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/messages/_message.html.erb b/app/views/messages/_message.html.erb
+index 83ccaac..935e6c9 100644
+--- a/app/views/messages/_message.html.erb
++++ b/app/views/messages/_message.html.erb
+@@ -1,9 +1,16 @@
+-<div class="d-flex mb-4">
+-  <div class="message-container" id="message-<%= message.id %>">
+-    <i class="author">
+-      <span><%= message.user.nickname %></span>
+-      <small><%= message.created_at.strftime("%d.%m.%Y à %Hh%M") %></small>
+-    </i>
+-    <p><%= message.content %></p>
++<% class_add = message.user == @current_user_ws ? "self" : "other" %>
++
++<div class="message message-<%= class_add %>">
++  <div class="d-flex align-items-end message-block" id="message-<%= message.id %>">
++    <div class="chat-avatar-container">
++      <%= cl_image_tag(message.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large chat-avatar") %>
++    </div>
++    <div class="message-content">
++      <p class="p-0 m-0"><%= message.content %></p>
++    </div>
+   </div>
+-</div>
++
++  <div class="created_at">
++    <small class="text-xxsmall">Il y a <%= time_ago_in_words(message.created_at) %></small>
++  </div>
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/shared/_activity_card.html.erb b/app/views/shared/_activity_card.html.erb
+index 96bc197..b7ee917 100644
+--- a/app/views/shared/_activity_card.html.erb
++++ b/app/views/shared/_activity_card.html.erb
+@@ -1,9 +1,17 @@
+ <li class="user-card">
+   <div class="photo avatar-large">
+-    <%= cl_image_tag(activity.photo.key,  width: 150, height: 150, class: "avatar-large") %>
++    <%= cl_image_tag(activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
+   </div>
+   <div class="name text-medium d-flex align-items-center"><%= activity.name %></div>
+   <%= link_to activity_path(activity) do %>
+-    <button class="btn btn-primary btn-lg">Voir détails</button>
++    <button class="btn button-outline-green my-0 mx-1">Voir détails</button>
++  <% end %>
++  <% if current_user == activity.user %>
++    <%= link_to edit_activity_path(activity) do %>
++      <button class="btn button-full-green my-0 mx-1">Modifier</button>
++    <% end %>
++    <%= link_to activity_path(activity), method: "delete", data: { confirm: "Êtes-vous sûr(e) ?" } do %>
++      <button class="btn button-full-purple my-0 mx-1">Supprimer</button>
++    <% end %>
+   <% end %>
+ </li>
+
+
+
+diff --git a/app/views/shared/_activity_menu.html.erb b/app/views/shared/_activity_menu.html.erb
+deleted file mode 100644
+index 005c840..0000000
+--- a/app/views/shared/_activity_menu.html.erb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-<li class="user-card">
+-  <div class="photo avatar-large">
+-    <%= cl_image_tag(activity.photo.key,  width: 150, height: 150, class: "avatar-large") %>
+-  </div>
+-  <div class="name text-medium d-flex align-items-center"><%= activity.name %></div>
+-  <%# Add test if activity.user = current_user and merge with activity_card/menu %>
+-  <%= link_to edit_activity_path(activity) do %>
+-    <button class="btn btn-primary btn-lg">Modifier</button>
+-  <% end %>
+-  <%= link_to activity_path(activity), method: "delete", data: { confirm: "Êtes-vous sûr(e) ?" } do %>
+-    <button class="btn btn-secondary btn-lg">Supprimer</button>
+-  <% end %>
+-</li>
+
+
+
+diff --git a/app/views/shared/_event_card.html.erb b/app/views/shared/_event_card.html.erb
+index 93d4012..73c9e70 100644
+--- a/app/views/shared/_event_card.html.erb
++++ b/app/views/shared/_event_card.html.erb
+@@ -4,23 +4,25 @@
+     <% booking_confirmed = !bookingDB.nil? && bookingDB.confirmed? || event.activity.user == current_user ? "active" : "" %>
+     <% booking = bookingDB unless bookingDB.nil? %>
+ 
+-    <div class="d-flex">
++    <div class="d-flex mb-3 p-0">
+     
+-        <div class="flex-grow-1">
+-            <%= form_for booking, remote: true do |f| %>
++        <div class="flex-grow-1 m-0 p-0 mr-2">
++            <%= form_for booking, html: { class: "h-100" } do |f| %>
+                 <% if booking.user.nil? %>
+                     <%= f.hidden_field :booking, value: booking.id %>
+                 <% end %>
+                 <%= f.hidden_field :event, value: event.id %>
+-                <%= button_tag(type: 'submit', class: "text-center button-outline-green w-100 #{booking_confirmed}") do %>
+-                    <div class="d-flex justify-content-between align-items-center">
++                <%= button_tag(type: "submit", class: "text-center button-outline-green w-100 h-100 m-0 #{booking_confirmed}") do %>
++                    <div class="d-flex justify-content-left align-items-center">
++                        <span><i class="far fa-calendar-check pl-1 pr-3"></i></span>
+                         <div class="text-left">
+                             <% unless booking_confirmed.blank? %>
+                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
+                             <% end %>
+                             <% if event.end_time.day == event.start_time.day %>
+-                                <% duration = event.end_time - event.start_time %>
+-                                <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).strftime("%Hh%M") %></span>
++                                <% Time.zone = 0 %>
++                                <% duration = (event.end_time - event.start_time) %>
++                                <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).in_time_zone.strftime("%Hh%M") %></span>
+                                 <div>
+                                     <span class="text-bold"><%= event.start_time.strftime("Date : %d.%m.%Y") %></span>
+                                 </div>
+@@ -38,27 +40,30 @@
+                                 </div>
+                             <% end %>
+                         </div>
+-                        <span><i class="far fa-calendar-check"></i></span>
+                     </div>
+                 <% end %>
+             <% end %>
+         </div>
+ 
+ 
+-        <button class="ml-2 d-flex justify-content-center align-items-center button-outline-green" type="button" data-toggle="collapse" data-target="#participant-event-<%= event.id %>" aria-expanded="false" aria-controls="participant-event-<%= event.id %>">
+-            <i class="fas fa-users text-medium"></i>
++        <button class="m-0 d-flex flex-column justify-content-center align-items-center button-outline-green" type="button" data-toggle="collapse" data-target="#participant-event-<%= event.id %>" aria-expanded="false" aria-controls="participant-event-<%= event.id %>">
++            <% participants = event.bookings.all_confirmed %>
++            <% include_organistor = participants.include?(event.activity.user) %>
++            <% participants_number = include_organistor ? participants.count : participants.count + 1 %>
++            <i class="fas fa-child text-medium py-1"></i>
++            <p class="m-0 p-0 text-small" style="line-height:1.2;width:2ch;font-family: 'Roboto Mono', sans-serif !important;"><%= participants_number %></p>
+         </button>
+ 
+     </div>
+ </li>
+ 
+ <div class="collapse" id="participant-event-<%= event.id %>">
+-    <div class="card card-body mb-4">
++    <div class="card card-body p-3 pb-0 mb-4">
+         <h4>Participants</h4>
+         <ul>
+             <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
+             <% if event.bookings.all_confirmed.empty? %>
+-                <p>Il n'y a pas encore de participants</p>
++                <p class="text-xsmall">Il n'y a pas encore de participants</p>
+             <% else %>
+                 <% event.bookings.all_confirmed.each do |booking| %>
+                         <% unless booking.user == event.activity.user %>
+@@ -80,5 +85,4 @@
+             <% end %>
+         </ul>
+     </div>
+-</div>
+-
++</div>
+\ No newline at end of file
+
+
+
+diff --git a/app/views/shared/_navbar.html.erb b/app/views/shared/_navbar.html.erb
+index 2810005..547768f 100644
+--- a/app/views/shared/_navbar.html.erb
++++ b/app/views/shared/_navbar.html.erb
+@@ -1,6 +1,10 @@
++<!-- ================================================================
++  Navbar with icons
++================================================================= -->
+ <div class="navbar-left">
+   <div class="nav-links">
+     <ul>
++
+       <li class="nav-item">
+         <div class="nav-link" id="brand-icon">
+           <%= link_to root_path do %>
+@@ -8,14 +12,17 @@
+           <% end %>
+         </div>
+       </li>
++
+       <li class="nav-item">
+-        <div class="nav-link side-button" id="profile-button">
+-          <i class="fas fa-user-circle"></i>
+-        </div>
+-      </li>
+-      <li class="nav-item">
+-        <div class="nav-link side-button" id="social-button">
+-          <i class="fas fa-users"></i>
++        <div class="nav-link side-button position-relative" id="chat-button">
++          <%= link_to "/groups" do %>
++            <i class="fas fa-envelope"></i>
++            <% unless @notification_unread_message.zero? %>
++              <h5 class="position-absolute" style="top:0;left:60px;">
++                <span class="badge badge-danger"><%= @notification_unread_message %></span>
++              </h5>
++            <% end %>
++          <% end %>
+         </div>
+       </li>
+ 
+@@ -27,7 +34,7 @@
+       <li class="nav-item-main d-none" id="open-search-bar">
+         <%= form_tag "/pages/search", method: :get, class: "form-inline" do %>
+           <div class="form-search">
+-            <%= text_field_tag :query, nil, placeholder: "Ecrivez votre recherche", autocomplete: "off", class: "search-input text-small" %>
++            <%= text_field_tag :query, nil, placeholder: "Chercher un ami ou une activité", autocomplete: "off", class: "search-input text-small" %>
+             <%= button_tag type: "submit", class: "nav-link search", id: "submit-button-search-form" do %>
+               <i class="fas fa-search" aria-hidden="true"></i>
+             <% end %>
+@@ -40,61 +47,25 @@
+           <i class="fas fa-hiking"></i>
+         </div>
+       </li>
++
+       <li class="nav-item">
+-        <div class="nav-link side-button" id="chat-button">
+-          <i class="fas fa-envelope"></i>
+-          <!--
+-            if is active
+-            <i class="fas fa-envelope-open-text"></i>
+-          -->
++        <div class="nav-link side-button position-relative" id="profile-button">
++          <i class="fas fa-user-circle"></i>
++          <% unless @notification_invitations.empty? %>
++            <h5 class="position-absolute" style="top:0;left:60px;">
++              <span class="badge badge-danger"><%= @notification_invitations.count %></span>
++            </h5>
++          <% end %>
+         </div>
+       </li>
+-    </ul>
+-  </div>
+-</div>
+ 
+-<div class="navbar-menu text-center" id="profile-menu">
+-  <div class="wrapper">
+-    <i class="close-button far fa-times-circle"></i>
+-    <div class="inside-menu">
+-      <div class="title">
+-        <h2>Mon profil</h2>
+-      </div>
+-      <% if user_signed_in? %>
+-        <ul class="nav-links" >
+-          <li><%# link_to "Mon profil", "#", class: "button-outline-green link-green w-100" %></li>
+-          <li><%# link_to "Mes activités", "#", class: "button-outline-green link-green w-100" %></li>
+-          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
+-          <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100" %></li>
+-        </ul>
+-       <% else %>
+-        <ul class="nav-links">
+-          <li><%= link_to "Se connecter", new_user_session_path, class: "button-outline-green w-100" %></li>
+-          <li><%= link_to "S'inscrire", new_user_registration_path, class: "button-outline-green w-100" %></li>
+-        </ul>
+-      <% end %>
+-    </div>
+-  </div>
+-</div>
+-
+-<div class="navbar-menu text-center" id="social-menu">
+-  <div class="wrapper">
+-    <i class="close-button far fa-times-circle"></i>
+-    <div class="inside-menu">
+-      <div class="title">
+-        <h2>Social</h2>
+-      </div>
+-      <ul class="nav-links">
+-        <li><%= link_to "Messagerie", "/groups", class: "button-outline-green w-100" %></li>
+-        <li><%= link_to "Créer un groupe (prochainement)", "#", class: "button-outline-green w-100" %></li>
+-        <li><%= link_to "Mes amis/invitations", friendships_path, class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-      </ul>
+-    </div>
++    </ul>
+   </div>
+ </div>
+ 
++<!-- ================================================================
++  Menues
++================================================================= -->
+ <div class="navbar-menu text-center" id="activities-menu">
+   <div class="wrapper">
+     <i class="close-button far fa-times-circle"></i>
+@@ -104,28 +75,51 @@
+       </div>
+       <ul class="nav-links">
+         <li><%= link_to "Créer une activité", new_activity_path, class: "button-outline-green w-100" %></li>
+-        <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
+-        <li><%= link_to "Créer un évènement (prochainement)", '#', class: "button-outline-green w-100" %></li>
+-        <li><%= link_to "Gérer mes évènements (prochainement)", '#', class: "button-outline-green w-100" %></li>
++        <% if current_user %>
++          <li><%= link_to "Gérer mes activités", activities_path, class: "button-outline-green w-100" %></li>
++        <% end %>
++        <li><%= link_to "Toutes les activités", categories_path, class: "button-outline-green w-100" %></li>
+       </ul>
++      <% if current_user %>
++        <div class="title">
++          <h2>Réservations</h2>
++        </div>
++        <ul>
++          <li><%= link_to "Mes réservations", bookings_path, class: "button-outline-green w-100" %></li>
++        </ul>
++      <% end %>
+     </div>
+   </div>
+ </div>
+ 
+-<div class="navbar-menu text-center" id="chat-menu">
++<div class="navbar-menu text-center" id="profile-menu">
+   <div class="wrapper">
+     <i class="close-button far fa-times-circle"></i>
+     <div class="inside-menu">
+       <div class="title">
+-        <h2>A voir</h2>
++        <h2>Mon profil</h2>
+       </div>
+-      <ul class="nav-links">
+-        <li><%= link_to "links", "#", class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-        <li><%# link_to "link", "#", class: "button-outline-green w-100" %></li>
+-      </ul>
++      <% if user_signed_in? %>
++        <ul class="nav-links" >
++          <li>
++            <%= link_to friendships_path, class: "#{@notification_invitations.empty? ? "button-outline-green" : "button-full-green"} w-100 position-relative" do %>
++              <p class="m-0 p-0">Mes amis</p>
++              <% unless @notification_invitations.empty? %>
++                <h5 class="notification-badge">
++                  <span class="badge badge-danger"><%= pluralize(@notification_invitations.count, "invitation", plural: "invitations") %></span>
++                </h5>
++              <% end %>
++            <% end %>
++          </li>
++          <li><%= link_to "Modifier mon profil", edit_user_registration_path, class: "button-outline-green link-green w-100" %></li>
++          <li><%= link_to "Me déconnecter", destroy_user_session_path, method: "delete", class: "button-outline-green link-green w-100" %></li>
++        </ul>
++      <% else %>
++        <ul class="nav-links">
++          <li><%= link_to "Se connecter", new_user_session_path, class: "button-outline-green w-100" %></li>
++          <li><%= link_to "S'inscrire", new_user_registration_path, class: "button-outline-green w-100" %></li>
++        </ul>
++      <% end %>
+     </div>
+   </div>
+ </div>
+
+
+
+diff --git a/app/views/shared/_user_card.html.erb b/app/views/shared/_user_card.html.erb
+index 70d9f62..dd11682 100644
+--- a/app/views/shared/_user_card.html.erb
++++ b/app/views/shared/_user_card.html.erb
+@@ -1,49 +1,8 @@
+ <li class="user-card">
+   <div class="photo avatar-large">
+-    <%= cl_image_tag(user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
++    <%= cl_image_tag(user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
+   </div>
+ 
+   <div class="name text-medium d-flex align-items-center">@<%= user.nickname %></div>
+-
+-
+-    <% # Check if user has no relationship with current_user %>
+-    <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
+-      <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
+-        <%= f.hidden_field :friend, value: user.id %>
+-        <%= f.submit "Ajouter en ami", class: "btn btn-primary btn-lg" %>
+-      <% end %>
+-
+-    <% else %>
+-
+-      <% # Check if current_user is the requestor of the frienship %>
+-      <% friendship = user.friendships.include_current_user(current_user).first %>
+-
+-      <% if friendship.pending? %>
+-        <% if current_user == friendship.user %>
+-          <div class="btn btn-outline-primary btn-lg disabled">
+-            <%= friendship.status_fr %>
+-          </div>
+-
+-        <% else %>
+-          <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
+-            <button class="btn btn-danger btn-lg">Refuser</button>
+-          <% end %>
+-          <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
+-            <button class="btn btn-primary btn-lg">Accepter</button>
+-          <% end %>
+-        <% end %>
+-
+-      <% elsif friendship.rejected? %>
+-          <div class="btn btn-outline-primary btn-lg disabled">
+-            <%= friendship.status_fr %>
+-          </div>
+-
+-      <% elsif friendship.accepted? %>
+-          <div class="btn btn-outline-primary btn-lg disabled">
+-            <%= friendship.status_fr %>
+-          </div>
+-          <%= link_to "supprimer amitié", friendship_path(friendship), method: "delete", data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger btn-lg" %>
+-      <% end %>
+-
+-    <% end %>
++  <%= render partial: "shared/user_friendship_action", locals: { user: user } %>
+ </li>
+
+
+
+diff --git a/app/views/shared/_user_card_with_icon.html.erb b/app/views/shared/_user_card_with_icon.html.erb
+index f7f5b0a..5150ffe 100644
+--- a/app/views/shared/_user_card_with_icon.html.erb
++++ b/app/views/shared/_user_card_with_icon.html.erb
+@@ -1,17 +1,19 @@
+ <li class="user-card d-flex justify-content-between py-2 px-0">
+-  <div class="photo avatar-large">
++  <div class="photo avatar-large mr-2">
+     <%= cl_image_tag(user.photo.key, width: 150, height: 150, crop: :thumb, gravity: :face, class: "avatar-large") %>
+   </div>
+ 
+-  <div class="name text-small d-flex align-items-center ml-1">@<%= user.nickname %></div>
+-
++  <div class="name text-xsmall d-flex justify-content-center flex-column align-items-start ml-1">
++    <p class="my-0">@<%= user.nickname %></p>
++  </div>
+ 
+-    <% unless user == current_user %>
++  <% unless current_user == user %>
++    <% if user_signed_in? %>
+       <% # Check if user has no relationship with current_user %>
+       <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
+         <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
+           <%= f.hidden_field :friend, value: user.id %>
+-          <%= button_tag(type: 'submit', class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green") do %>
++          <%= button_tag(type: "submit", class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green") do %>
+             <i class="fas fa-user-plus text-small"></i>
+           <% end %>
+         <% end %>
+@@ -23,16 +25,17 @@
+ 
+         <% if friendship.pending? %>
+           <% if current_user == friendship.user %>
+-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
++            <%= link_to friendship_path(friendship), method: "delete", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green icon-user" do %>
+               <i class="fas fa-user-clock text-small"></i>
++              <i class="fas fa-user-times text-small"></i>
+             <% end %>
+ 
+           <% else %>
+-            <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
+-              <button class="btn btn-danger btn-lg">Refuser</button>
++            <%= link_to friendship_reject_path(friendship), method: "post", class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green", remote: true do %>
++              <i class="fas fa-user-times text-small"></i>
+             <% end %>
+-            <%= link_to friendship_accept_path(friendship), method: "post", remote: true do %>
+-              <button class="btn btn-primary btn-lg">Accepter</button>
++            <%= link_to friendship_accept_path(friendship), method: "post", class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green", remote: true do %>
++              <i class="fas fa-user-check text-small"></i>
+             <% end %>
+           <% end %>
+ 
+@@ -42,7 +45,7 @@
+             </div>
+ 
+         <% elsif friendship.accepted? %>
+-            <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
++            <%= link_to group_path(Group.find_by(friendship_id: friendship.id)), class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+               <i class="far fa-comments text-small"></i>
+             <% end %>
+             <%= link_to "#", remote: true, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
+@@ -50,5 +53,10 @@
+             <% end %>
+         <% end %>
+       <% end %>
++    <% else %>
++      <%= link_to new_user_session_path, class: "ml-1 mb-0 d-flex justify-content-center align-items-center button-outline-green" do %>
++        <i class="fas fa-user-plus text-small"></i>
++      <% end %>
+     <% end %>
++  <% end %>
+ </li>
+
+
+
+diff --git a/app/views/shared/_user_friendship_action.html.erb b/app/views/shared/_user_friendship_action.html.erb
+new file mode 100644
+index 0000000..b6981cf
+--- /dev/null
++++ b/app/views/shared/_user_friendship_action.html.erb
+@@ -0,0 +1,36 @@
++<% unless current_user == user %>
++  <% if user_signed_in? %>
++    <% if user.friendships.empty? || user.friendships.include_current_user(current_user).empty? %>
++      <%= simple_form_for Friendship.new, url: friendships_path, method: "post", remote: true do |f| %>
++        <%= f.hidden_field :friend, value: user.id %>
++        <%= f.submit "Ajouter en ami", class: "btn button-full-green mx-1" %>
++      <% end %>
++    <% else %>
++      <% # Check if current_user is the requestor of the frienship %>
++      <% friendship = user.friendships.include_current_user(current_user).first %>
++      <% if friendship.pending? %>
++        <% if current_user == friendship.user %>
++          <%= link_to friendship_path(friendship), method: "delete", remote: true do %>
++            <button class="btn button-outline-green mx-1 cancel-hover"><span><%= friendship.status_fr %></span></button>
++          <% end %>
++        <% else %>
++          <%= link_to friendship_reject_path(friendship), method: "post", remote: true do %>
++            <button class="btn button-full-purple mx-1">Refuser</button>
++          <% end %>
++          <%= link_to friendship_accept_path(friendship.id), method: "post", remote: true do %>
++            <button class="btn button-full-green mx-1">Accepter</button>
++          <% end %>
++        <% end %>
++      <% elsif friendship.rejected? %>
++          <div class="btn button-outline-green mx-1 disabled">
++            <%= friendship.status_fr %>
++          </div>
++      <% elsif friendship.accepted? %>
++        <%= link_to "Message", group_path(Group.find_by(friendship_id: friendship.id)), class: "btn button-full-green mx-1" %>
++        <%= link_to "Supprimer amitié", friendship_path(friendship), method: "delete", data: { confirm: "Êtes-vous sûr ?" }, class: "btn button-full-green mx-1" %>
++      <% end %>
++    <% end %>
++  <% else %>
++    <%= link_to "Ajouter en ami", new_user_session_path, class: "btn button-full-green mx-1" %>
++  <% end %>
++<% end %>
+\ No newline at end of file
+
+
+
+diff --git a/config/application.rb b/config/application.rb
+index 6f486f6..89909f7 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -15,6 +15,7 @@ module Elixir
+     end
+     # Initialize configuration defaults for originally generated Rails version.
+     config.load_defaults 6.1
++    config.assets.initialize_on_precompile = false
+ 
+     # Configuration for the application, engines, and railties goes here.
+     #
+
+
+
+diff --git a/config/locales/devise.en.yml b/config/locales/devise.en.yml
+index 327a1d3..535c8a6 100644
+--- a/config/locales/devise.en.yml
++++ b/config/locales/devise.en.yml
+@@ -1,6 +1,107 @@
+ # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+ 
+ fr:
++  date:
++    abbr_day_names:
++    - dim
++    - lun
++    - mar
++    - mer
++    - jeu
++    - ven
++    - sam
++    abbr_month_names:
++    - 
++    - jan.
++    - fév.
++    - mar.
++    - avr.
++    - mai
++    - juin
++    - juil.
++    - août
++    - sept.
++    - oct.
++    - nov.
++    - déc.
++    day_names:
++    - dimanche
++    - lundi
++    - mardi
++    - mercredi
++    - jeudi
++    - vendredi
++    - samedi
++    formats:
++      default: "%d/%m/%Y"
++      long: "%e %B %Y"
++      short: "%e %b"
++    month_names:
++    - 
++    - janvier
++    - février
++    - mars
++    - avril
++    - mai
++    - juin
++    - juillet
++    - août
++    - septembre
++    - octobre
++    - novembre
++    - décembre
++    order:
++    - :day
++    - :month
++    - :year
++  datetime:
++    distance_in_words:
++      about_x_hours:
++        one: environ une heure
++        other: environ %{count} heures
++      about_x_months:
++        one: environ un mois
++        other: environ %{count} mois
++      about_x_years:
++        one: environ un an
++        other: environ %{count} ans
++      almost_x_years:
++        one: presqu'un an
++        other: presque %{count} ans
++      half_a_minute: une demi‑minute
++      less_than_x_seconds:
++        zero: moins d'une seconde
++        one: moins d'une seconde
++        other: moins de %{count} secondes
++      less_than_x_minutes:
++        zero: moins d'une minute
++        one: moins d'une minute
++        other: moins de %{count} minutes
++      over_x_years:
++        one: plus d'un an
++        other: plus de %{count} ans
++      x_seconds:
++        one: 1 seconde
++        other: "%{count} secondes"
++      x_minutes:
++        one: 1 minute
++        other: "%{count} minutes"
++      x_days:
++        one: 1 jour
++        other: "%{count} jours"
++      x_months:
++        one: 1 mois
++        other: "%{count} mois"
++      x_years:
++        one: 1 an
++        other: "%{count} ans"
++    prompts:
++      second: Seconde
++      minute: Minute
++      hour: Heure
++      day: Jour
++      month: Mois
++      year: Année
+   errors:
+     messages:
+       not_found: "n'a pas été trouvé(e)"
+
+
+
+diff --git a/config/locales/simple_form.en.yml b/config/locales/simple_form.en.yml
+index 2374383..39d4b78 100644
+--- a/config/locales/simple_form.en.yml
++++ b/config/locales/simple_form.en.yml
+@@ -29,3 +29,14 @@ en:
+     # prompts:
+     #   defaults:
+     #     age: 'Select your age'
++
++fr:
++  activerecord:
++    errors:
++      models:
++        activity:
++          attributes:
++            city:
++              blank: "ne peut pas être vide"
++            street:
++              blank: "ne peut pas être vide"
+
+
+
+diff --git a/config/routes.rb b/config/routes.rb
+index 4c408a5..d7855c4 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -6,11 +6,12 @@ Rails.application.routes.draw do
+ 
+   resources :activities
+   resources :events, only: [:create]
+-  resources :bookings, only: [:create, :update]
++  resources :bookings, only: [:index, :create, :update]
+   resources :categories, only: [:index, :show]
+ 
+   resources :groups, only: [:index, :show] do
+     resources :messages, only: :create
++    resources :memberships, only: [:create, :destroy]
+   end
+ 
+   resources :friendships, only: [:index, :create, :destroy] do
+
+
+
+diff --git a/db/_seeds_activities.rb b/db/_seeds_activities.rb
+index 3b62eb8..2471e1b 100644
+--- a/db/_seeds_activities.rb
++++ b/db/_seeds_activities.rb
+@@ -2,8 +2,10 @@ module SEED_ACTIVITIES
+   include OpenURI
+ 
+   activity_1 = {
+-    name: "Randonnées",
+-    description: "Pour tous ceux qui aiment les longues marches, en particulier sur les bords du lac Léman ou dans l'arrière-pays Lausannois.",
++    name: "Randonnée",
++    description: "Du Chalet-à-Gobet à Montheron le long du Talent, cette balade est effectuée en compagnie d’un spécialiste de la nature. Initiation à la gestion forestière et traversée des forêts le long de la rivière en direction de l’Abbaye de Montheron. Grande marche d’environ 12 km pour une durée d'environ 7 heures, pauses incluses plutôt destinée aux bons marcheurs.",
++    city: "Lausanne",
++    street: "Route de Cojonnex 95",
+     price: "0.00",
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
+@@ -14,6 +16,8 @@ module SEED_ACTIVITIES
+   activity_2 = {
+     name: "Aquagym",
+     description: "Pour garder la forme au rythme de la musique en profitant du contact de l'eau tout en travaillant des mouvements tenant compte de la résistance de l'eau à ses propres mouvements.",
++    city: "Epalinges",
++    street: "Piscine scolaire, Bois-Murat 13",
+     price: 9.20,
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449354/binsfgms0fsq9l38fqd0c34fadlt.png"),
+@@ -24,16 +28,20 @@ module SEED_ACTIVITIES
+   activity_3 = {
+     name: "Pilates",
+     description: "Pour pratiquer de l'exercice physique adapté à ses capacités et visant au renforcement des muscles centraux et au bon équilibre du corps.",
++    city: "Lausanne",
++    street: "Rue du Pont 22",
+     price: 7.40,
+-  # photo: {
+-  #   io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616444228/pilates_rbelrt.png"),
+-  #   filename: "activity_3.png",
+-  #   content_type: "image/png",
+-  # },
++    photo: {
++    io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
++    filename: "activity_3.png",
++    content_type: "image/png",
++   },
+   }
+   activity_4 = {
+     name: "Yoga",
+     description: "Pratique commune à plusieurs époques et courants, visant, par la méditation, l'ascèse et les exercices corporels, à réaliser l'unification de l'être humain dans ses aspects physique, psychique et spirituel.",
++    city: "Renens",
++    street: "Rue de Lausanne 60",
+     price: 12.50,
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446837/yoga_qosaak.png"),
+@@ -44,6 +52,8 @@ module SEED_ACTIVITIES
+   activity_5 = {
+     name: "Taï Chi",
+     description: "Gymnastique chinoise, constituée par un enchaînement lent de mouvements, selon des schémas précis.",
++    city: "Lausanne",
++    street: "Rue Pré-de-Marché 23, Lausanne",
+     price: 0.00,
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446848/taichi_dywwol.png"),
+@@ -54,6 +64,8 @@ module SEED_ACTIVITIES
+   activity_6 = {
+     name: "Qi Gong",
+     description: "Gymnastique traditionnelle chinoise et une science de la respiration fondée sur la connaissance et la maîtrise du souffle et qui associe mouvements lents, exercices respiratoires et concentration.",
++    city: "Lausanne",
++    street: "Rue Pré-de-Marché 23, Lausanne",
+     price: 8.50,
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446878/qiqong_jptlqy.png"),
+@@ -64,6 +76,8 @@ module SEED_ACTIVITIES
+   activity_7 = {
+     name: "Méditation guidée",
+     description: "Cette discipline se mue en art quand on la pratique de façon régulière, l’utilisation consciente du cerveau droit favorise l’équilibre, aide à contrôler les douleurs chroniques, soulage de tous les désordres liés au stress.",
++    city: "Renens",
++    street: "Chemin des Lilas 11",
+     price: 4.00,
+     photo: {
+       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446899/meditation_iirtaj.png"),
+@@ -78,6 +92,8 @@ module SEED_ACTIVITIES
+     SEED_ACTIVITIES::ACTIVITIES.each_with_index do |attribute, index|
+       activity = Activity.create!(name: attribute[:name],
+                                   description: attribute[:description],
++                                  city: attribute[:city],
++                                  street: attribute[:street],
+                                   price: attribute[:price],
+                                   user: User.find(rand(1..User.count)))
+       photo = attribute[:photo]
+
+
+
+diff --git a/db/_seeds_categorizations.rb b/db/_seeds_categorizations.rb
+new file mode 100644
+index 0000000..b30bcd9
+--- /dev/null
++++ b/db/_seeds_categorizations.rb
+@@ -0,0 +1,135 @@
++module SEED_CATEGORIZATIONS
++  categorization_1 = {
++    activity_id: 1,
++    category_id: 3
++  }
++  categorization_2 = {
++    activity_id: 1,
++    category_id: 1
++  }
++  categorization_3 = {
++    activity_id: 1,
++    category_id: 9
++  }
++  categorization_4 = {
++    activity_id: 1,
++    category_id: 8
++  }
++
++  categorization_5 = {
++    activity_id: 2,
++    category_id: 1
++  }
++  categorization_6 = {
++    activity_id: 2,
++    category_id: 2
++  }
++  categorization_7 = {
++    activity_id: 2,
++    category_id: 7
++  }
++
++  categorization_8 = {
++    activity_id: 3,
++    category_id: 1
++  }
++  categorization_9 = {
++    activity_id: 3,
++    category_id: 2
++  }
++  categorization_10 = {
++    activity_id: 3,
++    category_id: 7
++  }
++  categorization_11 = {
++    activity_id: 3,
++    category_id: 4
++  }
++
++  categorization_12 = {
++    activity_id: 4,
++    category_id: 1
++  }
++  categorization_13 = {
++    activity_id: 4,
++    category_id: 2
++  }
++  categorization_14 = {
++    activity_id: 4,
++    category_id: 4
++  }
++
++  categorization_15 = {
++    activity_id: 5,
++    category_id: 2
++  }
++  categorization_16 = {
++    activity_id: 5,
++    category_id: 4
++  }
++  categorization_17 = {
++    activity_id: 5,
++    category_id: 1
++  }
++
++  categorization_18 = {
++    activity_id: 6,
++    category_id: 2
++  }
++  categorization_19 = {
++    activity_id: 6,
++    category_id: 4
++  }
++  categorization_20 = {
++    activity_id: 6,
++    category_id: 7
++  }
++
++  categorization_21 = {
++    activity_id: 7,
++    category_id: 2
++  }
++  categorization_22 = {
++    activity_id: 7,
++    category_id: 4
++  }
++  categorization_23 = {
++    activity_id: 7,
++    category_id: 8
++  }
++
++  CATEGORIZATIONS = [categorization_1,
++                     categorization_2,
++                     categorization_3,
++                     categorization_4,
++                     categorization_5,
++                     categorization_6,
++                     categorization_7,
++                     categorization_8,
++                     categorization_9,
++                     categorization_10,
++                     categorization_11,
++                     categorization_12,
++                     categorization_13,
++                     categorization_14,
++                     categorization_15,
++                     categorization_16,
++                     categorization_17,
++                     categorization_18,
++                     categorization_19,
++                     categorization_20,
++                     categorization_21,
++                     categorization_22,
++                     categorization_23]
++
++  def seed
++    puts "Binding a few categorizations..."
++    SEED_CATEGORIZATIONS::CATEGORIZATIONS.each_with_index do |attribute, index|
++      categorization = Categorization.create!(attribute)
++      
++      puts "Linking the category #{categorization.category.name} with activity #{categorization.activity.name}"
++    end
++  end
++
++  module_function :seed
++end
+
+
+
+diff --git a/db/_seeds_groups.rb b/db/_seeds_groups.rb
+index 2dae892..2f4fa6a 100644
+--- a/db/_seeds_groups.rb
++++ b/db/_seeds_groups.rb
+@@ -2,30 +2,64 @@ module SEED_GROUPS
+   include OpenURI
+ 
+   group_1 = {
+-    name: "Apéro vendredi 11h",
+-    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616867120/groups/lesamisduquartier_yyt6iy.png"),
++    name: "Randonnées🏃🏃‍♀️",
++    activity_id: 1,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
+              filename: "group_1.png",
+              content_type: "image/png" },
+   }
+   group_2 = {
+-    name: "Aquagym for ever",
+-    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616867124/groups/aquagymforever_weuevt.png"),
++    name: "Aquagym🤽‍♀️",
++    activity_id: 2,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449354/binsfgms0fsq9l38fqd0c34fadlt.png"),
+              filename: "group_2.png",
+              content_type: "image/png" },
+   }
+   group_3 = {
+-    name: "On veut des randos!",
+-    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616867138/groups/walkinggroup_ycw4jc.png"),
++    name: "Pilates🤸",
++    activity_id: 3,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617437013/illustrations/pilates_lntkli.png"),
+              filename: "group_3.png",
+              content_type: "image/png" },
+   }
+ 
+-  GROUPS = [group_1, group_2, group_3]
++  group_4 = {
++    name: "Yoga🧘🤸",
++    activity_id: 4,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446837/yoga_qosaak.png"),
++             filename: "group_4.png",
++             content_type: "image/png" },
++  }
++
++  group_5 = {
++    name: "Taï Chi🥋",
++    activity_id: 5,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446848/taichi_dywwol.png"),
++             filename: "group_5.png",
++             content_type: "image/png" },
++  }
++  group_6 = {
++    name: "Qi Gong👘",
++    activity_id: 6,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616446878/qiqong_jptlqy.png"),
++             filename: "group_6.png",
++             content_type: "image/png" },
++  }
++
++  group_7 = {
++    name: "Méditation guidée🧘",
++    activity_id: 7,
++    photo: { io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1616449352/30i7sfp1tjq815sfiul2dsxsa7iu.jpg"),
++             filename: "group_1.png",
++             content_type: "image/png" },
++  }
++
++  GROUPS = [group_1, group_2, group_3, group_4, group_5, group_6, group_7]
+ 
+   def seed
+     puts "Creating some groups to chat"
+     SEED_GROUPS::GROUPS.each_with_index do |attribute, index|
+-      group = Group.create!(name: attribute[:name])
++      group = Group.create!(name: attribute[:name], activity_id: attribute[:activity_id])
+       photo = attribute[:photo]
+       group.photo.attach(io: URI.open(photo[:io]), filename: photo[:filename], content_type: photo[:content_type])
+       puts "Participating to a new chat on #{group.name}"
+
+
+
+diff --git a/db/_seeds_labelings.rb b/db/_seeds_labelings.rb
+new file mode 100644
+index 0000000..ebc0213
+--- /dev/null
++++ b/db/_seeds_labelings.rb
+@@ -0,0 +1,300 @@
++module SEED_LABELINGS
++  labeling_1 = {
++    activity_id: 1,
++    label_id: 2
++  }
++  labeling_2 = {
++    activity_id: 1,
++    label_id: 4
++  }
++  labeling_3 = {
++    activity_id: 1,
++    label_id: 6
++  }
++  labeling_4 = {
++    activity_id: 1,
++    label_id: 7
++  }
++  labeling_5 = {
++    activity_id: 1,
++    label_id: 9
++  }
++  labeling_6 = {
++    activity_id: 1,
++    label_id: 12
++  }
++  labeling_7 = {
++    activity_id: 1,
++    label_id: 14
++  }
++  labeling_8 = {
++    activity_id: 1,
++    label_id: 16
++  }
++
++  labeling_9 = {
++    activity_id: 2,
++    label_id: 1
++  }
++  labeling_10 = {
++    activity_id: 2,
++    label_id: 4
++  }
++  labeling_11 = {
++    activity_id: 2,
++    label_id: 6
++  }
++  labeling_12 = {
++    activity_id: 2,
++    label_id: 8
++  }
++  labeling_13 = {
++    activity_id: 2,
++    label_id: 10
++  }
++  labeling_14 = {
++    activity_id: 2,
++    label_id: 12
++  }
++  labeling_15 = {
++    activity_id: 2,
++    label_id: 14
++  }
++  labeling_16 = {
++    activity_id: 2,
++    label_id: 16
++  }
++
++  labeling_17 = {
++    activity_id: 3,
++    label_id: 1
++  }
++  labeling_18 = {
++    activity_id: 3,
++    label_id: 4
++  }
++  labeling_19 = {
++    activity_id: 3,
++    label_id: 6
++  }
++  labeling_20 = {
++    activity_id: 3,
++    label_id: 8
++  }
++  labeling_21 = {
++    activity_id: 3,
++    label_id: 10
++  }
++  labeling_22 = {
++    activity_id: 3,
++    label_id: 12
++  }
++  labeling_23 = {
++    activity_id: 3,
++    label_id: 14
++  }
++  labeling_24 = {
++    activity_id: 3,
++    label_id: 16
++  }
++
++  labeling_25 = {
++    activity_id: 4,
++    label_id: 1
++  }
++  labeling_26 = {
++    activity_id: 4,
++    label_id: 3
++  }
++  labeling_27 = {
++    activity_id: 4,
++    label_id: 6
++  }
++  labeling_28 = {
++    activity_id: 4,
++    label_id: 7
++  }
++  labeling_29 = {
++    activity_id: 4,
++    label_id: 10
++  }
++  labeling_30 = {
++    activity_id: 4,
++    label_id: 12
++  }
++  labeling_31 = {
++    activity_id: 4,
++    label_id: 13
++  }
++  labeling_32 = {
++    activity_id: 4,
++    label_id: 16
++  }
++
++  labeling_33 = {
++    activity_id: 5,
++    label_id: 2
++  }
++  labeling_34 = {
++    activity_id: 5,
++    label_id: 4
++  }
++  labeling_35 = {
++    activity_id: 5,
++    label_id: 6
++  }
++  labeling_36 = {
++    activity_id: 5,
++    label_id: 8
++  }
++  labeling_37 = {
++    activity_id: 5,
++    label_id: 10
++  }
++  labeling_38 = {
++    activity_id: 5,
++    label_id: 12
++  }
++  labeling_39 = {
++    activity_id: 5,
++    label_id: 13
++  }
++  labeling_40 = {
++    activity_id: 5,
++    label_id: 16
++  }
++
++  labeling_41 = {
++    activity_id: 6,
++    label_id: 2
++  }
++  labeling_42 = {
++    activity_id: 6,
++    label_id: 4
++  }
++  labeling_43 = {
++    activity_id: 6,
++    label_id: 6
++  }
++  labeling_44 = {
++    activity_id: 6,
++    label_id: 8
++  }
++  labeling_45 = {
++    activity_id: 6,
++    label_id: 10
++  }
++  labeling_46 = {
++    activity_id: 6,
++    label_id: 11
++  }
++  labeling_47 = {
++    activity_id: 6,
++    label_id: 13
++  }
++  labeling_48 = {
++    activity_id: 6,
++    label_id: 16
++  }
++
++  labeling_49 = {
++    activity_id: 7,
++    label_id: 1
++  }
++  labeling_50 = {
++    activity_id: 7,
++    label_id: 3
++  }
++  labeling_51 = {
++    activity_id: 7,
++    label_id: 6
++  }
++  labeling_52 = {
++    activity_id: 7,
++    label_id: 7
++  }
++  labeling_53 = {
++    activity_id: 7,
++    label_id: 10
++  }
++  labeling_54 = {
++    activity_id: 7,
++    label_id: 11
++  }
++  labeling_55 = {
++    activity_id: 7,
++    label_id: 13
++  }
++  labeling_56 = {
++    activity_id: 7,
++    label_id: 15
++  }
++
++  LABELINGS = [labeling_1,
++               labeling_2,
++               labeling_3,
++               labeling_4,
++               labeling_5,
++               labeling_7,
++               labeling_7,
++               labeling_8,
++               labeling_9,
++               labeling_10,
++               labeling_11,
++               labeling_12,
++               labeling_13,
++               labeling_14,
++               labeling_15,
++               labeling_16,
++               labeling_17,
++               labeling_18,
++               labeling_19,
++               labeling_20,
++               labeling_21,
++               labeling_22,
++               labeling_23,
++               labeling_24,
++               labeling_25,
++               labeling_26,
++               labeling_27,
++               labeling_28,
++               labeling_29,
++               labeling_30,
++               labeling_31,
++               labeling_32,
++               labeling_33,
++               labeling_34,
++               labeling_35,
++               labeling_36,
++               labeling_37,
++               labeling_38,
++               labeling_39,
++               labeling_40,
++               labeling_41,
++               labeling_42,
++               labeling_43,
++               labeling_44,
++               labeling_45,
++               labeling_46,
++               labeling_47,
++               labeling_48,
++               labeling_49,
++               labeling_50,
++               labeling_51,
++               labeling_52,
++               labeling_53,
++               labeling_54,
++               labeling_55,
++               labeling_56]
++
++  def seed
++    puts "Binding a few labelings..."
++    SEED_LABELINGS::LABELINGS.each_with_index do |attribute, index|
++      labeling = Labeling.create!(attribute)
++      
++      puts "Linking the label #{labeling.label.name} with activity #{labeling.activity.name}"
++    end
++  end
++
++  module_function :seed
++end
+
+
+
+diff --git a/db/_seeds_memberships.rb b/db/_seeds_memberships.rb
+index fff7bb9..fab6c10 100644
+--- a/db/_seeds_memberships.rb
++++ b/db/_seeds_memberships.rb
+@@ -56,6 +56,58 @@ module SEED_MEMBERSHIPS
+     group_id: 3,
+   }
+ 
++  membership_15 = {
++    user_id: 1,
++    group_id: 4,
++  }
++  membership_16 = {
++    user_id: 11,
++    group_id: 4,
++  }
++  membership_17 = {
++    user_id: 8,
++    group_id: 4,
++  }
++  membership_18 = {
++    user_id: 4,
++    group_id: 5,
++  }
++
++  membership_19 = {
++    user_id: 8,
++    group_id: 7,
++  }
++  membership_20 = {
++    user_id: 4,
++    group_id: 7,
++  }
++
++  membership_21 = {
++    user_id: 1,
++    group_id: 6,
++  }
++  membership_22 = {
++    user_id: 11,
++    group_id: 6,
++  }
++  membership_23 = {
++    user_id: 8,
++    group_id: 5,
++  }
++  membership_24 = {
++    user_id: 4,
++    group_id: 5,
++  }
++
++  membership_25 = {
++    user_id: 8,
++    group_id: 7,
++  }
++  membership_26 = {
++    user_id: 4,
++    group_id: 7,
++  }
++
+   MEMBERSHIPS = [membership_1,
+                  membership_2,
+                  membership_3,
+
+
+
+diff --git a/db/migrate/20210402174729_add_activity_to_groups.rb b/db/migrate/20210402174729_add_activity_to_groups.rb
+new file mode 100644
+index 0000000..602d9c5
+--- /dev/null
++++ b/db/migrate/20210402174729_add_activity_to_groups.rb
+@@ -0,0 +1,5 @@
++class AddActivityToGroups < ActiveRecord::Migration[6.1]
++  def change
++    add_reference :groups, :activity, null: true, foreign_key: true
++  end
++end
+
+
+
+diff --git a/db/migrate/20210403082723_add_city_and_street_to_activity.rb b/db/migrate/20210403082723_add_city_and_street_to_activity.rb
+new file mode 100644
+index 0000000..5b614af
+--- /dev/null
++++ b/db/migrate/20210403082723_add_city_and_street_to_activity.rb
+@@ -0,0 +1,6 @@
++class AddCityAndStreetToActivity < ActiveRecord::Migration[6.1]
++  def change
++    add_column :activities, :city, :string
++    add_column :activities, :street, :string
++  end
++end
+
+
+
+diff --git a/db/migrate/20210403122803_create_labelings.rb b/db/migrate/20210403122803_create_labelings.rb
+new file mode 100644
+index 0000000..a074a14
+--- /dev/null
++++ b/db/migrate/20210403122803_create_labelings.rb
+@@ -0,0 +1,9 @@
++class CreateLabelings < ActiveRecord::Migration[6.1]
++  def change
++    create_table :labelings do |t|
++      t.references :label, null: false, foreign_key: true
++
++      t.timestamps
++    end
++  end
++end
+
+
+
+diff --git a/db/migrate/20210403122823_create_categorizations.rb b/db/migrate/20210403122823_create_categorizations.rb
+new file mode 100644
+index 0000000..3e9ee7b
+--- /dev/null
++++ b/db/migrate/20210403122823_create_categorizations.rb
+@@ -0,0 +1,9 @@
++class CreateCategorizations < ActiveRecord::Migration[6.1]
++  def change
++    create_table :categorizations do |t|
++      t.references :category, null: false, foreign_key: true
++
++      t.timestamps
++    end
++  end
++end
+
+
+
+diff --git a/db/migrate/20210403122944_add_activity_to_labelings.rb b/db/migrate/20210403122944_add_activity_to_labelings.rb
+new file mode 100644
+index 0000000..d9cf22f
+--- /dev/null
++++ b/db/migrate/20210403122944_add_activity_to_labelings.rb
+@@ -0,0 +1,5 @@
++class AddActivityToLabelings < ActiveRecord::Migration[6.1]
++  def change
++    add_reference :labelings, :activity, null: false, foreign_key: true
++  end
++end
+
+
+
+diff --git a/db/migrate/20210403123004_add_activity_to_categorizations.rb b/db/migrate/20210403123004_add_activity_to_categorizations.rb
+new file mode 100644
+index 0000000..5d43468
+--- /dev/null
++++ b/db/migrate/20210403123004_add_activity_to_categorizations.rb
+@@ -0,0 +1,5 @@
++class AddActivityToCategorizations < ActiveRecord::Migration[6.1]
++  def change
++    add_reference :categorizations, :activity, null: false, foreign_key: true
++  end
++end
+
+
+
+diff --git a/db/migrate/20210404090216_add_last_visit_to_memberships.rb b/db/migrate/20210404090216_add_last_visit_to_memberships.rb
+new file mode 100644
+index 0000000..5658a26
+--- /dev/null
++++ b/db/migrate/20210404090216_add_last_visit_to_memberships.rb
+@@ -0,0 +1,5 @@
++class AddLastVisitToMemberships < ActiveRecord::Migration[6.1]
++  def change
++    add_column :memberships, :last_visit, :datetime
++  end
++end
+
+
+
+diff --git a/db/schema.rb b/db/schema.rb
+index fcf8cb2..b29a1ef 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(version: 2021_04_01_220648) do
++ActiveRecord::Schema.define(version: 2021_04_04_090216) do
+ 
+   # These are extensions that must be enabled in order to support this database
+   enable_extension "plpgsql"
+@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+     t.bigint "user_id", null: false
+     t.datetime "created_at", precision: 6, null: false
+     t.datetime "updated_at", precision: 6, null: false
++    t.string "city"
++    t.string "street"
+     t.index ["user_id"], name: "index_activities_on_user_id"
+   end
+ 
+@@ -69,6 +71,15 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+     t.datetime "updated_at", precision: 6, null: false
+   end
+ 
++  create_table "categorizations", force: :cascade do |t|
++    t.bigint "category_id", null: false
++    t.datetime "created_at", precision: 6, null: false
++    t.datetime "updated_at", precision: 6, null: false
++    t.bigint "activity_id", null: false
++    t.index ["activity_id"], name: "index_categorizations_on_activity_id"
++    t.index ["category_id"], name: "index_categorizations_on_category_id"
++  end
++
+   create_table "events", force: :cascade do |t|
+     t.bigint "activity_id", null: false
+     t.datetime "start_time"
+@@ -95,9 +106,20 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+     t.boolean "admin"
+     t.boolean "group?", default: true
+     t.bigint "friendship_id"
++    t.bigint "activity_id"
++    t.index ["activity_id"], name: "index_groups_on_activity_id"
+     t.index ["friendship_id"], name: "index_groups_on_friendship_id"
+   end
+ 
++  create_table "labelings", force: :cascade do |t|
++    t.bigint "label_id", null: false
++    t.datetime "created_at", precision: 6, null: false
++    t.datetime "updated_at", precision: 6, null: false
++    t.bigint "activity_id", null: false
++    t.index ["activity_id"], name: "index_labelings_on_activity_id"
++    t.index ["label_id"], name: "index_labelings_on_label_id"
++  end
++
+   create_table "labels", force: :cascade do |t|
+     t.string "name"
+     t.datetime "created_at", precision: 6, null: false
+@@ -110,6 +132,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+     t.bigint "group_id", null: false
+     t.datetime "created_at", precision: 6, null: false
+     t.datetime "updated_at", precision: 6, null: false
++    t.datetime "last_visit"
+     t.index ["group_id"], name: "index_memberships_on_group_id"
+     t.index ["user_id"], name: "index_memberships_on_user_id"
+   end
+@@ -153,9 +176,14 @@ ActiveRecord::Schema.define(version: 2021_04_01_220648) do
+   add_foreign_key "activities", "users"
+   add_foreign_key "bookings", "events"
+   add_foreign_key "bookings", "users"
++  add_foreign_key "categorizations", "activities"
++  add_foreign_key "categorizations", "categories"
+   add_foreign_key "events", "activities"
+   add_foreign_key "friendships", "users"
++  add_foreign_key "groups", "activities"
+   add_foreign_key "groups", "friendships"
++  add_foreign_key "labelings", "activities"
++  add_foreign_key "labelings", "labels"
+   add_foreign_key "memberships", "groups"
+   add_foreign_key "memberships", "users"
+   add_foreign_key "messages", "groups"
+
+
+
+diff --git a/db/seeds.rb b/db/seeds.rb
+index a405f6e..081372e 100644
+--- a/db/seeds.rb
++++ b/db/seeds.rb
+@@ -6,6 +6,8 @@ require_relative "./_seeds_groups"
+ require_relative "./_seeds_memberships"
+ require_relative "./_seeds_activities"
+ require_relative "./_seeds_events"
++require_relative "./_seeds_categorizations"
++require_relative "./_seeds_labelings"
+ 
+ # Seeds without dependency -------------------------
+ SEED_USERS.seed
+@@ -13,7 +15,9 @@ SEED_LABELS.seed
+ SEED_CATEGORIES.seed
+ 
+ # Seeds with dependencies -------------------------
+-SEED_GROUPS.seed        # dependent ON : SEED_USERS
+-SEED_MEMBERSHIPS.seed   # dependent ON : SEED_USERS, SEED_GROUPS
+-SEED_ACTIVITIES.seed    # dependent ON : SEED_USERS
+-SEED_EVENTS.seed        # dependent ON : SEED_ACTIVITIES
++SEED_ACTIVITIES.seed      # dependent ON : SEED_USERS
++SEED_EVENTS.seed          # dependent ON : SEED_ACTIVITIES
++SEED_GROUPS.seed          # dependent ON : SEED_USERS, SEED_ACTIVITIES
++SEED_MEMBERSHIPS.seed     # dependent ON : SEED_USERS, SEED_GROUPS
++SEED_CATEGORIZATIONS.seed # dependent ON : SEED_ACTIVITIES, SEED_CATEGORIES
++SEED_LABELINGS.seed       # dependent ON : SEED_ACTIVITIES, SEED_LABELINGS
+\ No newline at end of file
+
+
+
+diff --git a/test/controllers/categorizations_controller_test.rb b/test/controllers/categorizations_controller_test.rb
+new file mode 100644
+index 0000000..a6fd9eb
+--- /dev/null
++++ b/test/controllers/categorizations_controller_test.rb
+@@ -0,0 +1,7 @@
++require "test_helper"
++
++class CategorizationsControllerTest < ActionDispatch::IntegrationTest
++  # test "the truth" do
++  #   assert true
++  # end
++end
+
+
+
+diff --git a/test/controllers/labelings_controller_test.rb b/test/controllers/labelings_controller_test.rb
+new file mode 100644
+index 0000000..e32757a
+--- /dev/null
++++ b/test/controllers/labelings_controller_test.rb
+@@ -0,0 +1,7 @@
++require "test_helper"
++
++class LabelingsControllerTest < ActionDispatch::IntegrationTest
++  # test "the truth" do
++  #   assert true
++  # end
++end
+
+
+
+diff --git a/test/models/categorization_test.rb b/test/models/categorization_test.rb
+new file mode 100644
+index 0000000..356053a
+--- /dev/null
++++ b/test/models/categorization_test.rb
+@@ -0,0 +1,7 @@
++require "test_helper"
++
++class CategorizationTest < ActiveSupport::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
+
+
+
+diff --git a/test/models/labeling_test.rb b/test/models/labeling_test.rb
+new file mode 100644
+index 0000000..34aacd9
+--- /dev/null
++++ b/test/models/labeling_test.rb
+@@ -0,0 +1,7 @@
++require "test_helper"
++
++class LabelingTest < ActiveSupport::TestCase
++  # test "the truth" do
++  #   assert true
++  # end
++end
