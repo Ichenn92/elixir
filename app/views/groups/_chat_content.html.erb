@@ -9,7 +9,7 @@
         </div>
         <% unless current_user == @group.activity.user %>
           <div class="ml-auto p-2">
-          <%= link_to "Quitter", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
+          <%= link_to "Quitter le groupe", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
           </div>
         <% end %>
       <% else %>
