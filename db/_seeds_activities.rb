@@ -121,7 +121,7 @@ module SEED_ACTIVITIES
     user_id: 33,
   }
 
-    activity_10 = {
+  activity_10 = {
     name: "Musée Chaplin",
     description: "Découverte du musée de Charlie Chaplin sur les hauts de Vevey. Nous découvrirons les trésors de la personnalité de Charlie Chaplin. Départ depuis Lausanne",
     city: "Lausanne",
@@ -138,6 +138,7 @@ module SEED_ACTIVITIES
   ACTIVITIES = [activity_1, activity_2, activity_3, activity_4, activity_5, activity_6, activity_7, activity_8, activity_9, activity_10]
 
   def seed
+    puts "seeding activities"
     SEED_ACTIVITIES::ACTIVITIES.each_with_index do |attribute, index|
       activity = Activity.create!(name: attribute[:name],
                                   description: attribute[:description],

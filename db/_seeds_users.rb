@@ -134,7 +134,7 @@ module SEED_USERS
     },
   }
   user_12 = {
-    nickname: "Dada",
+    nickname: "Dada toujours là",
     first_name: "Danielle",
     last_name: "Isoz",
     email: "danielle.isoz@gmail.com",
