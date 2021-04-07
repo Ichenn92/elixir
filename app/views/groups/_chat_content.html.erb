@@ -1,12 +1,16 @@
 <% @current_user_ws = @current_user %>
 <div class="card-header border-bottom">
   <div class="bd-highlight">
-    <div class="img_cont">
+    <div class="img_cont d-flex">
       <% if group.group? %>
         <%= cl_image_tag(group.activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :fill }], class: "avatar-large") %>
-        <%= link_to "Voir l'activité", activity_path(@group.activity), class: "button-outline-green" %>
+        <div class="ml-auto p-2">
+        <%= link_to "Voir l'activité", activity_path(@group.activity), class: "button-full-green" %>
+        </div>
         <% unless current_user == @group.activity.user %>
+          <div class="ml-auto p-2">
           <%= link_to "Quitter", group_membership_path(@group), method: "delete", class: "button-full-purple" %>
+          </div>
         <% end %>
       <% else %>
         <%= cl_image_tag(group.memberships.where.not(user: current_user).first.user.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: 150, height: 150, crop: :thumb, gravity: :face }], class: "avatar-large") %>
@@ -16,11 +20,11 @@
     <div class="group_info">
       <% if group.group? %>
         <h2><%= group.name %></h2>
+        <% group.users.each do |user| %>
+          <span>☀️<%= user.nickname %></span>
+        <% end %>
       <% else %>
         <h2><%= group.memberships.where.not(user: current_user).first.user.nickname %></h2>
-      <% end %>
-      <% group.users.each do |user| %>
-        <span class="button-group-users"><%= user.nickname %></span>
       <% end %>
     </div>
   </div>
