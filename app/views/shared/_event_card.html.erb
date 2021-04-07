@@ -20,16 +20,14 @@
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
                             <% end %>
                             <% if event.end_time.day == event.start_time.day %>
-                                <% Time.zone = 0 %>
                                 <% duration = (event.end_time - event.start_time) %>
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).in_time_zone.strftime("%Hh%M") %></span>
                                 <div>
-                                    <% Time.zone = -1 %>
-                                    <span class="text-bold"><%= event.start_time.in_time_zone.strftime("Date : %d.%m.%Y") %></span>
+                                    <span class="text-bold"><%= event.start_time.strftime("Date : %d.%m.%Y") %></span>
                                 </div>
                                 <div>
-                                    <span class="text-bold"><%= event.start_time.in_time_zone.strftime("Horaire : %Hh%M ") %></span>
-                                    <span class="text-bold"><%= event.end_time.in_time_zone.strftime("à %Hh%M") %></span>
+                                    <span class="text-bold"><%= event.start_time.strftime("Horaire : %Hh%M ") %></span>
+                                    <span class="text-bold"><%= event.end_time.strftime("à %Hh%M") %></span>
                                 </div>
                             <% else %>
                                 <span class="badge badge-primary">Plusieurs jours</span>
