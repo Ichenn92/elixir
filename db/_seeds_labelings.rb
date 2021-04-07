@@ -232,7 +232,7 @@ module SEED_LABELINGS
 
   labeling_57 = {
     activity_id: 8,
-    label_id: 1
+    label_id: 2
   }
   labeling_58 = {
     activity_id: 8,
@@ -260,7 +260,7 @@ module SEED_LABELINGS
   }
   labeling_64 = {
     activity_id: 8,
-    label_id: 14
+    label_id: 15
   }
 
   labeling_65 = {
