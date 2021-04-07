@@ -49,7 +49,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="mb-4 d-flex flex-wrap align-items-center">
                 <% @activity.categories.each do |category| %>
                   <%= link_to activities_path(category_id: category.id) do %>
@@ -58,9 +57,12 @@
                 <% end %>
               </div>
               <p class="text-white text-justify pb-0 mb-0"><%= @activity.description %></p>
-              <div class="py-4 border-bottom"></div>
             </div>
+          </div>
 
+          <div class="pt-2 border-bottom"></div>
+
+          <div class="pb-4 px-4">
             <div class="px-4">
               <div class="text-left pt-4">
                 <h2 class="text-white mb-0">Labels</h2>
