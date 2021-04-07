@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Elixir
   class Application < Rails::Application
+    config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
     config.generators do |generate|
       generate.assets false
       generate.helper false

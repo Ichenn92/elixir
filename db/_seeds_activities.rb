@@ -96,8 +96,8 @@ module SEED_ACTIVITIES
   activity_8 = {
     name: "Echec",
     description: "« On n'a jamais que l'âge auquel on a commencé à jouer aux échecs car après on cesse de vieillir » J-R Capablanca. Venez découvrir les joies du jeu d'échec pour tous les niveaux",
-    city: "Lausanne",
-    street: "Ch. d'Ombreval 5",
+    city: "Prilly",
+    street: "Chemin d'Ombreval 5",
     price: 4.00,
     photo: {
       io: URI.open("https://res.cloudinary.com/clemdub1324/image/upload/v1617717888/Activity/echec_twasvk.png"),
