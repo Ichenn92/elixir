@@ -20,7 +20,6 @@
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
                             <% end %>
                             <% if event.end_time.day == event.start_time.day %>
-                                <% Time.zone = 0 %>
                                 <% duration = (event.end_time - event.start_time) %>
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).in_time_zone.strftime("%Hh%M") %></span>
                                 <div>
