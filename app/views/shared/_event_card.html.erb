@@ -5,20 +5,13 @@
     <% booking = bookingDB unless bookingDB.nil? %>
 
     <div class="d-flex mb-3 p-0">
-    
-        <div class="flex-grow-1 m-0 p-0 mr-2">
-            <%= form_for booking, html: { class: "h-100" } do |f| %>
-                <% if booking.user.nil? %>
-                    <%= f.hidden_field :booking, value: booking.id %>
-                <% end %>
-                <%= f.hidden_field :event, value: event.id %>
-                <%= button_tag(type: "submit", class: "text-center button-outline-green w-100 h-100 m-0 #{booking_confirmed}") do %>
+        <% # if is an organisator %>
+        <% if current_user == event.activity.user %>
+            <div class="flex-grow-1 m-0 p-0 mr-2">
+                <div class="text-center button-outline-green-simple w-100 h-100 m-0">
                     <div class="d-flex justify-content-left align-items-center">
                         <span><i class="far fa-calendar-check pl-1 pr-3"></i></span>
                         <div class="text-left">
-                            <% unless booking_confirmed.blank? %>
-                                <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
-                            <% end %>
                             <% if event.end_time.day == event.start_time.day %>
                                 <% duration = (event.end_time - event.start_time) %>
                                 <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).in_time_zone.strftime("%Hh%M") %></span>
@@ -40,19 +33,55 @@
                             <% end %>
                         </div>
                     </div>
+                </div>
+            </div>
+        <% else %>
+            <% # if is a visitor %>
+            <div class="flex-grow-1 m-0 p-0 mr-2">
+                <%= form_for booking, html: { class: "h-100" } do |f| %>
+                    <% if booking.user.nil? %>
+                        <%= f.hidden_field :booking, value: booking.id %>
+                    <% end %>
+                    <%= f.hidden_field :event, value: event.id %>
+                    <%= button_tag(type: "submit", class: "text-center button-outline-green w-100 h-100 m-0 #{booking_confirmed}") do %>
+                        <div class="d-flex justify-content-left align-items-center">
+                            <span><i class="far fa-calendar-check pl-1 pr-3"></i></span>
+                            <div class="text-left">
+                                <% unless booking_confirmed.blank? %>
+                                    <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Inscrit</span>
+                                <% end %>
+                                <% if event.end_time.day == event.start_time.day %>
+                                    <% duration = (event.end_time - event.start_time) %>
+                                    <span class="badge badge-light" style="color:#00796B; background-color:#E0F2F1;">Durée : <%= Time.at(duration).in_time_zone.strftime("%Hh%M") %></span>
+                                    <div>
+                                        <span class="text-bold"><%= event.start_time.strftime("Date : %d.%m.%Y") %></span>
+                                    </div>
+                                    <div>
+                                        <span class="text-bold"><%= event.start_time.strftime("Horaire : %Hh%M ") %></span>
+                                        <span class="text-bold"><%= event.end_time.strftime("à %Hh%M") %></span>
+                                    </div>
+                                <% else %>
+                                    <span class="badge badge-primary">Plusieurs jours</span>
+                                    <div>
+                                        <span class="text-bold"><%= event.start_time.strftime("Du %d.%m.%Y à %Hh%M") %></span>
+                                    </div>
+                                    <div>
+                                        <span class="text-bold"><%= event.end_time.strftime("Au %d.%m.%Y à %Hh%M") %></span>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </div>
-
-
+            </div>
+        <% end %>
         <button class="m-0 d-flex flex-column justify-content-center align-items-center button-outline-green" type="button" data-toggle="collapse" data-target="#participant-event-<%= event.id %>" aria-expanded="false" aria-controls="participant-event-<%= event.id %>">
             <% participants = event.bookings.all_confirmed %>
             <% include_organistor = participants.include?(event.activity.user) %>
-            <% participants_number = include_organistor ? participants.count : participants.count + 1 %>
+            <% participants_number = include_organistor ? participants.count : participants.count %>
             <i class="fas fa-child text-medium py-1"></i>
             <p class="m-0 p-0 text-small" style="line-height:1.2;width:2ch;font-family: 'Roboto Mono', sans-serif !important;"><%= participants_number %></p>
         </button>
-
     </div>
 </li>
 
@@ -60,7 +89,6 @@
     <div class="card card-body p-3 pb-0 mb-4">
         <h4>Participants</h4>
         <ul>
-            <%= render partial: "shared/user_card_with_icon", locals: { user: event.activity.user } %>
             <% if event.bookings.all_confirmed.empty? %>
                 <p class="text-xsmall">Il n'y a pas encore de participants</p>
             <% else %>
