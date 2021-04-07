@@ -7,15 +7,16 @@
             <%= cl_image_tag(@activity.photo.key, transformation: [{ quality: :auto, fetch_format: :auto, width: :auto, crop: :fit }], class: "image-fluid w-100", style: "height: 400px;object-fit: cover;margin-top: 60px;") %>
             <div class="d-flex justify-content-between position-absolute w-100 px-4" style="bottom:0;z-index:1">
               <% if (current_user == @activity.user) %>
-                    <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green mb-4" %>
-                    <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-purple mb-4" %>
+                    <%= link_to "Modifier", edit_activity_path(@activity), class: "button-full-green ml-4 mb-4" %>
+                    <%= link_to "Supprimer", activity_path(@activity, method: "delete"), class: "button-full-green mr-4 mb-4" %>
               <% else %>
-                <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
-                <%= link_to "Voir activités", activities_path(user: @activity.user), class: "btn button-full-green my-0 mx-1 mb-4" %>
+                <div class="ml-4">
+                  <%= render partial: "shared/user_friendship_action", locals: { user: @activity.user } %>
+                </div>
+                <%= link_to "Voir activités", activities_path(user: @activity.user), class: "btn button-full-green my-0 mx-1 mb-4 mr-4" %>
               <% end %>
             </div>
           </div>
-
 
           <% # Organisator profile %>
           <div class="border-bottom position-relative" style="top:-80px;">
