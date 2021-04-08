@@ -18,7 +18,7 @@ module SEED_MESSAGES
       content: "Mais vous voulez le faire où ?",
       group_id: 9,
       created_at: "2021-03-24-17:00",
-      user_id: 32,
+      user_id: 34,
     },
     {
       content: "Au Parc Derrière-Bourg ?",
@@ -42,7 +42,7 @@ module SEED_MESSAGES
       content: "Enorme l'apéro d'hier ! faudra refaire ça plus souvent",
       group_id: 9,
       created_at: "2021-03-26-17:00",
-      user_id: 32,
+      user_id: 34,
     },
     {
       content: "OHH OUI !!! Ca vous dit pour le 7 avril ?",

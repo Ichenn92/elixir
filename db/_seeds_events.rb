@@ -1,5 +1,5 @@
 module SEED_EVENTS
-  EVENTS_APERO = [
+  EVENTS_APERO_ECHEC = [
     {
       activity_id: 9,
       start_time: "2021-05-11-23:00",
@@ -15,16 +15,36 @@ module SEED_EVENTS
       start_time: "2021-06-07-19:00",
       end_time: "2021-06-07-22:00",
     },
+    {
+      activity_id: 8,
+      start_time: "2021-04-10-10:00",
+      end_time: "2021-04-10-12:00",
+    },
+    {
+      activity_id: 8,
+      start_time: "2021-04-11-10:00",
+      end_time: "2021-04-11-12:00",
+    },
+    {
+      activity_id: 8,
+      start_time: "2021-04-17-10:00",
+      end_time: "2021-04-17-12:00",
+    },
+    {
+      activity_id: 8,
+      start_time: "2021-04-18-10:00",
+      end_time: "2021-04-18-12:00",
+    },
   ]
 
   def seed
-    puts "creating events for apéro"
-    SEED_EVENTS::EVENTS_APERO.each do |attribute|
+    puts "creating events for apéro and échec"
+    SEED_EVENTS::EVENTS_APERO_ECHEC.each do |attribute|
       Event.create(attribute)
     end
 
     puts "creating random event apart for apero"
-    Activity.where.not(group: 9).each do |activity|
+    Activity.where.not(group: 9).where.not(group: 8).each do |activity|
       number_of_events = rand(1..5)
       until activity.events.count == number_of_events
         SEED_EVENTS.create_event(activity)
