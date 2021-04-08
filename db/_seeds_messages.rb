@@ -71,13 +71,13 @@ module SEED_MESSAGES
     {
       content: "Hello tout le monde !",
       group_id: 9,
-      created_at: "2021-04-11-16:00",
+      created_at: "2021-04-11-09:58",
       user_id: 33,
     },
     {
       content: "Prêt à se retrouver, ce soir ?",
       group_id: 9,
-      created_at: "2021-04-11-16:15",
+      created_at: "2021-04-11-10:00",
       user_id: 33,
     },
   ]
