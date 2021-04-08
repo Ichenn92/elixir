@@ -9,7 +9,7 @@ module SEED_MEMBERSHIPS
   }
   membership_3 = {
     user_id: 32,
-    group_id: 1,
+    group_id: 8,
   }
   membership_4 = {
     user_id: 9,
@@ -52,7 +52,7 @@ module SEED_MEMBERSHIPS
     group_id: 3,
   }
   membership_14 = {
-    user_id: 32,
+    user_id: 6,
     group_id: 3,
   }
 
