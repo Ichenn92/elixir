@@ -393,10 +393,10 @@ module SEED_USERS
     nickname: "Micki",
     first_name: "Michaël",
     last_name: "Laurac",
-    email: "michael.laurac@gmail.com",
+    email: "micki@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/michael_pehutf.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617830547/Users/micki_siqfiq.jpg",
       filename: "user_32",
       content_type: "image/png",
     },
