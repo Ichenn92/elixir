@@ -299,7 +299,7 @@ module SEED_USERS
     },
   }
 
-    user_25 = {
+  user_25 = {
     nickname: "Pati",
     first_name: "Patricia",
     last_name: "Gex-Moret",
@@ -312,7 +312,7 @@ module SEED_USERS
     },
   }
 
-    user_26 = {
+  user_26 = {
     nickname: "loulou",
     first_name: "Louis",
     last_name: "lausanne",
@@ -325,7 +325,7 @@ module SEED_USERS
     },
   }
 
-    user_27 = {
+  user_27 = {
     nickname: "PetitJu",
     first_name: "Julia",
     last_name: "Fontannaz",
@@ -338,7 +338,7 @@ module SEED_USERS
     },
   }
 
-    user_28 = {
+  user_28 = {
     nickname: "Nico",
     first_name: "Nicolas",
     last_name: "Pugin",
@@ -351,7 +351,7 @@ module SEED_USERS
     },
   }
 
-    user_29 = {
+  user_29 = {
     nickname: "Barth",
     first_name: "Barthélémy",
     last_name: "lausanne",
@@ -364,7 +364,7 @@ module SEED_USERS
     },
   }
 
-    user_30 = {
+  user_30 = {
     nickname: "Margalala",
     first_name: "Marga",
     last_name: "Genoud",
@@ -428,7 +428,6 @@ module SEED_USERS
     },
   }
 
-
   USERS = [user_1,
            user_2,
            user_3,
@@ -462,8 +461,7 @@ module SEED_USERS
            user_31,
            user_32,
            user_33,
-           user_34
-         ]
+           user_34]
 
   def seed
     puts "Registering a few users..."
