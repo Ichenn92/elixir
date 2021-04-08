@@ -4,7 +4,7 @@ module SEED_BOOKINGS
   BOOKINGS = [
     {
       event_id: 1,
-      user_id: 33,
+      user_id: 13,
     },
     {
       event_id: 1,
@@ -52,7 +52,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 4,
-      user_id: 33,
+      user_id: 22,
     },
     {
       event_id: 4,
@@ -68,7 +68,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 5,
-      user_id: 33,
+      user_id: 30,
     },
     {
       event_id: 5,
@@ -80,7 +80,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 6,
-      user_id: 33,
+      user_id: 15,
     },
     {
       event_id: 6,
