@@ -4,7 +4,7 @@ module SEED_USERS
   user_1 = {
     nickname: "Yoyo",
     first_name: "Yolande",
-    last_name: "Kaiser",
+    last_name: "lausanne",
     email: "yolande.kaiser@gmail.com",
     password: "123456",
     photo: {
@@ -16,7 +16,7 @@ module SEED_USERS
   user_2 = {
     nickname: "Pierrafeu",
     first_name: "Pierre",
-    last_name: "Guntern",
+    last_name: "lausanne",
     email: "pierre.guntern@gmail.com",
     password: "123456",
     photo: {
@@ -27,7 +27,7 @@ module SEED_USERS
   }
   user_3 = {
     nickname: "Anne D'arc",
-    first_name: "Anne",
+    first_name: "lausanne",
     last_name: "Moret",
     email: "anne.moret@gmail.com",
     password: "123456",
@@ -124,7 +124,7 @@ module SEED_USERS
   user_11 = {
     nickname: "Jaja",
     first_name: "Janine",
-    last_name: "Herzog",
+    last_name: "lausanne",
     email: "janine.herzog@gmail.com",
     password: "123456",
     photo: {
@@ -222,9 +222,9 @@ module SEED_USERS
   }
 
   user_19 = {
-    nickname: "André",
+    nickname: "AndréHéhé",
     first_name: "Muller",
-    last_name: "Bonard",
+    last_name: "lausanne",
     email: "andre.muller@gmail.com",
     password: "123456",
     photo: {
@@ -315,7 +315,7 @@ module SEED_USERS
     user_26 = {
     nickname: "loulou",
     first_name: "Louis",
-    last_name: "Keim",
+    last_name: "lausanne",
     email: "louis.keim@gmail.com",
     password: "123456",
     photo: {
@@ -354,7 +354,7 @@ module SEED_USERS
     user_29 = {
     nickname: "Barth",
     first_name: "Barthélémy",
-    last_name: "Visinand",
+    last_name: "lausanne",
     email: "barthelemy.visinand@gmail.com",
     password: "123456",
     photo: {
@@ -379,7 +379,7 @@ module SEED_USERS
   user_31 = {
     nickname: "Paula33",
     first_name: "Paulina",
-    last_name: "Vuarnoz",
+    last_name: "lausanne",
     email: "paola.vuarnoz@gmail.com",
     password: "123456",
     photo: {
@@ -393,20 +393,20 @@ module SEED_USERS
     nickname: "Micki",
     first_name: "Michaël",
     last_name: "Laurac",
-    email: "michael.laurac@gmail.com",
+    email: "micki@gmail.com",
     password: "123456",
     photo: {
-      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715217/Users/michael_pehutf.jpg",
+      io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617830547/Users/micki_siqfiq.jpg",
       filename: "user_32",
       content_type: "image/png",
     },
   }
 
   user_33 = {
-    nickname: "Binh",
+    nickname: "Trist",
     first_name: "Tristan",
-    last_name: "Hoerler",
-    email: "tristan.hoerler@gmail.com",
+    last_name: "lausanne",
+    email: "tristan@gmail.com",
     password: "123456",
     photo: {
       io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715221/Users/tristan_ngdqrf.jpg",
@@ -418,8 +418,8 @@ module SEED_USERS
   user_34 = {
     nickname: "Clem",
     first_name: "Clémentine",
-    last_name: "Dubuis",
-    email: "clementine.dubuis@gmail.com",
+    last_name: "lausanne",
+    email: "clem@gmail.com",
     password: "123456",
     photo: {
       io: "https://res.cloudinary.com/clemdub1324/image/upload/v1617715214/Users/clementine_i2ueaw.jpg",

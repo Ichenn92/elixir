@@ -112,33 +112,34 @@ module SEED_CATEGORIZATIONS
   }
 
   categorization_27 = {
-    activity_id: 9,
-    category_id: 2
-  }
-  categorization_28 = {
       activity_id: 9,
       category_id: 8
   }
-  categorization_29 = {
+  categorization_28 = {
       activity_id: 9,
       category_id: 9
   }
 
-  categorization_30 = {
+  categorization_29 = {
     activity_id: 10,
     category_id: 3
   }
-  categorization_31 = {
+  categorization_30 = {
       activity_id: 10,
       category_id: 4
   }
-  categorization_32 = {
+  categorization_31 = {
       activity_id: 10,
       category_id: 5
   }
-  categorization_33 = {
+  categorization_32 = {
       activity_id: 10,
       category_id: 9
+  }
+
+  categorization_33 = {
+      activity_id: 8,
+      category_id: 7
   }
 
   CATEGORIZATIONS = [categorization_1,

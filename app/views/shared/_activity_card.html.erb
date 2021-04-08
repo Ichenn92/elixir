@@ -4,14 +4,15 @@
   </div>
   <div class="name text-medium d-flex align-items-center"><%= activity.name %></div>
   <%= link_to activity_path(activity) do %>
-    <button class="btn button-outline-green my-0 mx-1">Voir détails</button>
+    <button class="btn btn-lg button-outline-green my-0 mx-1">Voir détails</button>
   <% end %>
   <% if current_user == activity.user %>
     <%= link_to edit_activity_path(activity) do %>
-      <button class="btn button-full-green my-0 mx-1">Modifier</button>
+      <button class="btn btn-lg button-full-green my-0 mx-1">Modifier</button>
     <% end %>
-    <%= link_to activity_path(activity), method: "delete", data: { confirm: "Êtes-vous sûr(e) ?" } do %>
-      <button class="btn button-full-purple my-0 mx-1">Supprimer</button>
+    <%= link_to "#" do %>
+    <% # link_to activity_path(activity), method: "delete", data: { confirm: "Êtes-vous sûr(e) ?" } do %>
+      <button class="btn btn-lg button-full-purple my-0 mx-1">Supprimer</button>
     <% end %>
   <% end %>
 </li>
