@@ -96,7 +96,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 7,
-      user_id: 32,
+      user_id: 1,
     },
     {
       event_id: 7,
