@@ -16,7 +16,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 1,
-      user_id: 32,
+      user_id: 34,
     },
     {
       event_id: 1,
@@ -32,7 +32,7 @@ module SEED_BOOKINGS
     },
     {
       event_id: 2,
-      user_id: 32,
+      user_id: 34,
     },
     {
       event_id: 3,

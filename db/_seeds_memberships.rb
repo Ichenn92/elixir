@@ -122,7 +122,7 @@ module SEED_MEMBERSHIPS
   }
 
   membership_30 = {
-    user_id: 32,
+    user_id: 34,
     group_id: 9,
   }
   membership_31 = {
@@ -144,7 +144,7 @@ module SEED_MEMBERSHIPS
     group_id: 10,
   }
   membership_35 = {
-    user_id: 32,
+    user_id: 1,
     group_id: 10,
   }
   membership_36 = {
