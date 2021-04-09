@@ -8,7 +8,7 @@ module SEED_MEMBERSHIPS
     group_id: 1,
   }
   membership_3 = {
-    user_id: 18,
+    user_id: 32,
     group_id: 8,
   }
   membership_4 = {
